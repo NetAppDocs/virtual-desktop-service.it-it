@@ -1,0 +1,94 @@
+---
+sidebar: sidebar 
+permalink: Architectual.migrate_data_into_vds.html 
+summary: Riepilogo delle considerazioni relative alla migrazione dei dati 
+keywords:  
+---
+= Considerazioni sulla migrazione dei dati
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+La migrazione dei dati è un requisito quasi universale quando si esegue la migrazione a una soluzione cloud di qualsiasi tipo. Mentre gli amministratori sono responsabili della migrazione dei dati nei propri desktop virtuali, l'esperienza di NetApp è disponibile e si è dimostrata inestimabile per innumerevoli migrazioni dei clienti. L'ambiente Virtual Desktop è semplicemente un ambiente Windows ospitato, pertanto è possibile utilizzare qualsiasi metodo.
+
+.Dati di solito migrati:
+* Profili utente (Desktop, documenti, Preferiti, ecc.…)
+* Condivisioni file server
+* Condivisioni di dati (dati delle applicazioni, database, cache di backup)
+
+
+.Nell'ambiente Virtual Desktop, i dati vengono memorizzati e organizzati in due posizioni principali:
+* L'unità utente (in genere H:): È l'unità mappata visibile per ciascun utente.
++
+** Questo viene mappato di nuovo al percorso <DRIVE>: user.name
+** Ogni utente dispone di un proprio disco H: E non può vedere un altro utente
+
+
+* L'unità condivisa (in genere i:): Si tratta dell'unità condivisa mappata visibile a tutti gli utenti
++
+** Questo viene mappato di nuovo al percorso <DRIVE>: Dati/Codice cliente
+** Tutti gli utenti possono accedere a questo disco. Il loro livello di accesso alle cartelle/file contenuti viene gestito nella sezione cartelle di VDS.
+
+
+
+
+
+
+== Processo di migrazione generico
+
+. Replica dei dati nell'ambiente cloud
+. Spostare i dati nel percorso appropriato per i dischi H: E i:
+. Assegnare le autorizzazioni appropriate nell'ambiente Virtual Desktop
+
+
+
+
+== Trasferimenti FTPS e considerazioni
+
+
+
+=== Migrazione con FTPS
+
+. Se il ruolo del server FTPS è stato attivato durante il processo di implementazione di CWA, raccogliere le credenziali FTPS accedendo a VDS, accedendo ai report ed eseguendo il report del client master per l'organizzazione
+. Caricare i dati
+. Spostare i dati nel percorso appropriato per i dischi H: E i:
+. Assegnare le autorizzazioni appropriate nell'ambiente Virtual Desktop tramite il modulo cartelle
+
+
+
+NOTE: Durante il trasferimento dei dati tramite FTPS, qualsiasi interruzione impedirà il trasferimento dei dati come previsto. Poiché i server gestiti da Virtual Desktop Services vengono riavviati ogni notte, la strategia di trasmissione standard durante la notte potrebbe essere interrotta. Per ovviare a questo problema, gli amministratori possono attivare la modalità di migrazione per impedire il riavvio delle macchine virtuali per 1 settimana.
+
+Abilitare la modalità di migrazione è semplice: Accedere all'organizzazione, quindi scorrere fino alla sezione Impostazioni desktop virtuale e selezionare la casella modalità di migrazione, quindi fare clic su Aggiorna.
+
+
+NOTE: NetApp consiglia agli amministratori di abilitare un'impostazione di conformità che consenta alle organizzazioni di soddisfare i controlli PCI, HIPAA e NIST tramite la protezione avanzata dei gateway di implementazione, ecc. In questo modo, il ruolo del server FTP predefinito, se attivato, non accetta trasmissioni predefinite non crittografate tramite la porta 21. FileZilla non supporta SFTP, il che significa che le connessioni devono essere effettuate utilizzando FTPS sulla porta 990.
+
+Per attivare questa impostazione, connettersi a CWMGR1 e accedere al programma CwVmAutomationService, quindi attivare la conformità PCI v3.
+
+
+
+== Considerazioni e strumenti di sincronizzazione
+
+Enterprise file Sync and Share, spesso definito EFSS o strumenti di sincronizzazione, può essere estremamente utile nella migrazione dei dati, in quanto lo strumento acquisirà le modifiche da ogni lato fino al cutover. Strumenti come OneDrive, fornito con Office 365, possono aiutarti a sincronizzare i dati del file server. È utile anche per le implementazioni degli utenti VDI, in cui esiste una relazione 1:1 tra l'utente e la macchina virtuale, a condizione che l'utente non tenti di sincronizzare il contenuto condiviso sul server VDI quando i dati condivisi possono essere implementati una volta su Shared (in genere i:) per l'intera organizzazione. Migrazione di SQL e dati simili (file aperti)
+
+.Le comuni soluzioni di sincronizzazione e/o migrazione non trasferiscono file aperti, che includono tipi di file come:
+* File mailbox (.OST)
+* File QuickBooks
+* File Microsoft Access
+* Database SQL
+
+
+Ciò significa che se viene visualizzato un singolo elemento dell'intero file (ad esempio, 1 nuovo messaggio e-mail) o del database (viene inserito 1 nuovo record nel sistema di un'applicazione), l'intero file è diverso e gli strumenti di sincronizzazione standard (ad esempio Dropbox) ritieni che si tratti di un file completamente nuovo e che deve essere spostato di nuovo. Se lo si desidera, sono disponibili strumenti specializzati per l'acquisto presso fornitori di terze parti.
+
+Un altro modo comune per gestire queste migrazioni è quello di fornire l'accesso a un VAR di terze parti, che spesso ha semplificato l'importazione/esportazione di database.
+
+
+
+== Spedizione delle unità
+
+Molti data center provider non spediscono più dischi rigidi, o richiedono di seguire le proprie policy e procedure specifiche.
+
+Microsoft Azure consente alle organizzazioni di utilizzare Azure Data Box, di cui gli amministratori possono usufruire coordinandosi con i propri rappresentanti Microsoft.

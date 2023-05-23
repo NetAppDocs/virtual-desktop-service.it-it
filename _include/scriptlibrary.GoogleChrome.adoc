@@ -1,0 +1,21 @@
+= Panoramica di Google Chrome
+:allow-uri-read: 
+
+
+
+
+== Panoramica di Google Chrome
+
+Questo pacchetto di script installa/disinstalla _Google Chrome_ utilizzando il gestore dei pacchetti chocolatey (https://chocolatey.org/[]) per eseguire l'implementazione. Chocolatey viene implementato da VDS quando vengono create le macchine virtuali, ma questo script verificherà e installerà chocolatey come prerequisito se non è presente.
+
+
+
+=== Percorso di scelta rapida predefinito
+
+Il percorso di scelta rapida predefinito viene inserito di seguito, per questa applicazione il collegamento è: `\\shortcuts\Google Chrome.lnk`
+
+
+
+=== Schermata della finestra di dialogo Add Activity (Aggiungi attività)
+
+image::scriptlibrary.activity.InstallGoogleChrome.png[Scriptlibrary.activity.InstallGoogleChrome]

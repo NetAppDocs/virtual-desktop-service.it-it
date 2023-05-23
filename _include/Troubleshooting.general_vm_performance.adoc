@@ -1,0 +1,102 @@
+= Panoramica
+:allow-uri-read: 
+
+
+NetApp offre ai clienti informazioni dettagliate sulla risoluzione dei problemi relativi alle performance dei server per utenti/applicazioni. Tutte le aziende consumano le risorse in modo diverso in base al numero di utenti finali connessi contemporaneamente, all'utilizzo dell'applicazione, se SQL Standard è installato o meno SQL Express e così via, è importante poter rivedere ciò che accade quando un utente segnala problemi di performance.
+
+
+
+== Panoramica
+
+Ogni applicazione è diversa e anche lo stesso software eseguito dallo stesso numero di utenti può avere diversi modelli di consumo delle risorse. Ecco perché aiuta a comprendere le applicazioni in esecuzione dai tuoi utenti e i vantaggi reali di tale applicazione. Si tratta di CPU, RAM o storage? Queste considerazioni aiuteranno a concentrare la risoluzione dei problemi.
+
+In base alla nostra esperienza, queste affermazioni si sono rivelate generalmente vere per aiutarti a iniziare:
+
+....
+CPU: this is usually the culprit/limiting factor if the app in question is home-grown and/or an Excel issue
+RAM: this is usually the culprit/limiting factor if SQL Standard is used
+Storage: this is usually a contributing factor if disk consumption is greater than 90%.
+....
+
+NOTE: Se si utilizza SQL Express, si tratta probabilmente di un fattore limitante: Limita il consumo di RAM a 1 GB, che potrebbe essere sotto le specifiche richieste dal vendor del software.
+
+
+
+== Utilizzo dei report delle risorse settimanali
+
+VDS invia report notturni con informazioni su ciascuna macchina virtuale. Il report contiene molte informazioni utili, tra cui consigli su come aumentare o ridurre le risorse. Ecco alcuni estratti:
+
+Questa immagine mostra se è necessario aumentare o diminuire la CPU/RAM sulle macchine virtuali per un determinato spazio di lavoro.image:vm_performance1.png[""]
+
+Nell'immagine riportata di seguito, è presente una colonna che mostra quanto tempo è trascorso dal riavvio del server.image:vm_performance2.png[""]
+
+In questa immagine possiamo vedere lo storage con provisioning vs Consumato – questo argomento diventa utile per esaminare brevemente all'inizio o una volta convalidato che la CPU/RAM non è il problema.image:vm_performance3.png[""]
+
+
+
+== Visualizzazione del consumo di risorse CPU/RAM in tempo reale
+
+. Accedere a VDS, quindi fare clic sul modulo Organizations (organizzazioni) e selezionare l'organizzazione in questione.
++
+image:vm_performance4.png[""]
+
+. È possibile individuare il server a cui l'utente ha effettuato l'accesso individuandoli nella sezione utenti.
++
+image:vm_performance5.png[""]
+
+. Quindi, scorrere verso il basso fino a visualizzare la sezione Servers (Server): Individuare il server a cui l'utente ha segnalato il problema e fare clic sulla rotella delle impostazioni, quindi connettersi.
++
+image:vm_performance6.png[""]
+
+. Una volta stabilita la connessione al server, fare clic sul pulsante Start. Quindi, fare clic su Task Manager.
++
+image:vm_performance7.png[""]
+
+. Task Manager offre una vasta gamma di informazioni su ciò che sta accadendo, proprio in quel momento. Questo è il modo migliore per vedere cosa influisce sugli utenti nel momento in cui segnalano un problema.
+. È possibile esaminare i processi in esecuzione sul server, identificare eventuali elementi che causano il problema e comunicare con il cliente o terminare i processi sul posto.
++
+image:vm_performance8.png[""]
+
+. È inoltre possibile visualizzare la scheda Performance per visualizzare in tempo reale ciò che accade. Si tratta di un'incredibile fase di risoluzione dei problemi: Chiedere agli utenti finali di ripetere i passaggi necessari per causare un problema di performance, quindi vedere cosa succede. Allo stesso modo, se seguono consigli generali (chiudere le schede in eccesso del browser Chrome, poiché le schede di Google Chrome sono un comune consumatore di risorse), si può vedere il consumo di risorse diminuire.
++
+image:vm_performance9.png[""]
+
+. La scheda Users (utenti) può mostrare quale utente, se presente, sta consumando le risorse causando un picco di consumo.
++
+image:vm_performance10.png[""]
+
+. Puoi espandere ogni utente finale per vedere quali processi specifici stanno eseguendo e quanto ciascuno sta consumando.
++
+image:vm_performance11.png[""]
+
+. Un'altra opzione consiste nella visualizzazione dei servizi in esecuzione.
++
+image:vm_performance12.png[""]
+
+. I clienti possono anche aprire Resource Monitor per approfondire l'analisi.
++
+image:vm_performance13.png[""]
+
+
+
+
+
+== Considerando le performance dello storage
+
+Una delle cause più comuni dei problemi di performance delle macchine virtuali è l'insufficiente performance del disco. I dischi standard (e persino SSD) non sono progettati per gestire l'elevato carico di i/o richiesto dai carichi di lavoro VDS. Gli accessi degli utenti tendono a verificarsi in grappoli e ciascuno richiede un i/o significativo quando vengono caricati profili e impostazioni. Le tecnologie di storage ad alte performance di NetApp come Azure NetApp Files, CVO e CVS sono particolarmente adatte per questo carico di lavoro e devono essere considerate l'opzione predefinita per i carichi di lavoro VDS.
+
+
+
+== Considerando il consumo dello storage
+
+Microsoft ha una Best practice di lunga data per evitare che il consumo di dischi su qualsiasi disco superi il 90%. A loro parere, questo causa un crollo delle performance e può causare una serie di altre sfide, come la mancanza di spazio di storage sufficiente per il completamento dei backup e il mancato salvataggio del lavoro da parte degli utenti.
+
+Gli strumenti RMM possono offrire servizi di monitoraggio dello storage, inclusa la possibilità di impostare soglie e avvisi. Se lo storage diventa una sfida per te, si consiglia di collaborare con il vendor RMM per attivare questi tipi di avvisi.
+
+Per un'analisi più approfondita, installare il software per esaminare il consumo dei dischi.
+
+Dalle conversazioni con i clienti, Windirstat o TreeSize si sono dimostrate le applicazioni preferite per l'ispezione del consumo dei dischi.
+
+Windirstat è in grado di ispezionare un disco completo sulla rete se non c'è spazio sufficiente per installare/eseguire un'applicazione in locale o se l'accesso è bloccato:
+
++image:vm_performance14.png[""]

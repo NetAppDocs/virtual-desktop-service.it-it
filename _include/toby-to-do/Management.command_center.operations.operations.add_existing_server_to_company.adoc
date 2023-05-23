@@ -1,0 +1,13 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.add_existing_server_to_company-f1a26.png[Management.command center.Operations.aggiungere il server esistente all'azienda f1a26]
+
+image::Management.command_center.operations.add_existing_server_to_company-41370.png[Management.command center.Operations.aggiungere il server esistente all'azienda 41370]
+
+image::Management.command_center.operations.add_existing_server_to_company-10a25.png[Management.command center.Operations.aggiungere il server esistente all'azienda 10a25]

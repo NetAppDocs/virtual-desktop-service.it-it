@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.create_cache_company-079e0.png[Management.command center.Operations.create cache Company]

@@ -1,0 +1,79 @@
+---
+sidebar: sidebar 
+permalink: scriptlibrary.ZoomVDI-AVD.html 
+summary: Documentazione script - Zoom VDI AVD 
+keywords:  
+---
+= Documentazione sugli eventi con script - Zoom VDI AVD
+:allow-uri-read: 
+
+
+
+
+== Panoramica degli script globali
+
+NetApp VDS include una libreria di eventi predefiniti basati su script che possono essere utilizzati direttamente in ambienti VDS e/o duplicati e utilizzati come blocchi costitutivi per eventi personalizzati basati su script.
+
+Per questa applicazione, questo articolo illustra le azioni di installazione/abilitazione e disinstallazione/disabilitazione.
+
+
+
+== Utilizzo di Global script
+
+Gli eventi integrati con script come questo sono precompilati, selezionando la casella di controllo "Global" filter (filtro globale) verranno visualizzati.
+
+Gli eventi Global Scripted come questo sono di sola lettura. Possono essere utilizzati così com'è o la funzione "Clone" può essere utilizzata per creare una copia cliente per la modifica e l'utilizzo.
+
+Il pulsante Clone si trova nel menu delle azioni della pagina Scripted Events.
+
+image::scriptlibrary.overview-2ccb2.png[scriptlibrary.overview 2ccb2]
+
+
+
+== Zoom per panoramica VDI/AVD
+
+Questo pacchetto di script installa/disinstalla _Zoom VDI-AVD_ utilizzando PowerShell per eseguire l'implementazione.
+
+
+NOTE: Le prestazioni di zoom sono migliorate se il reindirizzamento audio è abilitato anche per l'ambiente VDI/AVD.
+
+
+
+=== Percorso di scelta rapida predefinito
+
+Il percorso di scelta rapida predefinito viene inserito di seguito, per questa applicazione il collegamento è: `\\shortcuts\Zoom VDI.lnk`
+
+
+
+=== Schermata della finestra di dialogo Add Activity (Aggiungi attività)
+
+image::scriptlibrary.activity.InstallZoomVDI-AVD.png[Scriptlibrary.activity.InstallZoomVDI AVD]
+
+
+
+=== Aggiungere l'attività di installazione/disinstallazione dell'applicazione
+
+Affinché uno script nel repository possa eseguire qualsiasi azione, è necessario creare un'attività per associare tale script a un trigger selezionato. In questo esempio, l'attività installerà/disinstallerà l'applicazione quando questa viene aggiunta o rimossa dall'area di lavoro (dalla pagina _Workspace > Applications_ in VDS).
+
+Gli eventi con script VDS offrono molti altri tipi di trigger di attività, come _Create Server_, che possono essere utilizzati come alternativa al tipo di evento _Application Install_ (o _Application Uninstall_). L'utilizzo di _Create Server_ eseguirebbe semplicemente l'installazione dell'applicazione su tutte le macchine virtuali appena create in VDS. _Create Server_ e altri trigger sono documentati e possono essere esplorati link:Management.Scripted_Events.scripted_events.html["qui"].
+
+
+NOTE: Questa applicazione deve essere presente nella libreria di applicazioni VDS. Questo link:Management.Applications.application_entitlement_workflow.html#add-applications-to-the-app-catalog["sezione"] Del diritto all'applicazione per RDS, l'articolo illustra l'aggiunta di applicazioni alla libreria.
+
+.Per creare un'attività e collegare questo script a un'azione:
+. Accedere alla sezione _Scripted Events_ in VDS
+. In _attività_, fare clic su _+ Aggiungi attività_
+. Nella finestra di dialogo aperta, immettere le seguenti informazioni:
++
+** *Nome:* assegnare un nome all'attività
+** *Descrizione:* se si desidera, inserire una descrizione
+** *Implementazione* selezionare l'implementazione desiderata dal menu a discesa
+** *Script:* selezionare lo script di installazione (o disinstallazione) dal menu a discesa. Questo potrebbe essere lo script globale o lo script cliente che hai clonato e personalizzato.
+** *Argomenti:* lasciare vuoto
+** *Casella di controllo abilitata:* `Check` la scatola
+** *Tipo di evento:* selezionare `Application Install` (O disinstallazione applicazione) dal menu a discesa
+** *Applicazione:* selezionare questa applicazione dal menu a discesa
+** *Percorso di scelta rapida:* inserire il percorso di scelta rapida predefinito per questa applicazione (indicato sopra)
+
+
+

@@ -1,0 +1,29 @@
+= Panoramica delle modifiche ai dati/Pro/cartelle inizio
+:allow-uri-read: 
+
+
+
+
+== *Modifica dati/Pro/Home Folders* Panoramica
+
+image::Management.command_center.operations.change_data_home_pro_folders-678cd.png[Management.command center.operations.change cartelle home pro dei dati 678cd]
+
+La posizione di storage per le cartelle dati, profili e Home utenti è gestita da Active directory. Command Center include un'operazione per modificare queste posizioni.
+
+image::Management.command_center.operations.copy_template_to_gallery-ed821.png[Management.command center.Operations.copy template to gallery ed821]
+
+
+
+== Selezione di un pool di risorse
+
+Quando la selezione del pool di risorse è vuota, le impostazioni vengono applicate globalmente.
+
+La selezione di un pool di risorse specifico (noto anche come pool di host) consente di definire individualmente il percorso del profilo degli utenti per tale pool di risorse
+
+image::Management.command_center.operations.change_data_home_pro_folders-3ac43.png[][]
+
+
+
+== È Windows Server
+
+La casella di controllo "is Windows Server" (è server Windows) deve essere deselezionata se è stato selezionato un servizio di storage (ad esempio Azure NetApp Files) come posizione di storage.

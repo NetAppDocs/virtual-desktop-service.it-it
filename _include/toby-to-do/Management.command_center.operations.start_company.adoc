@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.start_company-063ef.png[Management.command center.Operations.start Company 063ef]

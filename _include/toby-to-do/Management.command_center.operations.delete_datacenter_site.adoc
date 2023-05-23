@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.delete_datacenter_site-6df98.png[Sito del data center Management.command center.operations.delete 6df98]

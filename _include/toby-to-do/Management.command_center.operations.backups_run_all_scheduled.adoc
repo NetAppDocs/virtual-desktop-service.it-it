@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.backups_run_all_scheduled-be912.png[Management.command center.Operations.backups esegue tutti i backup pianificati be912]

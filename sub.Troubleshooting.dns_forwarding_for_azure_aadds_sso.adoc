@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.dns_forwarding_for_azure_aadds_sso.html 
+summary: Guida dettagliata alla risoluzione dei problemi di AADDS NDS e SSO 
+keywords:  
+---
+= DNS inoltra per Azure ADDS e SSO tramite identità O365
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Gli utenti non possono accedere ai siti Web aziendali sul dominio di posta elettronica principale.
+
+_Ad esempio, i dipendenti NetApp negli spazi di lavoro VDS non possono accedere a netapp.com se il loro account SSO è user@netapp.com_
+
+Le implementazioni VDS dedicate utilizzano il dominio interno del tenant Azure.
+
+
+
+== Risoluzione
+
+Per risolvere questo problema, il team dell'organizzazione che gestisce il DNS dovrà creare una zona di ricerca diretta DNS per il dominio interno in modo da consentirgli di risolvere l'IP esterno corretto (per gli scopi di NetApp, questo consentirebbe ai dipendenti NetApp di navigare su netapp.com dal proprio desktop virtuale).
+
+
+
+== Guida dettagliata
+
+. Installare gli strumenti del server DNS su CWMGR1, che consente di gestire il DNS.
++
+image:dns1.png[""]
+
++
+image:dns2.png[""]
+
++
+image:dns3.png[""]
+
++
+image:dns4.png[""]
+
++
+image:dns5.png[""]
+
+. Una volta installato, accedere a pannello di controllo → sistema e sicurezza → Strumenti di amministrazione e aprire DNS.
++
+image:dns6.png[""]
+
+. Quando viene richiesto il server DNS che esegue il DNS, inserire il nome di dominio (nell'esempio utilizzato, _netapp.com_).
+

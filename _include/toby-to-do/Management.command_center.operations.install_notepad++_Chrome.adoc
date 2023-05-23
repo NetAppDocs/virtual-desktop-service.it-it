@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.install_notepad++_Chrome-2eb07.png[Management.command center.operations.install blocco note++ Chrome 2eb07]

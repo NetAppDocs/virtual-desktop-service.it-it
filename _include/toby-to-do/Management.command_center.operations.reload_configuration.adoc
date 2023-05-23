@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.reload_configuration-e97f8.png[Management.command center.Operations.reload Configuration e97f8]

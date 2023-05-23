@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.create_data_center_site-6e0fa.png[Management.command center.Operations.create il sito del data center 6e0fa]

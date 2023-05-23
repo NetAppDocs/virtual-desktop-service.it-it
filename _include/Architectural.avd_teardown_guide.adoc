@@ -1,0 +1,175 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Questo articolo illustra la rimozione del controllo di VDS e NetApp mantenendo l'accesso dell'utente finale AVD. La gestione in futuro sarebbe basata su strumenti di amministrazione nativi di Azure/Windows. Una volta completato questo processo, si consiglia di contattare support@spotpc.netapp.com in modo che NetApp possa ripulire i sistemi di back-end e fatturazione.
+
+
+
+== Stato iniziale
+
+* Implementazione AVD
+* TDS1 è FS Logix FileShare
+* TS1 è host di sessione
+* L'utente ha effettuato l'accesso e il disco FS Logix è stato creato in:
++
+ \\****TSD1\****-Pro$\ProfileContainers (**** = Unique Company Code)
+
+
+
+
+== Elimina servizio CW Agent
+
+L'agente CW viene eseguito su ogni computer dell'ambiente. Il servizio che avvia questo processo deve essere disinstallato con il seguente comando su ogni macchina virtuale dell'ambiente. CWMGR1 può essere saltato, in quanto la macchina virtuale verrà arrestata ed eventualmente eliminata nella maggior parte dei casi. Idealmente, questa azione dovrebbe essere eseguita tramite l'automazione basata su script. Il video seguente mostra che è stato fatto manualmente.
+
+ C:\Program files\CloudWorkspace\CwAgent\CwAgent.exe -u
+
+
+=== Elimina il video del servizio CW Agent
+
+video::l9ASmM5aap0[youtube]
+
+
+== Eliminare la directory degli agenti CW
+
+La disinstallazione precedente ha rimosso il servizio che avvia CW Agent, ma i file rimangono. Eliminare la directory:
+
+ "C:\Program Files\CloudWorkspace"
+
+
+=== Elimina il video della directory di CW Agent
+
+video::hMM_z4K2-iI[youtube]
+
+
+== Rimuovere i collegamenti di avvio
+
+La directory degli elementi di avvio contiene due collegamenti ai file cancellati nel passaggio precedente. Per evitare messaggi di errore dell'utente finale, questi file devono essere cancellati.
+
+....
+"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\Pen.lnk"
+"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\CwRemoteApps.lnk"
+....
+
+
+=== Rimuovere il video dei collegamenti di avvio
+
+video::U0YLZ3Qfu9w[youtube]
+
+
+== Scollegare gli oggetti Criteri di gruppo ‘utenti’ e ‘aziende’
+
+VDS ha implementato tre GPO. Si consiglia di scollegarne due e di rivedere il contenuto del terzo.
+
+Scollega:
+
+* Utenti AADDC > Aziende Cloud Workspace
+* Utenti AADDC > utenti Cloud Workspace
+
+
+Recensione:
+
+* Computer AADDC > Cloud Workspace Computers
+
+
+
+
+=== Scollegare il video degli oggetti Criteri di gruppo ‘utenti’ e ‘aziende’
+
+video::cb68ri3HKUw[youtube]
+
+
+== Arrestare CWMGR1
+
+Con l'applicazione delle modifiche al GPO, è ora possibile arrestare la macchina virtuale CWMGR1. Una volta confermata la funzionalità AVD, questa macchina virtuale può essere eliminata in modo permanente.
+
+In casi estremamente rari, è necessario mantenere questa macchina virtuale se è in esecuzione un altro ruolo di server (ad esempio, DC, FTP Server…). In tal caso, è possibile disattivare tre servizi per disattivare la funzionalità VDS su CWMGR1:
+
+* Agente CW (vedere sopra)
+* Servizio di automazione CW
+* Automazione VM CW
+
+
+
+
+=== Arrestare il video CWMGR1
+
+video::avk9HyIiC_s[youtube]
+
+
+== Eliminare gli account dei servizi NetApp VDS
+
+Gli account del servizio Azure ad utilizzati da VDS possono essere rimossi. Accedere al portale di gestione Azure ed eliminare gli utenti:
+
+* CloudWorkspaceSVC
+* CloudWorkspaceCASVC
+
+
+È possibile conservare altri account utente:
+
+* Utenti finali
+* Amministratore di Azure
+* amministratori di dominio .tech
+
+
+
+
+=== Elimina il video degli account del servizio NetApp VDS
+
+video::_VToVNp49cg[youtube]
+
+
+== Eliminare le registrazioni delle applicazioni
+
+Durante l'implementazione di VDS vengono effettuate due registrazioni di applicazioni. Questi possono essere cancellati:
+
+* API Cloud Workspace
+* Cloud Workspace AVD
+
+
+
+
+=== Elimina il video di registrazione dell'applicazione
+
+video::iARz2nw1Oks[youtube]
+
+
+== Eliminare le applicazioni aziendali
+
+Durante l'implementazione di VDS vengono implementate due applicazioni aziendali. Questi possono essere cancellati:
+
+* Cloud Workspace
+* API Cloud Workspace Management
+
+
+
+
+=== Elimina il video delle applicazioni aziendali
+
+video::3eQzTPdilWk[youtube]
+
+
+== Verificare che CWMGR1 sia stato interrotto
+
+Prima di verificare che gli utenti finali possano ancora connettersi, verificare che CWMGR1 sia stato arrestato per un test realistico.
+
+
+
+=== Verificare che il video di CWMGR1 sia stato interrotto
+
+video::Ux9nkDk5lU4[youtube]
+
+
+== Accesso e utente finale
+
+Per confermare l'esito positivo, accedere come utente finale e verificare che la funzionalità sia mantenuta.
+
+
+
+=== Login e video per l'utente finale
+
+video::SuS-OTHJz7Y[youtube]

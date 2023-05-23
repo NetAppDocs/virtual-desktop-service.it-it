@@ -1,0 +1,11 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.change_data_home_pro_folders-6606b.png[Management.command center.operations.change cartelle home pro dei dati 6606b]
+
+image::Management.command_center.operations.change_data_home_pro_folders-8b088.png[Management.command center.operations.change cartelle home pro di dati 8b088]

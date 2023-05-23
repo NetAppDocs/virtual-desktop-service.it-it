@@ -1,0 +1,26 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Sbloccare un account bloccato per un utente finale è un processo semplice che risolve un problema moderatamente comune segnalato dagli utenti finali.
+
+Dopo quattro tentativi di accesso non riusciti, l'utente verrà bloccato. La durata è di 30 minuti a meno che l'account del cliente non abbia attivato la complessità della password, nel qual caso il blocco può essere eseguito solo manualmente.
+
+L'account utente può essere sbloccato dall'elenco degli utenti nella pagina Users & Groups (utenti e gruppi) nelle aree di lavoro o dalla pagina User Detail (Dettagli utente).
+
+
+
+== Pagina utenti e gruppi
+
+image:unlock_user_accounts1.png[""]
+image:unlock_user_accounts2.png[""]
+
+
+
+== Pagina User Detail (Dettagli utente)
+
+image:unlock_user_accounts3.png[""]

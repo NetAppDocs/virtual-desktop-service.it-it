@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.load_hypervisor_type-e9558.png[Management.command center.Operations.load hypervisor di tipo e9558]

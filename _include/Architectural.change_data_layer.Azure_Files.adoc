@@ -1,0 +1,179 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Le tecnologie di implementazione di Virtual Desktop Service consentono una vasta gamma di opzioni di storage a seconda dell'infrastruttura sottostante. Questa guida spiega come apportare una modifica all'utilizzo dei file Azure dopo la distribuzione.
+
+
+
+=== Prerequisiti
+
+* AD Connect installato e configurato
+* Account amministratore globale Azure
+* AZFilesModule PowerShell ibrido https://github.com/Azure-Samples/azure-files-samples/releases[]
+* Modulo AZ PowerShell
+* Modulo ActiveDirectory PowerShell
+
+
+
+
+=== Creare il nuovo layer di storage
+
+. Accedere ad Azure con l'account amministratore globale
+. Creare un nuovo account di storage nella stessa posizione e nello stesso gruppo di risorse dell'area di lavoro
++
+image:Architectural.ChangeDataLayer.AzureFiles1.png[""]
+
+. Creare le condivisioni di dati, home e file pro sotto l'account storage
++
+image:Architectural.ChangeDataLayer.AzureFiles2.png[""]
+
+
+
+
+
+=== Configurare Active Directory
+
+. Creare una nuova unità organizzativa denominata "`Storage account`" in Cloud Workspace > Cloud Worksapce Service Accounts OU
++
+image:Architectural.ChangeDataLayer.AzureFiles3.png[""]
+
+. Abilitare l'autenticazione ad DS (deve essere eseguita utilizzando PowerShell) https://docs.microsoft.com/en-us/azure/storage/files/storage-files-identity-ad-ds-enable[]
++
+.. DomainAccountType deve essere “`ServiceLogonAccount`"
+.. OraganizationalUnitDistinguishedName è il nome distinto dell'unità organizzativa creata nel passaggio precedente (ad es “`OU=Storage Account,OU=Cloud Workspace Service Accounts,OU=Cloud Workspace,DC=TrainingKrisG,DC=onmicrosoft,DC=com`")
+
+
+
+
+
+
+=== Impostare i ruoli per le condivisioni
+
+. Nel portale Azure, assegnare il ruolo di "`Storage file Data SMB Share Elevated Contributor`" ai tecnici di CloudWorkspaceSVC e Level3
++
+image:Architectural.ChangeDataLayer.AzureFiles4.png[""]
+
+. Assegnare il ruolo di "Storage file Data SMB Share Contributor" a “`<company code>-all users`" gruppo
++
+image:Architectural.ChangeDataLayer.AzureFiles5.png[""]
+
+
+
+
+
+=== Creare le directory
+
+. Creare una directory in ogni condivisione (dati, home, pro) utilizzando il codice della società come nome (in questo esempio, il codice della società è "`kift`")
++
+image:Architectural.ChangeDataLayer.AzureFiles6.png[""]
+
+. Nella directory <company code> della condivisione professionale, creare una directory "`ProfileContainers`"
++
+image:Architectural.ChangeDataLayer.AzureFiles7.png[""]
+
+
+
+
+
+=== Impostare le autorizzazioni NTFS
+
+. Connettersi alle condivisioni
++
+.. Accedere alla condivisione sotto l'account di storage nel portale Azure, fare clic sui tre punti, quindi fare clic su Connect (Connetti)
++
+image:Architectural.ChangeDataLayer.AzureFiles8.png[""]
+
+.. Scegliere Active Directory for Authentication Method (Active Directory per metodo di autenticazione) e fare clic sull'icona Copy to Appunti (Copia negli Appunti) nell'angolo inferiore destro del codice
++
+image:Architectural.ChangeDataLayer.AzureFiles9.png[""]
+
+.. Accedere al server CWMGR1 con un account membro del gruppo Level3 Technicians
+.. Eseguire il codice copiato in PowerShell per mappare l'unità
+.. Fare lo stesso per ciascuna condivisione scegliendo una lettera di unità diversa per ciascuna
+
+
+. Disattivare l'ereditarietà nelle directory <company code>
+. System e il ClientDHPAccess del gruppo ad devono avere il controllo completo delle directory <company code>
+. I computer di dominio devono avere il controllo completo della directory <company code> nella condivisione pro e della directory ProfileContainers all'interno di
+. Il gruppo ad di utenti <company code>-all deve disporre dei dati di lettura/cartella elenco nelle directory <company code> delle condivisioni home e pro
+. Il gruppo ad <company code>-All Users deve disporre delle autorizzazioni speciali riportate di seguito per la directory nella condivisione dei dati
++
+image:Architectural.ChangeDataLayer.AzureFiles10.png[""]
+
+. Il gruppo ad di utenti <company code>-all deve disporre dell'autorizzazione Modifica per la directory ProfileContainers
+
+
+
+
+=== Aggiorna oggetti Criteri di gruppo
+
+. Aggiornare gli utenti di GPO <company code> in Area di lavoro cloud > Aziende area di lavoro cloud > <company code> > utenti <company code>-desktop
++
+.. Modificare la mappatura dell'unità Home per puntare la nuova condivisione domestica
++
+image:Architectural.ChangeDataLayer.AzureFiles11.png[""]
+
+.. Modificare il reindirizzamento cartelle per puntare la home share per Desktop e documenti
++
+image:Architectural.ChangeDataLayer.AzureFiles12.png[""]
+
++
+image:Architectural.ChangeDataLayer.AzureFiles13.png[""]
+
+
+
+
+
+
+
+=== Aggiornare la condivisione in utenti e computer di Active Directory
+
+. Con l'ad classico o ibrido, la condivisione nell'unità organizzativa del codice aziendale deve essere aggiornata nella nuova posizione
++
+image:Architectural.ChangeDataLayer.AzureFiles14.png[""]
+
+
+
+
+
+=== Aggiornare i percorsi Data/Home/Pro in VDS
+
+. Accedi a CWMGR1 con un account nel gruppo Level3 Technicians e avvia Command Center
+. Nell'elenco a discesa dei comandi, selezionare Change Data/Home/Pro Folders (Modifica dati/Home/cartelle Pro)
+. Fare clic sul pulsante Load Data (carica dati), quindi assicurarsi di aver selezionato il codice società corretto dall'elenco a discesa
+. Immettere il nuovo patsh per le posizioni dei dati, della casa e dei professionisti
+. Deselezionare la casella is Windows Server (è Windows Server)
+. Fare clic sul pulsante Execute Command (Esegui comando)
++
+image:Architectural.ChangeDataLayer.AzureFiles15.png[""]
+
+
+
+
+
+=== Aggiorna i percorsi del profilo FSLogix
+
+. Aprire l'editorio del Registro di sistema sugli host di sessione
+. Modificare la voce VHDLoccations in HKLM/SOFTWARE/FSLogix/Profiles in modo che sia il percorso UNC alla nuova directory ProfileContainers
++
+image:Architectural.ChangeDataLayer.AzureFiles16.png[""]
+
+
+
+
+
+=== Configurare i backup
+
+. Si consiglia di impostare e configurare un criterio di backup per le nuove condivisioni
+. Creare un nuovo vault dei servizi di ripristino nello stesso gruppo di risorse
+. Accedere al vault e selezionare Backup in Getting Started (Guida introduttiva)
+. Scegliere Azure per il carico di lavoro in esecuzione e Azure file share per il backup, quindi fare clic su Backukp
+. Selezionare l'account di storage utilizzato per creare le condivisioni
+. Aggiungere le condivisioni di cui eseguire il backup
+. Modifica e crea una policy di backup che si adatti alle tue esigenze
+

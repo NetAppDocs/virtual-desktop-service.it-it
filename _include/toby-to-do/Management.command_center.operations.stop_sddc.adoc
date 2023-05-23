@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.stop_sddc-ce267.png[Management.command center.Operations.stop sddc ce267]

@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.set_time_zone-6f3cf.png[Management.command center.operations.set fuso orario 6f3cf]

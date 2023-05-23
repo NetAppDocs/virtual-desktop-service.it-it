@@ -1,0 +1,53 @@
+= Errore
+:allow-uri-read: 
+
+
+
+
+== Errore
+
+La stampa sulla stampante locale dal desktop cloud non funziona.
+
+
+
+== Remote Desktop Services con ThinPrint
+
+VDS include facoltativamente ThinPrint per le implementazioni RDS (Remote Desktop Services). Il software e le licenze vengono configurati automaticamente al momento dell'implementazione iniziale. Se ThinPrint è in uso, le seguenti sezioni possono aiutare a risolvere i problemi di stampa.
+
+
+
+=== Causa
+
+Esistono diversi metodi per connettersi al cloud desktop. Questi metodi differiscono per le modalità di esecuzione delle funzioni di stampa e quindi per sapere quale tipo di accesso è necessario utilizzare per la risoluzione dei problemi:
+
+. Utilizzo del client di accesso di CloudJumper su un dispositivo Windows
++
+.. ThinPrint viene eseguito sul dispositivo locale e trasmette la comunicazione tra la stampante e il cloud desktop
+
+
+. Utilizzo del browser HTML5 su qualsiasi dispositivo
++
+.. Il browser presenterà il documento stampato in formato PDF da scaricare e stampare localmente
+
+
+. Utilizzo di un client RDP configurato manualmente (di solito) su una macchina Mac o Linux
++
+.. Le stampanti locali vengono condivise con il cloud desktop configurando manualmente le "risorse locali" nel client RDP.
+
+
+
+
+
+
+=== Risoluzione
+
+. Provare a stampare un documento dalla periferica locale per verificare che la periferica locale sia collegata correttamente alla stampante.
+. Disinstallare e reinstallare ThinPrint se si utilizza Access Client su un dispositivo Windows. https://www.thinprint.com/en/resources-support/software/clientsandtools/[]
+. Prendere nota del tipo di accesso e dei risultati delle prime due fasi di un nuovo caso con CloudJumper Support.
+
+
+
+
+== Desktop virtuale Azure
+
+VDS non implementa alcuna soluzione di stampa o configurazione di stampa univoca per gli ambienti AVD. Le domande relative alla stampa devono essere indirizzate a Microsoft o (se ne è stata implementata una) al fornitore della tecnologia di stampa.

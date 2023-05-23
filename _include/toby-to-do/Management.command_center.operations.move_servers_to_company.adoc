@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.move_servers_to_company-cec7b.png[Management.command center.Operations.Move server to Company cec7b]

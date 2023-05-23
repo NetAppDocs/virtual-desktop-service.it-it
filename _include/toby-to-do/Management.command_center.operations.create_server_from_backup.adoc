@@ -1,0 +1,21 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.create_server_from_backup-cac47.png[Management.command center.Operations.create server da caac47 di backup]
+
+image::Management.command_center.operations.create_server_from_backup-eabc4.png[Management.command center.Operations.create server da eabc4 di backup]
+
+image::Management.command_center.operations.create_server_from_backup-14061.png[Management.command center.Operations.create server dal backup 14061]
+
+image::Management.command_center.operations.create_server_from_backup-c7d6b.png[Management.command center.Operations.create il server dal backup c7d6b]
+
+image::Management.command_center.operations.create_server_from_backup-a487e.png[Management.command center.Operations.create server dal backup a487e]
+
+image::Management.command_center.operations.create_server_from_backup-51ac2.png[Management.command center.Operations.create server dal backup 51ac2]
+
+image::Management.command_center.operations.create_server_from_backup-b0fa0.png[Management.command center.Operations.create server dal backup b0fa0]

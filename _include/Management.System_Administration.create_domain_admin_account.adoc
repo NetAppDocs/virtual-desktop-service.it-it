@@ -1,0 +1,53 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Occasionalmente, gli amministratori VDS avranno bisogno di credenziali a livello di dominio per gestire l'ambiente. In VDS questi account sono denominati "livello 3" o ".TECH".
+
+Queste istruzioni mostrano come è possibile creare questi account con le autorizzazioni appropriate.
+
+
+
+=== Controller di dominio Windows Server
+
+Quando si esegue un controller di dominio ospitato internamente (o un controller di dominio locale collegato ad Azure tramite un percorso VPN/Express), è possibile gestire gli account .TECH direttamente in Active Directory Manager.
+
+. Connettersi al controller di dominio (CWMGR1, DC01 o alla macchina virtuale esistente) con un account admin di dominio (.TECH).
+. Creare un nuovo utente (se necessario).
+. Aggiungere l'utente al gruppo di sicurezza "tecnici livello 3"
++
+image::Management.System_Administration.create_domain_admin_account-9ee17.png[Management.System Administration.creare un account admin di dominio 9ee17]
+
++
+.. Se il gruppo di sicurezza "tecnici livello 3" non è presente, crearlo e renderlo membro del gruppo di sicurezza "infrastruttura CW".
++
+image::Management.System_Administration.create_domain_admin_account-0fc27.png[Management.System Administration.create account admin di dominio 0fc27]
+
+
+
+
+
+
+NOTE: L'aggiunta di ".tech" alla fine del nome utente è una procedura consigliata per delineare gli account amministratore dagli account utente finali.
+
+
+
+=== Servizi di dominio ad Azure
+
+Se vengono eseguiti in Azure ad Domain Services o se si gestisce un utente in Azure ad, questi account possono essere gestiti (ad esempio, la modifica della password) nel portale di gestione Azure come un normale utente Azure ad.
+
+È possibile creare nuovi account, aggiungendoli a questi ruoli per ottenere le autorizzazioni necessarie:
+
+. Amministratori di AAD DC
+. ClientDHPAccess
+. Amministratore globale nella directory.
+
+
+
+NOTE: L'aggiunta di ".tech" alla fine del nome utente è una procedura consigliata per delineare gli account amministratore dagli account utente finali.
+
+image:l33.png[""]

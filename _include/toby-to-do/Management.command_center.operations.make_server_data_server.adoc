@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.make_server_data_server-67eee.png[Management.command center.Operations.make server data server 67eee]

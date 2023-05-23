@@ -1,0 +1,122 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+In un ambiente Azure Virtual Desktop (AVD), l'accesso alle applicazioni viene gestito dall'appartenenza al gruppo di applicazioni.
+
+
+NOTE: Questo flusso di lavoro si applica solo alle implementazioni AVD. Per la documentazione relativa ai diritti dell'applicazione RDS, vedere link:Management.Applications.application_entitlement_workflow.html["Application Entitlement Workflow per RDS"]
+
+
+TIP: AVD è un servizio ben documentato e CE ne sono molti link:https://docs.microsoft.com/en-us/azure/virtual-desktop/manage-app-groups["risorse pubbliche per l'informazione"]. VDS non esegue il sovrarseed del modo di funzionamento standard di AVD. Piuttosto, questo articolo è stato progettato per illustrare come VDS si avvicina al concetto standard presente in tutte le implementazioni AVD.
+
+
+TIP: Analisi di link:Management.Deployments.logical_hierarchy_overview.html["Panoramica della gerarchia logica VDS"] articolo può essere utile prima o durante la revisione di questo articolo.
+
+
+
+=== Visualizzazione per l'utente finale
+
+In Azure Virtual Desktop, a ciascun utente finale viene assegnato l'accesso a RemoteApp e/o Desktop dal proprio amministratore AVD. Questa operazione viene eseguita tramite l'assegnazione di App Group in VDS.
+
+*RemoteApp* si riferisce a un'applicazione che viene eseguita in remoto sull'host di sessione ma viene presentata sul dispositivo locale senza il contesto del desktop. Comunemente chiamata "applicazione per lo streaming", queste applicazioni assommano a un'applicazione locale sul dispositivo locale, ma vengono eseguite nel contesto di sicurezza e sul livello di storage e calcolo dell'host di sessione.
+
+*Desktop* si riferisce all'esperienza Windows completa in esecuzione sull'host di sessione e presentata sul dispositivo locale, in genere in una finestra a schermo intero. Comunemente chiamato "desktop remoto", questo desktop contiene tutte le applicazioni installate su tale host di sessione che possono essere avviate dall'utente dalla finestra della sessione del desktop.
+
+Al momento dell'accesso, all'utente finale vengono visualizzate le risorse assegnate dall'amministratore. Di seguito è riportato un esempio della vista che un utente finale potrebbe visualizzare quando accede al proprio client AVD. Si tratta di un esempio più complesso, spesso un utente finale dispone solo di un desktop dingle o RemoteApp assegnati. L'utente finale può fare doppio clic su una di queste risorse per avviare l'applicazione o il desktop.
+
+image::Management.Deployments.vds_sites-0e49c.png[Management.Deployments.vds Sites 0e49c]
+
+In questo esempio più complesso, questo utente ha accesso a due sessioni desktop diverse e a 4 diverse applicazioni di streaming:
+
+* *Desktop disponibili*
++
+** Desktop NVIDIA GPU
+** Desktop condiviso AVD Pool
+** Desktop Pool Operation 2
+
+
+* *RemoteApp disponibili*
++
+** AutoCAD 2021
+** Revit 2021
+** Microsoft Edge
+** Blocco note
+
+
+
+
+Dietro le quinte, queste applicazioni e desktop sono ospitati in una vasta gamma di host di sessione e aree di lavoro AVD e possono persino essere ospitati in diverse regioni di Azure.
+
+Di seguito è riportato un diagramma che illustra la posizione di hosting di ciascuna di queste risorse e il modo in cui sono state assegnate a questo utente finale.
+
+image::Management.Deployments.vds_sites-0e880.png[Management.Deployments.vds Sites 0e880]
+
+Come illustrato in precedenza, le varie risorse disponibili per questo utente finale sono ospitate in diversi host di sessione, in diversi pool di host e potenzialmente gestite da diverse organizzazioni IT in diversi spazi di lavoro AVD. Anche se non viene mostrato in questo esempio, queste risorse potrebbero essere ospitate in diverse aree Azure e/o sottoscrizioni utilizzando la funzione Siti VDS.
+
+
+
+=== Accesso al desktop
+
+Per impostazione predefinita, ogni pool di host inizia con un singolo gruppo di applicazioni, utilizzato per assegnare l'accesso all'esperienza desktop di Windows. Tutte le applicazioni installate su questi host di sessione saranno accessibili agli utenti finali assegnati a questo gruppo di applicazioni.
+
+.Per abilitare la risorsa Desktop per gli utenti in VDS:
+. Accedere alla pagina Workspaces > AVD > host Pool > App Groups (aree di lavoro > AVD > Pool host > gruppi di applicazioni) e fare clic sul gruppo di applicazioni per la risorsa "Desktop".
++
+image::Management.Applications.avd_application_entitlement_workflow-349fe.png[Management.Applications.avd application titlement workflow 349fe]
+
+. Una volta all'interno dell'App Group, fare clic su Edit (Modifica)
++
+image::Management.Applications.avd_application_entitlement_workflow-3bcfc.png[Management.Applications.avd application titlement workflow 3bcfc]
+
+. Dalla finestra di dialogo di modifica, è possibile aggiungere o rimuovere utenti a questo gruppo di applicazioni per utente e/o per gruppo.
++
+image::Management.Applications.avd_application_entitlement_workflow-07ff0.png[Management.Applications.avd application titlement workflow 07ff0]
+
+
+
+
+
+=== Accesso RemoteApp
+
+Per eseguire il provisioning dell'accesso a RemoteApps, è necessario creare un nuovo gruppo di applicazioni all'interno del pool di host. Una volta create, le applicazioni appropriate devono essere assegnate a questo gruppo di applicazioni.
+
+
+NOTE: Tutte le applicazioni su questi host di sessione saranno già disponibili per tutti gli utenti assegnati all'appgroup "Desktop" di questo pool di host. Non è necessario fornire l'accesso anche tramite un gruppo di applicazioni RemoteApp semplicemente per fornire l'accesso alle applicazioni. Un gruppo di applicazioni RemoteApp è necessario solo per consentire l'accesso alle applicazioni che vengono eseguite come se sul dispositivo locale come un'applicazione di streaming.
+
+
+
+==== Creare un nuovo gruppo di applicazioni
+
+. Accedere alla pagina Workspace > AVD > host Pool > App Groups (aree di lavoro > AVD > Pool host > gruppi di applicazioni) e fare clic sul pulsante _+ Add App Group_ (Aggiungi gruppo di applicazioni)
++
+image::Management.Applications.avd_application_entitlement_workflow-d33da.png[Management.Applications.avd application titlement workflow d33da]
+
+. Immettere il nome, l'area di lavoro e il nome descrittivo per questo gruppo di applicazioni. Selezionare gli utenti e/o i gruppi da assegnare e fare clic su _Save_ (Salva)
++
+image::Management.Applications.avd_application_entitlement_workflow-242eb.png[Management.Applications.avd application titlement workflow 242eb]
+
+
+
+
+
+==== Aggiungere applicazioni all'App Group
+
+. Accedere alla pagina Workspace > AVD > host Pool > App Groups (aree di lavoro > AVD > Pool host > gruppi di applicazioni) e fare clic sul gruppo di applicazioni per la risorsa "RemoteApp".
++
+image::Management.Applications.avd_application_entitlement_workflow-3dcde.png[Gestione.applicazioni.avd application titlement workflow 3dcde]
+
+. Una volta all'interno dell'App Group, fare clic su Edit (Modifica)
++
+image::Management.Applications.avd_application_entitlement_workflow-27a41.png[Management.Applications.avd application titlement workflow 27a41]
+
+. Scorrere verso il basso fino alla sezione "Remote Apps" (applicazioni remote). La compilazione di questa sezione potrebbe richiedere qualche istante, poiché VDS sta eseguendo direttamente una query agli host di sessione per mostrare le applicazioni disponibili per lo streaming.
++
+image::Management.Applications.avd_application_entitlement_workflow-1e9f2.png[Management.Applications.avd application titlement workflow 1e9f2]
+
+. Cercare e selezionare le applicazioni a cui gli utenti di questo gruppo di applicazioni devono accedere come risorsa RemoteApp.
+

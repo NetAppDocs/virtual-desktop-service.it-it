@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.edit_workload_schedule-a3550.png[Management.command center.Operations.edit workload schedule a3550]

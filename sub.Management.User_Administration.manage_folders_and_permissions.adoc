@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: Management.User_Administration.manage_folders_and_permissions.html 
+summary: Gestione delle autorizzazioni per i dati 
+keywords:  
+---
+= Gestione delle autorizzazioni per i dati
+:allow-uri-read: 
+
+
+
+
+== Prospettiva dell'utente finale
+
+Gli utenti finali di Virtual Desktop possono accedere a diversi dischi mappati. Questi dischi includono una condivisione di team accessibile ai FTP, una condivisione file aziendale e il disco principale (per documenti, desktop, ecc.…) . Tutte queste unità mappate fanno riferimento a un livello di storage centrale su un servizio di storage (come Azure NetApp Files) o su una macchina virtuale del file server.
+
+A seconda della configurazione di cui l'utente potrebbe non avere le unità H: O F: Esposte, potrebbero vedere solo il proprio desktop, documenti, ecc.… cartelle. Inoltre, l'amministratore del VDS può impostare lettere di unità diverse al momento dell'implementazione.image:manage_data1.png[""]
+
+image:manage_data2.png[""]
+
+
+
+=== Gestione delle autorizzazioni
+
+VDS consente agli amministratori di modificare i gruppi di sicurezza e le autorizzazioni delle cartelle, tutto dal portale VDS.
+
+
+
+=== Gruppi di sicurezza
+
+I gruppi di sicurezza vengono gestiti facendo clic su Workspace > Nome tenant > utenti e gruppi > nella sezione gruppi
+
+.In questa sezione è possibile:
+. Creare nuovi gruppi di sicurezza
+. Aggiungere/rimuovere utenti ai gruppi
+. Assegnare le applicazioni ai gruppi
+. Attiva/disattiva l'accesso al disco locale ai gruppi
+
+
+image:manage_data3.gif[""]
+
+
+
+== Permessi della cartella
+
+Per gestire le autorizzazioni delle cartelle, fare clic su Workspace > Nome tenant > Gestisci (nella sezione cartelle).
+
+.In questa sezione è possibile:
+. Aggiungi/Elimina cartelle
+. Assegnare autorizzazioni a utenti o gruppi
+. Personalizzare le autorizzazioni per sola lettura, controllo completo e Nessuna
+
+
+image:manage_data4.gif[""]

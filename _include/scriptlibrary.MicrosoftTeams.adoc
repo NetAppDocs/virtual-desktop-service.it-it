@@ -1,0 +1,18 @@
+= Panoramica dei team Microsoft
+:allow-uri-read: 
+
+
+
+
+== Panoramica dei team Microsoft
+
+Questo pacchetto di script installa/disinstalla _Microsoft Teams_ utilizzando il gestore dei pacchetti chocolatey (https://chocolatey.org/[]) per eseguire l'implementazione. Chocolatey viene implementato da VDS quando vengono create le macchine virtuali, ma questo script verificherà e installerà chocolatey come prerequisito se non è presente.
+
+
+WARNING: Questa installazione Microsoft Teams è appositamente configurata per le implementazioni in un ambiente RDS. link:scriptlibrary.MicrosoftTeamsAVD.html["Un altro script Microsoft Teams"] Viene fornito per le implementazioni AVD.
+
+
+
+=== Percorso di scelta rapida predefinito
+
+Il percorso di scelta rapida predefinito viene inserito di seguito, per questa applicazione il collegamento è: `\\shortcut\Microsoft Teams.lnk`

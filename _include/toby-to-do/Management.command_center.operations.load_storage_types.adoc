@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.load_storage_types-e47d0.png[Management.command center.Operations.load tipi di storage e47d0]

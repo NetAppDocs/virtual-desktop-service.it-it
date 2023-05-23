@@ -1,0 +1,115 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+VDS è in grado di configurare e gestire i servizi di backup nativi in alcuni provider di infrastrutture, tra cui Azure.
+
+
+
+== Azure
+
+In Azure, VDS è in grado di configurare automaticamente i backup utilizzando i backup nativi link:https://azure.microsoft.com/en-us/services/backup/["Backup cloud Azure"] Con storage ridondante in locale (LRS). Se necessario, lo storage geodundant (GRS) può essere configurato nel portale di gestione Azure.
+
+* È possibile definire singole policy di backup per ciascun tipo di server (con raccomandazioni predefinite). Inoltre, è possibile assegnare a singoli computer una pianificazione indipendente (dal tipo di server) dall'interfaccia utente VDS. Questa impostazione può essere applicata accedendo alla vista dettagli server facendo clic sul nome del server nella pagina Workspace (vedere il video seguente: Impostazione di criteri di backup individuali)
++
+** Dati
++
+*** Backup con 7 backup giornalieri, 5 settimanali e 2 mensili. Aumentare i periodi di conservazione in base ai requisiti di business.
+*** Ciò vale sia per un server dati dedicato che per le VM VPS add-on per applicazioni e database.
+
+
+** Infrastruttura
++
+*** CWMGR1 – Backup giornaliero e conservazione 7 giorni su 7, 5 settimane, 2 mesi.
+*** Gateway RDS: Backup settimanale e conservazione 4 alla settimana.
+*** Gateway HTML5: Backup settimanale e conservazione 4 settimanale.
+
+
+** PowerUser (noto anche come utente VDI)
++
+*** Non eseguire il backup della macchina virtuale poiché i dati devono essere memorizzati su un server D1 o TSD1.
+*** Tenere presente che alcune applicazioni memorizzano i dati in locale e, in tal caso, è necessario prendere speciali considerazioni.
+*** In caso di guasto di una macchina virtuale, è possibile creare una nuova macchina virtuale tramite la clonazione di un'altra. Nel caso in cui sia presente una sola VM VDI (o una build di VM univoca), si consiglia di eseguirne il backup in modo che non sia necessaria una ricostruzione completa della VM.
+*** Se necessario, anziché eseguire il backup di tutti i server VDI, è possibile ridurre al minimo i costi configurando manualmente una singola macchina virtuale per il backup direttamente nel portale Azure Management.
+
+
+** TS
++
+*** Non eseguire il backup della macchina virtuale poiché i dati devono essere memorizzati su un server D1 o TSD1.
+*** Tenere presente che alcune applicazioni memorizzano i dati in locale e, in tal caso, è necessario prendere speciali considerazioni.
+*** In caso di guasto di una macchina virtuale, è possibile creare una nuova macchina virtuale tramite la clonazione di un'altra. Nel caso in cui sia presente una sola VM TS, si consiglia di eseguirne il backup in modo che non sia necessaria una ricostruzione completa della VM.
+*** Se necessario, anziché eseguire il backup di tutti i server TS, è possibile ridurre al minimo i costi configurando manualmente una singola macchina virtuale per il backup direttamente nel portale Azure Management.
+
+
+** TSData
++
+*** Backup con 7 backup giornalieri, 5 settimanali e 2 mensili. Aumentare i periodi di conservazione in base ai requisiti di business.
+
+
+
+
+* Le policy possono essere impostate per eseguire backup giornalieri o settimanali, Azure non supporta pianificazioni più frequenti.
+* Per le pianificazioni giornaliere, inserire l'ora preferita per eseguire il backup. Per le pianificazioni settimanali, inserire il giorno e l'ora preferiti per eseguire il backup. Nota: Se si imposta l'ora esattamente alle 12:00, si possono verificare problemi in Azure Backup, quindi si consiglia di eseguire le 12:01.
+* Definire il numero di backup giornalieri, settimanali, mensili e annuali da conservare.
+
+
+
+
+=== Impostazione delle impostazioni predefinite di implementazione
+
+image:Backup_gif.gif[""]
+
+.Per configurare il backup di Azure per l'intera implementazione, attenersi alla seguente procedura:
+. Accedere alla pagina Deployments Detail (Dettagli implementazioni) e selezionare Backup Defaults (Backup predefiniti)
+. Selezionare un tipo di server dal menu a discesa. I tipi di server sono:
++
+....
+Data: these are for LOB/database server types
+Infrastructure: these are platform servers
+Power User: these are for Users with a TS server dedicated solely to them
+TS: these are terminal servers that Users launch sessions on
+TSData: these are servers doubling as terminal and data servers.
+....
++
+** In questo modo verranno definite le impostazioni di backup generali per l'intera implementazione. Questi possono essere ignorati e impostati in un secondo momento a un livello specifico del server, se lo si desidera.
+
+
+. Fare clic sulla rotella delle impostazioni, quindi sulla finestra a comparsa Edit (Modifica) che viene visualizzata.
+. Selezionare le seguenti impostazioni di backup:
++
+....
+On or off
+Daily or weekly
+What time of day backups take place
+How long each backup type (daily, weekly, etc.) should be retained
+....
+. Infine, fare clic su Create (o Edit) Schedule (Crea (o Modifica) pianificazione) per attivare queste impostazioni.
+
+
+
+
+=== Impostazione di singoli criteri di backup
+
+.Per applicare le impostazioni di backup integrato specifiche del server, accedere alla pagina dei dettagli dell'area di lavoro.
+. Scorrere verso il basso fino alla sezione Server e fare clic sul nome di un server
+. Fare clic su Aggiungi pianificazione
+. Applicare le impostazioni di backup desiderate e fare clic su Create Schedule (Crea pianificazione)
+
+
+
+
+=== Ripristino dal backup
+
+.Per ripristinare i backup di una determinata macchina virtuale, accedere alla pagina dei dettagli dell'area di lavoro.
+. Scorrere verso il basso fino alla sezione Server e fare clic sul nome di un server
+. Scorrere verso il basso fino alla sezione Backup e fare clic sulla manopola per espandere le opzioni, quindi selezionare una delle due opzioni
+. Restore to Server (Ripristina su server) o Restore to Disk (Ripristina su disco) (collegare un disco dal backup in modo da poter copiare i dati dal backup alla versione esistente della macchina virtuale).
+. Procedere con il ripristino da questo punto in poi come in qualsiasi altro scenario di ripristino.
+
+
+
+NOTE: I costi dipendono dalla pianificazione che si desidera mantenere e sono interamente determinati dai costi di backup di Azure. I prezzi di backup per le macchine virtuali sono disponibili in Azure Cost Calculator: https://azure.microsoft.com/en-us/pricing/calculator/[]

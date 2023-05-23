@@ -1,0 +1,72 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+VDS organizza i concetti in vari livelli di una gerarchia logica. Questo articolo aiuta a delineare il modo in cui si combinano.
+
+
+
+=== Schema organizzativo VDS
+
+Il portale di gestione VDS si trova all'indirizzo https://manage.vds.netapp.com[]. Questa interfaccia Web è un singolo pannello di controllo per la gestione di tutti gli oggetti correlati a VDS. All'interno dell'interfaccia utente Web VDS, esiste la seguente gerarchia di componenti e contenitori logici.
+
+
+
+==== Implementazione VDS
+
+Il concetto di _implementazione_ è un VDS che ha organizzato e contiene _aree di lavoro VDS_. In alcune architetture di implementazione, un'implementazione può contenere più spazi di lavoro VDS.
+
+
+NOTE: L'esecuzione di più aree di lavoro VDS in una singola implementazione è chiamata "multi-tenancy" ed è solo un'opzione nelle implementazioni RDS, le implementazioni AVD non supportano questo approccio.
+
+Un'implementazione viene definita dal relativo dominio Active Directory e esiste una relazione 1:1 tra il dominio ad e un'implementazione.
+
+Alcune risorse di macchine virtuali vengono implementate per supportare un'implementazione condivisa in tutte le aree di lavoro VDS nell'implementazione. Ad esempio, ogni implementazione contiene una macchina virtuale denominata "CWMGR1" che è un server che esegue applicazioni VDS, un database SQL Express e facilita la gestione delle aree di lavoro VDS (e delle risorse contenute) all'interno dell'implementazione.
+
+
+
+==== Area di lavoro VDS
+
+
+WARNING: Esiste una differenza tra un "*VDS* Workspace" e un "*AVD* Workspace".
+
+Un'area di lavoro VDS è un contenitore logico all'interno dell'implementazione per le risorse del client (utente finale). Queste risorse includono macchine virtuali (per host di sessione, server di applicazioni, server di database, file server ecc.), reti virtuali, storage e altra infrastruttura hypervisor.
+
+VDS Workspace contiene inoltre funzionalità di gestione per gestire utenti, gruppi di sicurezza, workload Scheduling, applicazioni, automazione, VM e configurazione AVD.
+
+In genere, un'area di lavoro VDS è allineata a una singola azienda o (nelle implementazioni aziendali) a una business unit.
+
+
+
+==== Siti VDS
+
+All'interno di un'implementazione, è possibile creare più siti per rappresentare diversi provider di infrastruttura, tutti gestiti all'interno di un'unica implementazione.
+
+Ciò è utile quando una singola azienda o business unit deve ospitare utenti e applicazioni in più sedi fisiche (ad esempio Nord America e EMEA), abbonamenti hypervisor (per allineare i costi alle business unit) e persino hypervisor (ad esempio utenti di Azure, Google Compute e HCI on-premise su vSphere).
+
+
+
+==== Aree di lavoro AVD
+
+
+WARNING: Esiste una differenza tra un "*VDS* Workspace" e un "*AVD* Workspace".
+
+Un'area di lavoro AVD è un contenitore logico che si trova all'interno di un'area di lavoro VDS e di un sito VDS. Può essere utilizzato in modo simile a un sito VDS per segmentare le policy di gestione e operative nella stessa implementazione.
+
+
+
+==== Pool di host AVD
+
+I pool di host AVD sono contenitori logici che si trovano all'interno di un'area di lavoro AVD e tengono in attesa gli utenti degli host di sessione e dei gruppi di applicazioni per gestire le sessioni dell'utente e controllare l'accesso alle singole risorse.
+
+
+
+==== Gruppi di applicazioni AVD
+
+Ogni pool di host AVD inizia con un singolo gruppo di applicazioni "Desktop". Gli utenti e/o i gruppi possono essere assegnati a questo (o altro) App Group per consentire l'accesso alle risorse dell'App Group agli utenti assegnati.
+
+È possibile creare ulteriori gruppi di applicazioni all'interno di un pool di host in VDS. Tutti gli altri gruppi di applicazioni sono gruppi di applicazioni "RemoteApp" e offrono risorse RemoteApp invece di un'esperienza desktop Windows completa.

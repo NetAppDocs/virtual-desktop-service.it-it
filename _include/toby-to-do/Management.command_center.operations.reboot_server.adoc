@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.reboot_server-2fbca.png[Management.command center.Operations.reboot server 2fbca]

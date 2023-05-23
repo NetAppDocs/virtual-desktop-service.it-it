@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: Management.User_Administration.manage_user_accounts.html 
+summary: Guida dettagliata alla gestione degli utenti finali in VDS 
+keywords:  
+---
+= Gestione degli account utente
+:allow-uri-read: 
+
+
+
+
+== Crea nuovi utenti
+
+Gli amministratori possono aggiungere utenti facendo clic su aree di lavoro > utenti e gruppi > Aggiungi/importa
+
+Gli utenti possono essere aggiunti singolarmente o con un'importazione in blocco.
+
+image:add_import_users.png["larghezza=25%"]
+
+
+NOTE: L'accuratezza dell'e-mail e del numero di telefono cellulare in questa fase migliora notevolmente il processo di abilitazione dell'MFA in un secondo momento.
+
+Una volta creati gli utenti, puoi fare clic sul loro nome per visualizzare dettagli come quando sono stati creati, il loro stato di connessione (sia che siano attualmente connessi o meno) e le relative impostazioni specifiche.
+
+
+
+== Attivazione di Virtual Desktop per gli utenti ad esistenti
+
+Se gli utenti sono già presenti in ad, è possibile attivare il Virtual Desktop degli utenti facendo clic sull'ingranaggio accanto al nome e attivando il desktop.image:Enable_desktop.png["larghezza=50%"]
+
+
+NOTE: Solo per Azure ad Domain Service: Affinché gli accessi funzionino, l'hash della password per gli utenti di Azure ad deve essere sincronizzato per supportare l'autenticazione NTLM e Kerberos. Il modo più semplice per eseguire questa operazione consiste nel modificare la password utente in Office.com o nel portale Azure, che forzerà la sincronizzazione dell'hash della password. Il ciclo di sincronizzazione per i server Domain Service può richiedere fino a 20 minuti, pertanto le modifiche alle password in Azure ad richiedono in genere 20 minuti per essere riflesse in AADDS e quindi nell'ambiente VDS.
+
+
+
+== Elimina account utente
+
+
+
+== Modificare le informazioni dell'utente
+
+Nella pagina dei dettagli dell'utente è possibile modificare i dettagli dell'utente, ad esempio il nome utente e i dettagli di contatto. I valori di e-mail e telefono vengono utilizzati per il processo di reimpostazione self-service della password (SSPR).
+
+image:user_detail.png[""]
+
+
+
+== Modificare le impostazioni di sicurezza dell'utente
+
+* VDI User Enabled (utente VDI abilitato) - impostazione RDS che, se attivata, crea un host di sessione VM dedicato e assegna a questo utente l'unico utente a cui si connette. Durante l'attivazione di questa casella di controllo, all'amministratore di CWMS viene richiesto di selezionare immagine, dimensione e tipo di storage della macchina virtuale.
++
+** Gli utenti AVD VDI devono essere gestiti nella pagina AVD come pool di host VDI.
+
+
+* Scadenza account attivata: Consente all'amministratore di CWMS di impostare una data di scadenza sull'account dell'utente finale.
+* Imponi reimpostazione password al prossimo accesso: Richiede all'utente finale di modificare la password al successivo accesso.
+* Multi-Factor Auth Enabled (autenticazione multifattore abilitata): Attiva l'autenticazione MFA per l'utente finale e richiede di configurare l'autenticazione MFA al successivo accesso.
+* Mobile Drive Enabled (disco mobile abilitato): Una funzione legacy non utilizzata nelle implementazioni correnti di RDS o AVD.
+* Local Drive Access Enabled (accesso al disco locale abilitato): Consente all'utente finale di accedere allo storage del dispositivo locale dall'ambiente cloud, tra cui Copy/Paste, USB Mass Storage e dischi di sistema.
+* Wake on Demand Enabled (attiva su richiesta attivata): Per gli utenti RDS che si connettono tramite il client CW per Windows, l'abilitazione di questa opzione consente all'utente finale di portare il proprio ambiente quando si effettua la connessione al di fuori del normale orario di lavoro, come definito dalla pianificazione del carico di lavoro.
+
+
+
+
+== Account bloccato
+
+Per impostazione predefinita, cinque tentativi di accesso non riusciti bloccano l'account utente. L'account utente si sbloccherà dopo 30 minuti, a meno che l'opzione _Enable Password complessità_ non sia attivata. Se la complessità della password è attivata, l'account non viene sbloccato automaticamente. In entrambi i casi, l'amministratore VDS può sbloccare manualmente l'account utente dalla pagina utenti/gruppi in VDS.
+
+
+
+== Reimpostare la password dell'utente
+
+Ripristina la password utente.
+
+Nota: Quando si reimpostano le password degli utenti di Azure ad (o si sblocca un account), può verificarsi un ritardo fino a 20 minuti poiché la reimpostazione si propaga attraverso Azure ad.
+
+
+
+== Accesso amministratore
+
+Abilitando questa opzione, l'utente finale ha accesso limitato al portale di gestione per il tenant. Gli usi più comuni includono la possibilità di fornire a un dipendente on-site l'accesso per reimpostare le password dei peer, assegnare l'applicazione o consentire l'accesso manuale all'attivazione del server. Vengono impostate anche le autorizzazioni che controllano le aree della console.
+
+
+
+== Disconnettersi dagli utenti
+
+Gli utenti connessi possono essere disconnessi dall'amministratore VDS dalla pagina utenti/gruppi in VDS.
+
+
+
+== Applicazioni
+
+Visualizza l'applicazione implementata in questo spazio di lavoro. La casella di controllo fornisce le applicazioni a questo utente specifico. La documentazione completa sulla gestione delle applicazioni è disponibile qui. L'accesso alle applicazioni può essere concesso anche dall'interfaccia App o ai gruppi di sicurezza.
+
+
+
+== Visualizzare/eliminare i processi degli utenti
+
+Visualizza i processi attualmente in esecuzione nella sessione dell'utente. I processi possono essere terminati anche da questa interfaccia.

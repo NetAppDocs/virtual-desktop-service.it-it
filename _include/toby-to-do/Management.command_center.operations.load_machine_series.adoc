@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.load_machine_series-fcd2c.png[Management.command center.Operations.load serie di macchine fcd2c]

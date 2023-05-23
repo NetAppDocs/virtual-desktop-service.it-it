@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.load_hypervisor_config_options-e6841.png[Management.command center.Operations.load opzioni di configurazione dell'hypervisor e6841]

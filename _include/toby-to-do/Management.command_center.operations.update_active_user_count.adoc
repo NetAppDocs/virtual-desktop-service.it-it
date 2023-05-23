@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.update_active_user_count-4ae14.png[Management.command center.Operations.update del numero di utenti attivi 4ae14]

@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.make_server_active-6dc9b.png[Management.command center.Operations.Rendi attivo il server 6dc9b]

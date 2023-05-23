@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.load_virtual_machines-da7e2.png[Management.command center.Operations.load delle macchine virtuali da7e2]

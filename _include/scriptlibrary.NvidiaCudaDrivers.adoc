@@ -1,0 +1,15 @@
+= Panoramica dei driver NVIDIA CUDA
+:allow-uri-read: 
+
+
+
+
+== Panoramica dei driver NVIDIA CUDA
+
+Questo pacchetto di script installa/disinstalla _Nvidia CUDA Drivers_ utilizzando il gestore dei pacchetti chocolatey (https://chocolatey.org/[]) per eseguire l'implementazione. Chocolatey viene implementato da VDS quando vengono create le macchine virtuali, ma questo script verificherà e installerà chocolatey come prerequisito se non è presente.
+
+
+
+=== Schermata della finestra di dialogo Add Activity (Aggiungi attività)
+
+image::scriptlibrary.activity.InstallNvidiaCudaDrivers.png[Scriptlibrary.activity.InstallNvidiaCudaDrivers]

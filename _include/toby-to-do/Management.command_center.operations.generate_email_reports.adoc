@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.generate_email_reports-72145.png[Management.command center.Operations.generare report via email 72145]

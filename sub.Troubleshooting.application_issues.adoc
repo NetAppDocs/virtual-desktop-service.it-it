@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.application_issues.html 
+summary: Guida dettagliata per la risoluzione dei problemi delle applicazioni 
+keywords:  
+---
+= Risoluzione dei problemi dell'applicazione
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+La risoluzione di un errore di un'applicazione è una pratica amministrativa comune che non coinvolge VDS in sé, ma è fortemente assistita da VDS e dal livello di controllo che fornisce agli amministratori. Sebbene NetApp VDS non risolva questi problemi per i clienti, la nostra esperienza ci consente di consigliare gli amministratori dopo aver identificato alcune informazioni di base come le seguenti per approfondire e risolvere i problemi con utenti finali e/o terze parti.
+
+* Nome dell'utente che ha riscontrato il problema
+* Nome dell'applicazione con cui l'utente stava lavorando
+* Il server in cui si trovava la sessione dell'utente
+* Procedura per riprodurre il problema
+
+
+
+
+== Analisi degli strumenti
+
+
+
+=== Monitoraggio
+
+Dopo aver identificato il server utilizzato dall'utente, controllare la soluzione di monitoraggio per verificare che il consumo di risorse (CPU e RAM) rientri nei livelli normali. È inoltre possibile verificare che i requisiti specifici dell'applicazione (un servizio speciale che causerà problemi se non è in esecuzione) siano funzionali. In situazioni come questa, potrebbero essere state attivate impostazioni avanzate come il monitoraggio up/down di tali servizi.
+
+
+
+=== Antivirus
+
+In qualità di amministratore con accesso sia ai server che ad Azure Active Directory, è possibile esaminare gli elementi rilevati e le policy impostate. In caso di imprevisti, l'applicazione potrebbe essere interessata.
+
+
+
+=== Strumenti aggiuntivi
+
+Alcune applicazioni richiedono componenti aggiuntivi, come un account di servizio che rimane connesso a tempo indeterminato o una VPN a un'apparecchiatura fisica (ad esempio, un'appliance di rete on-site o un'apparecchiatura di produzione o un'utility di diagnostica). In queste situazioni, gli errori specifici dell'applicazione possono essere causati da un'altra condizione che non sia il modo in cui l'applicazione è stata installata o come sono configurate le relative impostazioni.
+
+
+
+=== Estensione dell'accesso a terze parti
+
+Le applicazioni e/o i relativi database vengono spesso installati, configurati e supportati dal vendor software (ISV) stesso o da un esperto di terze parti nella configurazione, nella gestione e nelle integrazioni del software. In queste situazioni, è necessario estendere l'accesso amministrativo temporaneo a una delle seguenti operazioni: link:Management.System_Administration.provide_3rd_party_access.html["Accesso temporaneo a terze parti"]
+
+È consigliabile chiudere questi account di terze parti dopo il completamento dell'aggiornamento o della risoluzione del problema.
+
+In molti casi, questo livello di risoluzione dei problemi richiede un contratto di manutenzione software con l'ISV. In caso contrario, l'ISV potrebbe non fornire assistenza fino a quando non viene eseguita questa operazione.
+
+
+NOTE: È anche possibile che il problema di risoluzione dei problemi sia correlato all'hardware (desktop, laptop, thin client, ecc.) con cui gli utenti finali lavorano. Un esempio potrebbe essere che l'aggiornamento del laptop di un utente potrebbe bloccare la macchina agli occhi di un file di configurazione thin client, il che significa che gli utenti finali non possono accedere agli strumenti che consentono loro di accedere al desktop virtuale. In questo caso, potrebbe essere necessario un contratto di manutenzione per l'hardware prima che il produttore possa fornire assistenza.

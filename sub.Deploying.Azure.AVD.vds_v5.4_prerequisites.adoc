@@ -1,0 +1,452 @@
+---
+sidebar: sidebar 
+permalink: Deploying.Azure.AVD.vds_v5.4_prerequisites.html 
+summary: Prerequisiti di AVD e VDS 
+---
+= Prerequisiti di AVD e VDS v5.4
+:allow-uri-read: 
+
+
+
+
+== Requisiti e note di AVD e VDS
+
+Questo documento descrive gli elementi necessari per l'implementazione di Azure Virtual Desktop (AVD) utilizzando NetApp Virtual Desktop Service (VDS). La "lista di controllo rapido" fornisce un breve elenco dei componenti necessari e delle fasi di pre-implementazione da intraprendere per garantire un'implementazione efficiente. Il resto della guida fornisce maggiori dettagli per ciascun elemento, a seconda delle scelte di configurazione effettuate.
+
+
+
+== Checklist rapida
+
+
+
+=== Requisiti di Azure
+
+* Tenant Azure ad
+* Microsoft 365 Licensing per il supporto di AVD
+* Abbonamento Azure
+* Quota Azure disponibile per le macchine virtuali Azure
+* Azure Admin account con ruoli di amministrazione globale e di proprietà dell'abbonamento
+* Account admin di dominio con ruolo 'Enterprise Admin' per la configurazione di ad Connect
+
+
+
+
+=== Informazioni di pre-implementazione
+
+* Determinare il numero totale di utenti
+* Determinare la regione di Azure
+* Determinare il tipo di Active Directory
+* Determinare il tipo di storage
+* Identificare l'immagine o i requisiti della VM host della sessione
+* Valutare la configurazione di rete esistente di Azure e on-premise
+
+
+
+
+== Requisiti dettagliati per l'implementazione di VDS
+
+
+
+=== Requisiti di connessione per l'utente finale
+
+.I seguenti client di desktop remoto supportano Azure Virtual Desktop:
+* Desktop di Windows
+* Web
+* MacOS
+* IOS
+* IGEL Think Client (Linux)
+* Android (anteprima)
+
+
+
+NOTE: Azure Virtual Desktop non supporta il client RemoteApp and Desktop Connections (RADC) o il client Remote Desktop Connection (MSTSC).
+
+
+IMPORTANT: Azure Virtual Desktop attualmente non supporta il client Desktop remoto da Windows Store. Il supporto per questo client verrà aggiunto in una release futura.
+
+*I client di Desktop remoto devono avere accesso ai seguenti URL:*
+
+[cols="25,25,25,25"]
+|===
+| Indirizzo | Porta TCP in uscita | Scopo | Client 
+
+
+| *.AVD.microsoft.com | 443 | Traffico di servizio | Tutto 
+
+
+| *.servicebus.windows.net 443 risoluzione dei problemi | Tutto | go.microsoft.com | 443 
+
+
+| Microsoft FWLinks | Tutto | aka.ms. | 443 
+
+
+| Shortener URL Microsoft | Tutto | docs.microsoft.com | 443 
+
+
+| Documentazione | Tutto | privacy.microsoft.com | 443 
+
+
+| Dichiarazione sulla privacy | Tutto | query.prod.cms.rt.microsoft.com | 443 
+|===
+
+NOTE: L'apertura di questi URL è essenziale per un'esperienza client affidabile. Il blocco dell'accesso a questi URL non è supportato e influisce sulla funzionalità del servizio. Questi URL corrispondono solo ai siti e alle risorse client e non includono URL per altri servizi come Azure Active Directory.
+
+
+
+=== Punto di partenza dell'installazione guidata VDS
+
+L'installazione guidata di VDS è in grado di gestire gran parte della configurazione dei prerequisiti necessaria per una corretta implementazione di AVD. L'installazione guidata (link:https://cwasetup.cloudworkspace.com[""]) crea o utilizza i seguenti componenti.
+
+
+
+==== Tenant Azure
+
+*Obbligatorio:* tenant Azure e Active Directory Azure
+
+L'attivazione AVD in Azure è un'impostazione a livello di tenant. VDS supporta l'esecuzione di un'istanza AVD per tenant.
+
+
+
+==== Iscrizione Azure
+
+*Obbligatorio:* un abbonamento Azure (annotare l'ID dell'abbonamento che si desidera utilizzare)
+
+Tutte le risorse Azure implementate devono essere configurate in un'unica sottoscrizione dedicata. In questo modo, il monitoraggio dei costi per AVD è molto più semplice e il processo di implementazione è semplificato. NOTA: Le versioni di prova gratuite di Azure non sono supportate in quanto non dispongono di crediti sufficienti per implementare un'implementazione AVD funzionale.
+
+
+
+==== Quota core di Azure
+
+Quota sufficiente per le famiglie di macchine virtuali che utilizzerai, in particolare almeno 10 core della famiglia DS v3 per l'implementazione iniziale della piattaforma (è possibile utilizzare solo 2 core, ma 10 copre ogni possibilità di implementazione iniziale).
+
+
+
+==== Account amministratore di Azure
+
+*Obbligatorio:* account amministratore globale Azure.
+
+L'installazione guidata di VDS richiede all'amministratore di Azure di concedere autorizzazioni delegate all'entità del servizio VDS e di installare l'applicazione VDS Azure Enterprise. L'amministratore deve avere i seguenti ruoli Azure assegnati:
+
+* Amministratore globale del tenant
+* Ruolo del proprietario nell'abbonamento
+
+
+
+
+==== Immagine della macchina virtuale
+
+*Obbligatorio:* immagine Azure che supporta Windows 10 multisessione.
+
+Azure Marketplace fornisce le versioni più recenti dell'immagine di base di Windows 10 e tutte le sottoscrizioni Azure possono accedervi automaticamente. Se desideri utilizzare un'immagine diversa o personalizzata, vuoi che il team VDS fornisca consigli sulla creazione o la modifica di altre immagini o abbia domande generali sulle immagini Azure, facci sapere e possiamo pianificare una conversazione.
+
+
+
+==== Active Directory
+
+AVD richiede che l'identità dell'utente faccia parte di Azure ad e che le macchine virtuali siano unite a un dominio Active Directory sincronizzato con la stessa istanza di Azure ad. Le VM non possono essere collegate direttamente all'istanza di Azure ad, pertanto è necessario configurare un controller di dominio e sincronizzarlo con Azure ad.
+
+.Queste opzioni supportate includono:
+* La creazione automatica di un'istanza di Active Directory all'interno dell'abbonamento. L'istanza di ad viene in genere creata da VDS sulla VM di controllo VDS (CWMGR1) per le implementazioni di Azure Virtual Desktop che utilizzano questa opzione. AD Connect deve essere configurato e configurato per la sincronizzazione con Azure ad come parte del processo di installazione.
++
+image:AD Options New.png[""]
+
+* Integrazione in un dominio Active Directory esistente accessibile dall'abbonamento Azure (in genere tramite Azure VPN o Express Route) e con il relativo elenco utenti sincronizzato con Azure ad utilizzando ad Connect o un prodotto di terze parti.
++
+image:AD Options Existing.png[""]
+
+
+
+
+
+==== Layer di storage
+
+In AVD, la strategia di storage è progettata in modo che non risiedano dati utente/aziendali persistenti sulle macchine virtuali della sessione AVD. I dati persistenti per i profili utente, i file utente e le cartelle e i dati aziendali/applicativi sono ospitati su uno o più volumi di dati ospitati su un livello di dati indipendente.
+
+FSLogix è una tecnologia di containerizzazione dei profili che risolve molti problemi relativi ai profili utente (come la crescita dei dati e gli accessi lenti) montando un container di profili utente (formato VHD o VHDX) sull'host della sessione all'inizializzazione della sessione.
+
+Grazie a questa architettura è necessaria una funzione di storage dei dati. Questa funzione deve essere in grado di gestire il trasferimento dei dati richiesto ogni mattina/pomeriggio quando una parte significativa degli utenti effettua l'accesso/disconnessione contemporaneamente. Anche gli ambienti di medie dimensioni possono avere requisiti significativi di trasferimento dei dati. Le prestazioni del disco del layer di storage dei dati sono una delle principali variabili di performance dell'utente finale e occorre prestare particolare attenzione a dimensionare in modo appropriato le performance di questo storage, non solo la quantità di storage. In genere, il livello di storage deve essere dimensionato in modo da supportare 5-15 IOPS per utente.
+
+.L'installazione guidata VDS supporta le seguenti configurazioni:
+* Configurazione e configurazione di Azure NetApp Files (ANF) (consigliata). _Il livello di servizio standard ANF supporta fino a 150 utenti, mentre gli ambienti di 150-500 utenti sono consigliati ANF Premium. Per oltre 500 utenti si consiglia ANF Ultra._
++
+image:Storage Layer 1.png[""]
+
+* Installazione e configurazione di una macchina virtuale file server
++
+image:Storage Layer 3.png[""]
+
+
+
+
+
+==== Networking
+
+*Obbligatorio:* un inventario di tutte le subnet di rete esistenti, incluse le subnet visibili all'abbonamento Azure tramite un percorso Azure Express o una VPN. L'implementazione deve evitare la sovrapposizione delle subnet.
+
+L'installazione guidata di VDS consente di definire l'ambito della rete nel caso in cui sia necessario o debba essere evitato un intervallo come parte dell'integrazione pianificata con le reti esistenti.
+
+Determinare un intervallo IP per l'utente durante l'implementazione. Secondo le Best practice di Azure, sono supportati solo gli indirizzi IP in un intervallo privato.
+
+.Le opzioni supportate includono i seguenti valori, ma il valore predefinito è /20:
+* da 192.168.0.0 a 192.168.255.255
+* da 172.16.0.0 a 172.31.255.255
+* da 10.0.0.0 a 10.255.255.255
+
+
+
+
+==== CWMGR1
+
+Alcune delle funzionalità esclusive di VDS, come la pianificazione del carico di lavoro per il risparmio dei costi e la funzionalità Live Scaling, richiedono una presenza amministrativa all'interno del tenant e dell'abbonamento. Pertanto, una macchina virtuale amministrativa denominata CWMGR1 viene implementata come parte dell'automazione della procedura guidata di installazione VDS. Oltre alle attività di automazione VDS, questa macchina virtuale contiene anche la configurazione VDS in un database SQL Express, file di log locali e un'utility di configurazione avanzata chiamata DCConfig.
+
+.A seconda delle selezioni effettuate nell'installazione guidata VDS, questa macchina virtuale può essere utilizzata per ospitare funzionalità aggiuntive, tra cui:
+* Un gateway RDS (utilizzato solo nelle implementazioni RDS)
+* Un gateway HTML 5 (utilizzato solo nelle implementazioni RDS)
+* Un server di licenza RDS (utilizzato solo nelle implementazioni RDS)
+* Un controller di dominio (se scelto)
+
+
+
+
+=== Albero decisionale nella procedura guidata di implementazione
+
+Nell'ambito dell'implementazione iniziale, viene fornita una serie di domande per personalizzare le impostazioni del nuovo ambiente. Di seguito è riportata una descrizione delle principali decisioni da prendere.
+
+
+
+==== Regione di Azure
+
+Decidere quale regione o quali regioni Azure ospiteranno le macchine virtuali AVD. Tenere presente che Azure NetApp Files e alcune famiglie di macchine virtuali (ad esempio, le macchine virtuali abilitate alla GPU) dispongono di un elenco di supporto delle regioni Azure definito, mentre AVD è disponibile nella maggior parte delle regioni.
+
+* Questo link può essere utilizzato per identificare link:https://azure.microsoft.com/en-us/global-infrastructure/services/["Disponibilità dei prodotti Azure per regione"]
+
+
+
+
+==== Tipo di Active Directory
+
+Scegliere il tipo di Active Directory che si desidera utilizzare:
+
+* Active Directory esistente on-premise
+* Fare riferimento a. link:Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html["Componenti e autorizzazioni di AVD VDS"] Documento per una spiegazione delle autorizzazioni e dei componenti richiesti in Azure e nell'ambiente Active Directory locale
+* Nuova istanza di Active Directory basata su abbonamento Azure
+* Servizi di dominio Active Directory di Azure
+
+
+
+
+==== Storage dei dati
+
+Decidere dove collocare i dati per i profili utente, i singoli file e le condivisioni aziendali. Le scelte includono:
+
+* Azure NetApp Files
+* File Azure
+* File server tradizionale (Azure VM con disco gestito)
+
+
+
+
+== Requisiti di implementazione di NetApp VDS per i componenti esistenti
+
+
+
+=== Implementazione di NetApp VDS con i controller di dominio Active Directory esistenti
+
+Questo tipo di configurazione estende un dominio Active Directory esistente per supportare l'istanza di AVD. In questo caso, VDS implementa un set limitato di componenti nel dominio per supportare attività di provisioning e gestione automatizzate per i componenti AVD.
+
+.Questa configurazione richiede:
+* Un controller di dominio Active Directory esistente a cui possono accedere le macchine virtuali su Azure VNET, in genere tramite Azure VPN o Express Route O un controller di dominio creato in Azure.
+* Aggiunta di componenti VDS e autorizzazioni necessarie per la gestione VDS dei pool di host AVD e dei volumi di dati quando vengono Uniti al dominio. La guida relativa ai componenti e alle autorizzazioni di AVD VDS definisce i componenti e le autorizzazioni richiesti e il processo di implementazione richiede che un utente di dominio con privilegi di dominio esegua lo script che creerà gli elementi necessari.
+* Si noti che l'implementazione VDS crea un VNET per impostazione predefinita per le VM create da VDS. È possibile eseguire il peering di VNET con reti VNet di rete Azure esistenti oppure spostare la macchina virtuale CWMGR1 in una rete VNET esistente con le subnet richieste predefinite.
+
+
+
+
+==== Tool per la preparazione delle credenziali e dei domini
+
+Gli amministratori devono fornire una credenziale Domain Administrator a un certo punto del processo di implementazione. È possibile creare, utilizzare ed eliminare una credenziale temporanea di Domain Administrator in un secondo momento (una volta completato il processo di implementazione). In alternativa, i clienti che necessitano di assistenza per la creazione dei prerequisiti possono sfruttare il Domain Preparation Tool.
+
+
+
+=== Implementazione di NetApp VDS con file system esistente
+
+VDS crea condivisioni Windows che consentono di accedere al profilo utente, alle cartelle personali e ai dati aziendali dalle VM di sessione AVD. VDS implementerà le opzioni file Server o Azure NetApp file per impostazione predefinita, ma se si dispone di un componente di file storage esistente, VDS può puntare le condivisioni a tale componente una volta completata l'implementazione di VDS.
+
+.I requisiti per l'utilizzo e il componente di storage esistente:
+* Il componente deve supportare SMB v3
+* Il componente deve essere Unito allo stesso dominio Active Directory degli host di sessione AVD
+* Il componente deve essere in grado di esporre un percorso UNC per l'utilizzo nella configurazione VDS: È possibile utilizzare un percorso per tutte e tre le condivisioni oppure specificare percorsi separati per ciascuna. Si noti che VDS imposterà le autorizzazioni a livello utente per queste condivisioni, quindi fare riferimento al documento componenti e permessi di VDS AVD per assicurarsi che siano state concesse le autorizzazioni appropriate ai VDS Automation Services.
+
+
+
+
+=== Implementazione di NetApp VDS con servizi di dominio ad Azure esistenti
+
+Questa configurazione richiede un processo per identificare gli attributi dell'istanza esistente dei servizi di dominio Active Directory di Azure. Contatta il tuo account manager per richiedere un'implementazione di questo tipo. Implementazione di NetApp VDS con implementazione di AVD esistente questo tipo di configurazione presuppone che esistano già i componenti Azure VNET, Active Directory e AVD necessari. L'implementazione di VDS viene eseguita allo stesso modo della configurazione "NetApp VDS Deployment with Existing ad" (implementazione di NetApp VDS con ad esistente), ma aggiunge i seguenti requisiti:
+
+* RD il ruolo di proprietario del tenant AVD deve essere assegnato alle applicazioni VDS Enterprise in Azure
+* Le VM AVD host Pool e AVD host Pool devono essere importate in VDS utilizzando la funzione di importazione VDS nell'applicazione Web VDS. Questo processo raccoglie i metadati del pool di host AVD e della VM di sessione e li memorizza in IT VDS in modo che questi elementi possano essere gestiti da VDS
+* I dati AVD User devono essere importati nella sezione VDS User (utente VDS) utilizzando lo strumento CRA. Questo processo inserisce i metadati relativi a ciascun utente nel piano di controllo VDS in modo che le informazioni sulla sessione e l'appartenenza a AVD App Group possano essere gestite da VDS
+
+
+
+
+== APPENDICE A: URL del piano di controllo VDS e indirizzi IP
+
+I componenti VDS nell'abbonamento Azure comunicano con i componenti del piano di controllo globale VDS, come l'applicazione Web VDS e gli endpoint API VDS. Per l'accesso, è necessario mettere in sicurezza i seguenti indirizzi URI di base per l'accesso bidirezionale sulla porta 443:
+
+link:api.cloudworkspace.com[""]
+link:autoprodb.database.windows.net[""]
+link:vdctoolsapi.trafficmanager.net[""]
+link:cjbootstrap3.cjautomate.net[""]
+link:https://cjdownload3.file.core.windows.net/media[""]
+
+Se il dispositivo di controllo degli accessi può elencare solo in base all'indirizzo IP, è necessario che il seguente elenco di indirizzi IP sia protetto. Si noti che VDS utilizza il servizio Azure Traffic Manager, pertanto questo elenco potrebbe cambiare nel tempo:
+
+13.67.190.243 13.67.215.62 13.89.50.122 13.67.227.115 13.67.227.230 13.67.227.227 23.99.136.91 40.122.119.157 40.78.132.166 40.78.129.17 40.122.52.167 40.70.147.2 40.86.99.202 13.68.19.178 13.68.114.184 137.116.69.208 13.68.18.80 13.68.114.115 13.68.114.136 40.70.63.81 52.171.218.239 52.171.223.92 52.171.217.31 52.171.216.93 52.171.220.134 92.242.140.21
+
+
+
+== APPENDICE B: Requisiti di Microsoft AVD
+
+Questa sezione sui requisiti di Microsoft AVD è un riepilogo dei requisiti di AVD di Microsoft. I requisiti AVD completi e attuali sono disponibili qui:
+
+https://docs.microsoft.com/en-us/azure/virtual-desktop/overview#requirements[]
+
+
+
+=== Licenze host sessione di Azure Virtual Desktop
+
+Azure Virtual Desktop supporta i seguenti sistemi operativi, quindi assicurati di disporre delle licenze appropriate per gli utenti in base al desktop e alle applicazioni che intendi implementare:
+
+[cols="50,50"]
+|===
+| SISTEMA OPERATIVO | Licenza richiesta 
+
+
+| Windows 10 Enterprise multisessione o Windows 10 Enterprise | MICROSOFT 365 E3, E5, A3, A5, F3, Business Premium Windows E3, E5, A3, A5 
+
+
+| Windows 7 Enterprise | MICROSOFT 365 E3, E5, A3, A5, F3, Business Premium Windows E3, E5, A3, A5 
+
+
+| Windows Server 2012 R2, 2016, 2019 | RDS Client Access License (CAL) con Software Assurance 
+|===
+
+
+=== Accesso URL per macchine AVD
+
+Le macchine virtuali Azure create per Azure Virtual Desktop devono avere accesso ai seguenti URL:
+
+[cols="25,25,25,25"]
+|===
+| Indirizzo | Porta TCP in uscita | Scopo | Codice di matricola 
+
+
+| *.AVD.microsoft.com | 443 | Traffico di servizio | WindowsVirtualDesktop 
+
+
+| mrsglobalsteus2prod.blob.core.windows.net | 443 | Aggiornamenti dello stack SXS e Agent | AzureCloud 
+
+
+| *.core.windows.net | 443 | Traffico dell'agente | AzureCloud 
+
+
+| *.servicebus.windows.net | 443 | Traffico dell'agente | AzureCloud 
+
+
+| prod.warmpath.msftcloudes.com | 443 | Traffico dell'agente | AzureCloud 
+
+
+| catalogartifact.azureedge.net | 443 | Azure Marketplace | AzureCloud 
+
+
+| kms.core.windows.net | 1688 | Attivazione di Windows | Internet 
+
+
+| AVDportalstorageblob.blob.core.windows.net | 443 | Supporto del portale Azure | AzureCloud 
+|===
+La seguente tabella elenca gli URL opzionali a cui le macchine virtuali Azure possono accedere:
+
+[cols="25,25,25,25"]
+|===
+| Indirizzo | Porta TCP in uscita | Scopo | Codice di matricola 
+
+
+| *.microsoftonline.com | 443 | Autenticazione ai servizi MS Online | Nessuno 
+
+
+| *.events.data.microsoft.com | 443 | Servizio di telemetria | Nessuno 
+
+
+| www.msftconnecttest.com | 443 | Rileva se il sistema operativo è connesso a Internet | Nessuno 
+
+
+| *.prod.do.dsp.mp.microsoft.com | 443 | Windows Update | Nessuno 
+
+
+| login.windows.net | 443 | Accedere a MS Online Services, Office 365 | Nessuno 
+
+
+| *.sfx.ms. | 443 | Aggiornamenti per il software client OneDrive | Nessuno 
+
+
+| *.digicert.com | 443 | Verifica della revoca del certificato | Nessuno 
+|===
+
+
+=== Fattori di performance ottimali
+
+Per ottenere prestazioni ottimali, assicurarsi che la rete soddisfi i seguenti requisiti:
+
+* La latenza di andata e ritorno (RTT) dalla rete del client alla regione Azure in cui sono stati implementati i pool di host deve essere inferiore a 150 ms.
+* Il traffico di rete può fluire al di fuori dei confini del paese/regione quando le macchine virtuali che ospitano desktop e applicazioni si connettono al servizio di gestione.
+* Per ottimizzare le performance di rete, si consiglia di allocare le VM dell'host di sessione nella stessa regione Azure del servizio di gestione.
+
+
+
+
+=== Immagini del sistema operativo delle macchine virtuali supportate
+
+Azure Virtual Desktop supporta le seguenti immagini del sistema operativo x64:
+
+* Windows 10 Enterprise multisessione, versione 1809 o successiva
+* Windows 10 Enterprise, versione 1809 o successiva
+* Windows 7 Enterprise
+* Windows Server 2019
+* Windows Server 2016
+* Windows Server 2012 R2
+
+
+Azure Virtual Desktop non supporta le immagini dei sistemi operativi x86 (32 bit), Windows 10 Enterprise N o Windows 10 Enterprise KN. Windows 7 non supporta inoltre soluzioni di profili basate su VHD o VHDX ospitate su Azure Storage gestito a causa di una limitazione delle dimensioni del settore.
+
+Le opzioni di automazione e implementazione disponibili dipendono dal sistema operativo e dalla versione scelti, come mostrato nella tabella seguente:
+
+[cols="40,15,15,15,15"]
+|===
+| Sistema operativo | Galleria di immagini Azure | Implementazione manuale delle macchine virtuali | Integrazione dei modelli ARM | Provisioning dei pool di host su Azure Marketplace 
+
+
+| Windows 10 multisessione, versione 1903 | Sì | Sì | Sì | Sì 
+
+
+| Windows 10 multisessione, versione 1809 | Sì | Sì | No | No 
+
+
+| Windows 10 Enterprise, versione 1903 | Sì | Sì | Sì | Sì 
+
+
+| Windows 10 Enterprise, versione 1809 | Sì | Sì | No | No 
+
+
+| Windows 7 Enterprise | Sì | Sì | No | No 
+
+
+| Windows Server 2019 | Sì | Sì | No | No 
+
+
+| Windows Server 2016 | Sì | Sì | Sì | Sì 
+
+
+| Windows Server 2012 R2 | Sì | Sì | No | No 
+|===

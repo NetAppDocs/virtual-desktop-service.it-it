@@ -1,0 +1,217 @@
+= Requisiti e note di GCP e VDS
+:allow-uri-read: 
+
+
+
+
+== Requisiti e note di GCP e VDS
+
+Questo documento descrive gli elementi necessari per l'implementazione dei servizi di desktop remoto (RDS) utilizzando NetApp Virtual Desktop Service (VDS). La "lista di controllo rapido" fornisce un breve elenco dei componenti necessari e delle fasi di pre-implementazione da intraprendere per garantire un'implementazione efficiente. Il resto della guida fornisce maggiori dettagli per ciascun elemento, a seconda delle scelte di configurazione effettuate.
+
+image:ReferenceArchitectureGCPRDS.png["larghezza=75%"]
+
+
+
+== Checklist rapida
+
+
+
+=== Requisiti GCP
+
+* Tenant GCP
+* Progetto GCP
+* Account di servizio con ruolo di proprietario assegnato
+
+
+
+
+=== Informazioni di pre-implementazione
+
+* Determinare il numero totale di utenti
+* Determinare la regione e la zona del GCP
+* Determinare il tipo di Active Directory
+* Determinare il tipo di storage
+* Identificare l'immagine o i requisiti della VM host della sessione
+* Valutare la configurazione di rete GCP e on-premise esistente
+
+
+
+
+== Requisiti dettagliati per l'implementazione di VDS
+
+
+
+=== Requisiti di connessione per l'utente finale
+
+.I seguenti client di desktop remoto supportano RDS in GCP:
+* link:https://docs.netapp.com/us-en/virtual-desktop-service/Reference.end_user_access.html#overview["NetApp VDS Client per Windows"]
++
+** Requisiti di sicurezza dell'url in uscita di NetApp VDS Client per Windows
++
+*** api.cloudworkspace.com
+*** vdsclient.app
+*** api.vdsclient.app
+*** bin.vdsclient.app
+
+
+** Funzionalità avanzate:
++
+*** Wake on Demand di VDS
+*** Client ThinPrint e lice nsing
+*** Reimpostazione self-service della password
+*** Negoziazione automatica degli indirizzi di server e gateway
+*** Supporto completo per desktop e applicazioni in streaming
+*** Branding personalizzato disponibile
+*** Switch del programma di installazione per l'implementazione e la configurazione automatizzate
+*** Strumenti integrati per la risoluzione dei problemi
+
+
+
+
+* link:https://login.cloudworkspace.com/["Client Web NetApp VDS"]
+* link:https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/remote-desktop-clients["Client Microsoft RD"]
++
+** Windows
+** MacOS
+** ISO
+** Android
+
+
+* software e/o thin client di terze parti
++
+** Requisito: Supporto della configurazione del gateway RD
+
+
+
+
+
+
+==== Layer di storage
+
+In RDS implementato da VDS, la strategia di storage è progettata in modo che non risiedano dati utente/aziendali persistenti sulle macchine virtuali della sessione AVD. I dati persistenti per i profili utente, i file utente e le cartelle e i dati aziendali/applicativi sono ospitati su uno o più volumi di dati ospitati su un livello di dati indipendente.
+
+FSLogix è una tecnologia di containerizzazione dei profili che risolve molti problemi relativi ai profili utente (come la crescita dei dati e gli accessi lenti) montando un container di profili utente (formato VHD o VHDX) sull'host della sessione all'inizializzazione della sessione.
+
+Grazie a questa architettura è necessaria una funzione di storage dei dati. Questa funzione deve essere in grado di gestire il trasferimento dei dati richiesto ogni mattina/pomeriggio quando una parte significativa degli utenti effettua l'accesso/disconnessione contemporaneamente. Anche gli ambienti di medie dimensioni possono avere requisiti significativi di trasferimento dei dati. Le prestazioni del disco del layer di storage dei dati sono una delle principali variabili di performance dell'utente finale e occorre prestare particolare attenzione a dimensionare in modo appropriato le performance di questo storage, non solo la quantità di storage. In genere, il livello di storage deve essere dimensionato in modo da supportare 5-15 IOPS per utente.
+
+
+
+==== Networking
+
+*Obbligatorio:* un inventario di tutte le subnet di rete esistenti, incluse le subnet visibili al progetto GCP tramite una VPN. L'implementazione deve evitare la sovrapposizione delle subnet.
+
+L'installazione guidata di VDS consente di definire l'ambito della rete nel caso in cui sia necessario o debba essere evitato un intervallo come parte dell'integrazione pianificata con le reti esistenti.
+
+Determinare un intervallo IP per l'utente durante l'implementazione. In base alle Best practice, sono supportati solo gli indirizzi IP in un intervallo privato.
+
+.Le opzioni supportate includono i seguenti valori, ma il valore predefinito è /20:
+* da 192.168.0.0 a 192.168.255.255
+* da 172.16.0.0 a 172.31.255.255
+* da 10.0.0.0 a 10.255.255.255
+
+
+
+
+==== CWMGR1
+
+Alcune delle funzionalità esclusive di VDS, come la pianificazione del carico di lavoro per il risparmio dei costi e la funzionalità Live Scaling, richiedono una presenza amministrativa all'interno dell'organizzazione e del progetto. Pertanto, una macchina virtuale amministrativa denominata CWMGR1 viene implementata come parte dell'automazione della procedura guidata di installazione VDS. Oltre alle attività di automazione VDS, questa macchina virtuale contiene anche la configurazione VDS in un database SQL Express, file di log locali e un'utility di configurazione avanzata chiamata DCConfig.
+
+.A seconda delle selezioni effettuate nell'installazione guidata VDS, questa macchina virtuale può essere utilizzata per ospitare funzionalità aggiuntive, tra cui:
+* Un gateway RDS
+* Un gateway HTML 5
+* Un server di licenza RDS
+* Un controller di dominio
+
+
+
+
+=== Albero decisionale nella procedura guidata di implementazione
+
+Nell'ambito dell'implementazione iniziale, viene fornita una serie di domande per personalizzare le impostazioni del nuovo ambiente. Di seguito è riportata una descrizione delle principali decisioni da prendere.
+
+
+
+==== Regione GCP
+
+Decidere quale regione o quali regioni GCP ospiteranno le macchine virtuali VDS. Si noti che la regione deve essere selezionata in base alla vicinanza agli utenti finali e ai servizi disponibili.
+
+
+
+==== Storage dei dati
+
+Decidere dove collocare i dati per i profili utente, i singoli file e le condivisioni aziendali. Le scelte includono:
+
+* Cloud Volumes Service per GCP
+* File server tradizionale
+
+
+
+
+== Requisiti di implementazione di NetApp VDS per i componenti esistenti
+
+
+
+=== Implementazione di NetApp VDS con i controller di dominio Active Directory esistenti
+
+Questo tipo di configurazione estende un dominio Active Directory esistente per supportare l'istanza RDS. In questo caso, VDS implementa un set limitato di componenti nel dominio per supportare attività di provisioning e gestione automatizzate per i componenti RDS.
+
+.Questa configurazione richiede:
+* Un controller di dominio Active Directory esistente a cui possono accedere le macchine virtuali sulla rete VPC GCP, in genere tramite VPN o un controller di dominio creato in GCP.
+* Aggiunta di componenti VDS e autorizzazioni necessarie per la gestione VDS degli host RDS e dei volumi di dati quando vengono Uniti al dominio. Il processo di implementazione richiede che un utente di dominio con privilegi di dominio esegua lo script che creerà gli elementi necessari.
+* Si noti che l'implementazione VDS crea una rete VPC per impostazione predefinita per le VM create da VDS. È possibile eseguire il peering della rete VPC con le reti VPC esistenti oppure spostare la macchina virtuale CWMGR1 in una rete VPC esistente con le subnet richieste predefinite.
+
+
+
+
+==== Tool per la preparazione delle credenziali e dei domini
+
+Gli amministratori devono fornire una credenziale Domain Administrator a un certo punto del processo di implementazione. È possibile creare, utilizzare ed eliminare una credenziale temporanea di Domain Administrator in un secondo momento (una volta completato il processo di implementazione). In alternativa, i clienti che necessitano di assistenza per la creazione dei prerequisiti possono sfruttare il Domain Preparation Tool.
+
+
+
+=== Implementazione di NetApp VDS con file system esistente
+
+VDS crea condivisioni Windows che consentono di accedere al profilo utente, alle cartelle personali e ai dati aziendali dagli host di sessione RDS. VDS implementerà il file server per impostazione predefinita, ma se si dispone di un componente di file storage esistente, VDS può puntare le condivisioni a tale componente una volta completata l'implementazione di VDS.
+
+.I requisiti per l'utilizzo e il componente di storage esistente:
+* Il componente deve supportare SMB v3
+* Il componente deve essere Unito allo stesso dominio Active Directory degli host di sessione RDS
+* Il componente deve essere in grado di esporre un percorso UNC per l'utilizzo nella configurazione VDS: È possibile utilizzare un percorso per tutte e tre le condivisioni oppure specificare percorsi separati per ciascuna. Tenere presente che VDS imposterà le autorizzazioni a livello di utente per queste condivisioni, assicurandosi che siano state concesse le autorizzazioni appropriate ai VDS Automation Services.
+
+
+
+
+== APPENDICE A: URL del piano di controllo VDS e indirizzi IP
+
+I componenti VDS del progetto GCP comunicano con i componenti del piano di controllo globale VDS ospitati in Azure, tra cui l'applicazione Web VDS e gli endpoint API VDS. Per l'accesso, è necessario mettere in sicurezza i seguenti indirizzi URI di base per l'accesso bidirezionale sulla porta 443:
+
+link:api.cloudworkspace.com[""]
+link:autoprodb.database.windows.net[""]
+link:vdctoolsapi.trafficmanager.net[""]
+link:cjbootstrap3.cjautomate.net[""]
+
+Se il dispositivo di controllo degli accessi può elencare solo in base all'indirizzo IP, è necessario che il seguente elenco di indirizzi IP sia protetto. Si noti che VDS utilizza un bilanciamento del carico con indirizzi IP pubblici ridondanti, pertanto questo elenco potrebbe cambiare nel tempo:
+
+13.67.190.243 13.67.215.62 13.89.50.122 13.67.227.115 13.67.227.230 13.67.227.227 23.99.136.91 40.122.119.157 40.78.132.166 40.78.129.17 40.122.52.167 40.70.147.2 40.86.99.202 13.68.19.178 13.68.114.184 137.116.69.208 13.68.18.80 13.68.114.115 13.68.114.136 40.70.63.81 52.171.218.239 52.171.223.92 52.171.217.31 52.171.216.93 52.171.220.134 92.242.140.21
+
+
+
+=== Fattori di performance ottimali
+
+Per ottenere prestazioni ottimali, assicurarsi che la rete soddisfi i seguenti requisiti:
+
+* La latenza di andata e ritorno (RTT) dalla rete del client alla regione GCP in cui sono stati implementati gli host di sessione deve essere inferiore a 150 ms.
+* Il traffico di rete può fluire al di fuori dei confini del paese/regione quando le macchine virtuali che ospitano desktop e applicazioni si connettono al servizio di gestione.
+* Per ottimizzare le performance di rete, si consiglia di allocare le VM dell'host di sessione nella stessa regione del servizio di gestione.
+
+
+
+
+=== Immagini del sistema operativo delle macchine virtuali supportate
+
+Gli hsot di sessione RDS, implementati da VDS, supportano le seguenti immagini del sistema operativo x64:
+
+* Windows Server 2019
+* Windows Server 2016
+* Windows Server 2012 R2
+

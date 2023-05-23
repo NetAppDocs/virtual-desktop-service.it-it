@@ -1,0 +1,47 @@
+= Sintomi
+:allow-uri-read: 
+
+
+
+
+== Sintomi
+
+Connessioni utente interrotte che richiedono una riconnessione. Risposta dell'interfaccia, problemi di performance generali che non sembrano essere correlati ai carichi delle risorse (RAM/CPU).
+
+
+
+== Causa
+
+Quando gli utenti segnalano problemi di performance, connessioni utente interrotte o un'interfaccia poco funzionale, la causa più comune non è rappresentata dalle risorse, ma piuttosto dalle connessioni di rete tra il cliente e il data center. Queste connessioni vengono eseguite attraverso il proprio ISP, vari backbone carrier Internet e, in ultima analisi, nel data center. Lungo il percorso i dati attraversano più fermate. Ciascuno di questi salti può introdurre latenza di rete, pacchetti persi e jitter, tutti fattori che possono contribuire alle performance percepite dell'ambiente di desktop computing nel desktop virtuale.
+
+Il triage e la risoluzione dei problemi di Tier 1 includono fasi di base come la conferma delle risorse (RAM, CPU e spazio HDD) sufficienti, ma una volta completata questa operazione, il test della connettività di rete rappresenta un ottimo passo successivo nel processo di risoluzione dei problemi. Risoluzione
+
+
+
+=== Opzione principale: Il client NetApp VDS Windows dispone di strumenti di diagnostica integrati
+
+Il test di diagnostica può essere eseguito e inviato all'e-mail, il tutto dal client del desktop virtuale.
+
+. Fare clic sull'icona delle preferenze (quattro righe orizzontali sulla barra dei menu superiore)
+. Fare clic su Guida
+. Fare clic su Test di rete
+. Inserire il nome utente che riscontra i problemi, quindi fare clic su Esegui
+. Una volta completato, inserisci il tuo indirizzo e-mail per ricevere un report via e-mail
+. Esaminare il report per risolvere potenziali problemi di connessione
+
+
+image:internet_quality1.gif[""]
+
+image:internet_quality2.png[""]
+
+
+
+=== Opzione secondaria: Analisi manuale con PingPlotter
+
+Per confermare che la connessione di rete del client è responsabile, è possibile eseguire l'utility gratuita PingPlotter. Questa utility invia un ping ogni pochi secondi e riporta la velocità (latenza) del round trip del ping. Inoltre, nota la percentuale di perdita di pacchetti (PL) a ogni hop lungo il percorso. Quando si osserva un'elevata latenza e/o un'elevata perdita di pacchetti, è una buona indicazione che i problemi di performance sono causati dalla qualità della connessione a Internet all'hop che mostra tali problemi.
+
+. Scaricare e installare link:https://www.pingplotter.com/["Ping Plotter (Plotter ping)"] (Disponibile per MacOS, Windows e iOS).
+. Inserire il gateway del data center in cui viene implementato il tenant.
+. Lasciarlo funzionare per alcuni minuti. Idealmente, mentre si verificano problemi di performance o disconnessioni.
+. Acquisire i dati scegliendo "Save Image…" (Salva immagine) Dal menu file, se necessario per ulteriori troubleshooting.
+

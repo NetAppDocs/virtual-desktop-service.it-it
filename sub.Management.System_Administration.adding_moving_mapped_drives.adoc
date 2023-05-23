@@ -1,0 +1,107 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.adding_moving_mapped_drives.html 
+summary: Aggiunta e spostamento di unità mappate 
+keywords:  
+---
+= Aggiunta e spostamento di unità mappate
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Per impostazione predefinita, sono presenti tre cartelle condivise esposte alle sessioni dell'utente finale. Queste cartelle si trovano nel layer di storage definito. Potrebbe trattarsi di un file server (TSD1 o D1) o di un servizio di storage come Azure Files, Azure NetApp Files, NetApp CVO e NetApp CVS.
+
+Per maggiore chiarezza, in questo articolo verrà utilizzato un cliente di esempio con il codice aziendale "NECA". Questo esempio presuppone che sia stato implementato un singolo server TDS1, denominato NECATSD1. Lavoreremo attraverso il processo di spostamento di una cartella in un'altra macchina virtuale (chiamata "NECAD1"). Questa strategia può essere utilizzata per passare da una partizione all'altra sullo stesso computer o su un'altra macchina, come illustrato nell'esempio seguente…
+
+Percorso iniziale cartelle:
+
+* Dati: NECATSD1 (TSD1 significa che è il primo Terminal Server e funziona anche come Data Server)
+* FTP: NECATSD1
+* Home: NECATSD1
+
+
+Posizione finale cartelle:
+
+* Data: NECAD1/G: Data (il D1significa che è il primo server dati)
+* FTP: Lo stesso processo si applica, non è necessario descriverlo per 3 volte
+* Home: Lo stesso processo si applica, non è necessario descriverlo per 3 volte
+
+
+
+
+== Add disk for G (Aggiungi disco per G): Su NECAD1
+
+. Per inserire la cartella condivisa nell'unità e: È necessario aggiungerne una tramite l'hypervisor (ad esempio Azure Management Portal), quindi inizializzarla e formattarla
++
+image:mapped1.png[""]
+
+. Copiare il percorso della cartella esistente (su NECATSD1, C:) nella nuova posizione (su NECAD1, G:)
+. Copiare le cartelle dalla posizione originale alla nuova posizione.
++
+image:mapped2.png[""]
+
+
+
+
+
+== Raccolta di informazioni dalla condivisione della cartella originale (NECATSD1, C: Data)
+
+. Condividere la nuova cartella utilizzando lo stesso percorso della cartella nella posizione originale.
+. Aprire la nuova cartella NECAD1, G: E nell'esempio viene visualizzata una cartella denominata codice società, "NECA".
++
+image:mapped3.png[""]
+
+. Nota: Le autorizzazioni di sicurezza della condivisione della cartella originale:
++
+image:mapped4.png[""]
+
+. Di seguito viene riportato il setup tipico, tuttavia è importante copiare le impostazioni originali nel caso in cui siano presenti personalizzazioni da conservare. Tutte le altre autorizzazioni utente/gruppo devono essere rimosse dalla nuova condivisione della cartella
++
+** SISTEMA:autorizzazioni consentite
+** LocalClientDHPAccess (sul computer locale):autorizzazioni consentite
+** ClientDHPAccess (sul dominio): Sono consentite tutte le autorizzazioni
+** NECA-All users (sul dominio): Sono consentite tutte le autorizzazioni, ad eccezione di "controllo completo"
+
+
+
+
+
+
+== Replicare il percorso di condivisione e le autorizzazioni di sicurezza nella nuova cartella condivisa
+
+. Tornare alla nuova posizione (NECAD1, G: Data) e condividere la cartella NECA con lo stesso percorso di rete (escluso il computer), nel nostro esempio "neca-data"
++
+image:mapped5.png[""]
+
+. Per la sicurezza degli utenti, aggiungere tutti gli utenti e impostare le relative autorizzazioni in modo che corrispondano.
++
+image:mapped6.png[""]
+
+. Rimuovere qualsiasi altra autorizzazione utente/gruppo che potrebbe già esistere.
++
+image:mapped7.png[""]
+
+
+
+
+
+== Modifica criteri di gruppo (solo se la cartella viene spostata su una nuova macchina)
+
+. Quindi, modificare Drive Maps (Mappe dischi) in Group Policy Management Editor (Editor di gestione dei criteri di gruppo). Per Azure ad Domain Services, la mappatura si trova in:
++
+ “Cloud Workspace Users > User Configuration > Preferences > Windows Settings> Drive Maps”
++
+image:mapped8.png[""]
+
+. Una volta aggiornati i criteri di gruppo, alla successiva connessione di ciascun utente, verranno visualizzati i dischi mappati che vengono riportati alla nuova posizione.
+. A questo punto è possibile eliminare le cartelle originali su NECATSD1, C:.
+
+
+
+
+== Risoluzione dei problemi
+
+Se l'utente finale visualizza le unità mappate con una X rossa, fare clic con il pulsante destro del mouse sull'unità e selezionare Disconnect (Disconnetti). La disconnessione e la riconnessa dell'unità saranno presenti correttamente.image:mapped9.png[""]

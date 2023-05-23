@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.load_machine_sizes-a93bd.png[Management.command center.Operations.load dimensioni macchina a93bd]

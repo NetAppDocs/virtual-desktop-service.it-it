@@ -1,0 +1,208 @@
+---
+sidebar: sidebar 
+permalink: Management.Scripted_Events.scripted_events.html 
+summary: Eventi con script 
+keywords:  
+---
+= Eventi con script
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Gli eventi con script forniscono all'amministratore avanzato un meccanismo per creare un'automazione personalizzata per la manutenzione del sistema, gli avvisi degli utenti, la gestione dei criteri di gruppo o altri eventi. Gli script possono essere progettati per essere eseguiti come un processo eseguibile con argomenti o possono essere utilizzati come argomenti per un programma eseguibile diverso. Questa funzionalità consente di combinare e nidificare gli script per supportare complesse esigenze di personalizzazione e integrazione.
+
+Un esempio dettagliato di eventi con script in azione è disponibile in link:Management.Applications.application_entitlement_workflow.html["Guida ai diritti dell'applicazione"].
+
+Inoltre, Scripted Events consente la creazione di un'automazione che non richiede l'elaborazione di uno script, ma il flusso di automazione viene avviato da un trigger di sistema ed esegue un programma o un'utility di sistema esistente con argomenti opzionali.
+
+Script Eventi contiene sia un *repository* di script che *attività*. Gli script contengono le istruzioni su *cosa* fare mentre le attività collegano gli script con il trigger e la destinazione appropriati (*quando e dove*) per lo script.
+
+
+
+=== Repository
+
+La scheda Repository mostra un elenco di tutti gli script disponibili per la distribuzione dall'account VDS. Si tratta di un repository personalizzato condiviso da tutti gli amministratori dell'istanza VDS. L'accesso agli eventi con script può essere gestito nella pagina _VDS > Admins > Permissions_.
+
+image::sub.Management.Scripted_Events.scripted_events-1ce76.png[Sub.Management.Scripted Events.Scripted events 1ce76]
+
+
+
+==== Filtro cliente
+
+Ogni organizzazione di amministratori VDS dispone di una libreria privata di script creati e/o personalizzati dalla propria organizzazione. Questi script sono definiti come tipo di script "cliente". Gli script dei clienti possono essere cancellati e modificati da qualsiasi amministratore VDS con autorizzazioni amministrative appropriate per la sezione Scripted Events.
+
+
+
+==== Filtro globale
+
+NetApp pubblica e gestisce anche una libreria di script "globali" che è la stessa per tutte le organizzazioni di amministratori VDS. Questi script sono definiti come tipo di script "Globale". Gli script globali non possono essere modificati o cancellati da alcun amministratore VDS. Piuttosto, gli script globali possono essere "clonati" e lo script risultante è uno script "cliente" che può essere modificato e utilizzato.
+
+
+
+==== Scarica script
+
+La possibilità di scaricare il file di script associato a un evento con script consente all'amministratore VDS di rivedere e modificare il file di script sottostante prima dell'implementazione. Non è mai consigliabile eseguire uno script che non si comprende appieno.
+
+image::sub.Management.Scripted_Events.scripted_events-02a9b.png[Sub.Management.Scripted Events.Scripted events 02a9b]
+
+
+
+==== Aggiungi script
+
+Facendo clic sul pulsante _+ Add script_ si apre una nuova pagina per creare uno script e salvarlo nell'archivio.
+
+image::Management.Scripted_Events.scripted_events-a53fa.png[Management.Scripted Events.Scripted events a53fa]
+
+Per creare un nuovo script, è necessario completare i seguenti campi:
+
+* *Nome*
+* *Include script file*
++
+** Sì - consente di caricare ed eseguire un file script (ad esempio un file .ps1) dall'eseguibile "Esegui con".
+** No - rimuove il campo "file script" (qui sotto) ed esegue semplicemente il comando "Esegui con" e "argomenti"
+
+
+* *File script*
++
+** Se _include script file = Yes_ questo campo è visibile e consente il caricamento di un file di script.
+
+
+* *Eseguire con*
++
+** Definisce il percorso dell'eseguibile utilizzato per eseguire il file di script o il comando eseguito.
+** Ad esempio, per eseguire PowerShell il valore "Execute with" (Esegui con) dovrebbe essere _C:/Windows/system32/WindowsPowerShell/v1.0/powershell.exe_
+
+
+* *Argomenti*
++
+** Definisce eventuali argomenti aggiuntivi eseguiti con il comando "esegue con".
+** VDS offre alcune variabili che possono essere utilizzate in funzione del contesto, tra cui:
++
+*** %Companycode% - Codice società in fase di runtime
+*** %Servername% - Nome della macchina virtuale in fase di runtime
+*** %samaccountname% - <username>.<companycode>
+*** %applicationname% - Nome dell'applicazione richiesto in fase di runtime
+*** %Scriptname% - Nome script in fase di runtime
+*** %username% - nome utente@loginidentifier in fase di runtime
+
+
+
+
+* *URL della documentazione*
++
+** Questo campo consente al writer dello script di collegarlo alla documentazione trovata al di fuori di VDS, ad esempio un sistema della Knowledge base utilizzato dall'organizzazione degli amministratori VDS.
+
+
+
+
+
+
+==== Modifica script
+
+Facendo clic sul nome di uno script nel repository si apre una nuova pagina con i dettagli sullo script e un pulsante di azione per *modificare*.
+
+Quando si modifica uno script, gli stessi campi sono modificabili come descritto in precedenza in link:#add-script["Aggiungi script"] sezione.
+
+In questa pagina dei dettagli dello script, è possibile anche *eliminare* lo script e *scaricare* qualsiasi file di script caricato.
+
+image::Management.Scripted_Events.scripted_events-3e756.png[Management.Scripted Events.Scripted Events 3e756]
+
+
+
+=== Attività
+
+Le attività collegano uno script dal repository a un'implementazione, un sottoinsieme di macchine virtuali e un evento trigger.
+
+image::Management.Scripted_Events.scripted_events-f971c.png[Management.Scripted Events.Scripted events f971c]
+
+
+
+==== Aggiungi attività
+
+Facendo clic sul pulsante _+ Add Activity_ viene aperta una nuova pagina per la creazione di un'attività.
+
+image::Management.Scripted_Events.scripted_events-02ef8.png[Management.Scripted Events.Scripted events 02ef8]
+
+Per creare una nuova attività, è necessario completare i seguenti campi:
+
+* *Nome*
+* *Descrizione* (opzionale)
+* *Implementazione*
+* *Script*
+* *Argomenti*
+* Casella di controllo *Enabled*
+* *Impostazioni evento*
+
+
+
+
+==== Trigger di attività
+
+image::sub.Management.Scripted_Events.scripted_events-cdfcd.png[Sub.Management.Scripted Events.Scripted events cdfcd]
+
+* *Installazione dell'applicazione*
++
+** Questo viene attivato quando l'amministratore VDS fa clic su "+ Aggiungi..." Dalla pagina _Workspace > applicazioni_.
+** Questa selezione consente di selezionare un'applicazione dalla Libreria applicazioni e di pre-definire il collegamento dell'applicazione.
+** Le istruzioni dettagliate per questo trigger sono evidenziate nella link:scriptlibrary.AdobeReader.html#install-script["_Installare la documentazione dello script Adobe Reader DC_"].
+
+
+* *Disinstallazione dell'applicazione*
++
+** Questo viene attivato quando l'amministratore VDS fa clic su "azioni > Disinstalla" dalla pagina _Workspace > applicazioni_.
+** Questa selezione consente di selezionare un'applicazione dalla Libreria applicazioni e di pre-definire il collegamento dell'applicazione.
+** Le istruzioni dettagliate per questo trigger sono evidenziate nella link:scriptlibrary.AdobeReader.html##uninstall-script["_Disinstalla la documentazione dello script Adobe Reader DC_"].
+
+
+* *Clone Server*
++
+** Questo viene attivato quando la funzione Clone viene eseguita su una macchina virtuale esistente
+
+
+* *Crea cache*
++
+** Questo viene attivato ogni volta che VDS costruisce una nuova macchina virtuale per una cache di raccolta del provisioning
+
+
+* *Crea client*
++
+** Questo viene attivato ogni volta che una nuova organizzazione client viene aggiunta a VDS
+
+
+* *Crea server*
++
+** Questo viene attivato ogni volta che VDS costruisce una nuova macchina virtuale
+
+
+* *Crea utente*
++
+** Questo viene attivato ogni volta che viene aggiunto un nuovo utente tramite VDS
+
+
+* *Elimina utente*
++
+** Questo viene attivato ogni volta che un nuovo utente viene cancellato tramite VDS
+
+
+* *Manuale*
++
+** Questo viene attivato manualmente da un amministratore VDS dalla pagina "Scripted Events > Activity" (Eventi script > attività)
+
+
+* *Aggiornamento manuale dell'applicazione*
+* *Pianificato*
++
+** Questo viene attivato quando viene raggiunta la data/ora definita
+
+
+* *Avvia server*
++
+** Questo viene attivato su una macchina virtuale ogni volta che si avvia
+
+
+
+
+Facendo clic su _Name_ si apre una finestra di dialogo in cui è possibile modificare l'attività.

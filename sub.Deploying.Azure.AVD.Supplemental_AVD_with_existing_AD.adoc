@@ -1,0 +1,65 @@
+---
+sidebar: sidebar 
+permalink: Deploying.Azure.AVD.Supplemental_AVD_with_existing_AD.html 
+summary: 'Guida dettagliata all"implementazione di VDS in Azure per le implementazioni ad esistenti' 
+keywords:  
+---
+= Guida all'implementazione di AVD - supplemento ad esistente
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+VDS Setup consente di connettere una nuova implementazione a una struttura ad esistente. Queste istruzioni illustrano in dettaglio questa opzione. Questo articolo non è autonomo, ma è una spiegazione dettagliata di un'alternativa all'opzione New ad descritta in link:Deploying.Azure.AVD.Deploying_AVD_in_Azure.html["Guida all'implementazione di AVD"]
+
+
+
+== Tipo di Active Directory
+
+La sezione successiva definisce il tipo di implementazione di Active Directory per l'implementazione di VDS. In questa guida verrà selezionata la Active Directory di Windows Server esistente, che utilizzerà una struttura ad già esistente.
+
+
+
+== Rete ad esistente
+
+VDS Setup visualizza un elenco di vNets che potrebbero rappresentare la connessione tra la struttura ad esistente e Azure ad. Il VNET selezionato deve disporre di un controller di dominio con hosting Azure configurato in Azure. Inoltre, VNET disporrà di impostazioni DNS personalizzate che puntano al controller di dominio ospitato da Azure.
+
+image:existingDNS.png[""]
+
+
+
+== Nome di dominio Active Directory esistente
+
+Inserire il nome di dominio esistente che verrà utilizzato. Nota: Non si desidera utilizzare il dominio che si trova in Azure Portal nel modulo Active Directory, in quanto può causare problemi DNS. L'esempio principale è che gli utenti non potranno accedere al sito Web (ad esempio, <yourdomain>.com) dall'interno del desktop.
+
+
+
+== Nome utente e password ad esistenti
+
+Esistono tre modi per fornire le credenziali necessarie per facilitare un'implementazione utilizzando una struttura ad esistente.
+
+. Specificare il nome utente e la password dell'amministratore di dominio Active Directory
++
+Questo è il metodo più semplice: Fornire credenziali di amministratore di dominio utilizzate per facilitare l'implementazione.
+
++
+
+NOTE: Questo account può essere creato una sola volta e cancellato una volta completato il processo di implementazione.
+
+. Crea account corrispondente alle autorizzazioni richieste
++
+Questo metodo richiede agli amministratori dei clienti di creare manualmente la struttura delle autorizzazioni, quindi inserire qui le credenziali per l'account CloudWorkspaceSVC e continuare.
+
+. Processo di implementazione manuale
++
+Contattare il supporto NetApp VDS per assistenza nella configurazione dell'accesso ad con account principal con privilegi minimi.
+
+
+
+
+
+== Passi successivi
+
+In questo articolo vengono descritte le procedure specifiche per la distribuzione in un ambiente ad esistente. Una volta completata questa procedura, è possibile tornare alla guida di implementazione standard link:Deploying.Azure.AVD.Deploying_AVD_in_Azure.html#active-directory-type["qui"].

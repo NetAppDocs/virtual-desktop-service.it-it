@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: Reference.vds_change_environments.html 
+summary: Ambienti NetApp VDS Change 
+keywords:  
+---
+= VDS Cambia gli ambienti
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Il servizio Virtual Desktop di NetApp consente alle organizzazioni di gestire le implementazioni sulle release precedenti, di visualizzare in anteprima le release future e di gestire gli ambienti che eseguono una versione precedente (metodologia N-1).
+
+
+
+=== URL di Virtual Desktop Service
+
+Virtual Desktop Service è la console di gestione che gli amministratori possono utilizzare per gestire le implementazioni VDS su base continuativa.
+
+[cols="20,20,20,20,20"]
+|===
+| Ambiente | Descrizione | URL | Base di codice | Documentazione API 
+
+
+| Anteprima | Versione di anteprima della prossima release | https://preview.manage.cloudworksace.com/[] | 5.4 | https://api.cloudworkspace.com/5.4/swagger/ui/index[] 
+
+
+| *Attuale* | *Versione corrente* | *https://manage.vds.netapp.com/* | *6.0* | *https://api.cloudworkspace.com/6.0/swagger/ui/index* 
+
+
+| Precedente | Release precedente | https://manage.cloudworkspace.com/[] | 5.4 | https://api.cloudworkspace.com/5.4/swagger/ui/index[] 
+|===
+
+
+=== Implementazione di Virtual Desktop Service
+
+VDS offre un processo di implementazione basato su procedure guidate che consente agli amministratori di ottimizzare drasticamente il processo di provisioning di un ambiente AVD e/o di desktop virtuale.
+
+Gli amministratori non possono eseguire il provisioning delle implementazioni in un ambiente legacy, solo in un ambiente corrente o in un ambiente di anteprima.
+
+[cols="20,20,20,20,20"]
+|===
+| Ambiente | Descrizione | URL | Base di codice | Guida all'implementazione 
+
+
+| *Attuale* | *Versione corrente* | *https://manage.vds.netapp.com/deployments/add* | *5.4* | *link:Deploying.Azure.AVD.Deploying_AVD_in_Azure_v6.html["Guida all'implementazione di VDS v6.0"]* 
+
+
+| Precedente | Release precedente | https://cwasetup.cloudworkspace.com[] | 5.4 | Contatta il supporto 
+|===
+
+
+=== Tool per la stima dei costi VDS
+
+VDS Cost Estimator è uno strumento a valore aggiunto costruito ad hoc che consente alle organizzazioni di stimare i costi del cloud pubblico in Azure o Google Cloud. Il tool include modi per variare e ottimizzare i budget per fornire la soluzione necessaria nel budget di un'organizzazione.
+
+[cols="33,33,33"]
+|===
+| Ambiente | Descrizione | URL 
+
+
+| Convalida | Anteprima della prossima release | https://val.manage.vds.netapp.com/cost-estimator[] 
+
+
+| *Attuale* | *Versione corrente* | *https://manage.vds.netapp.com/cost-estimator* 
+|===

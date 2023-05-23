@@ -1,0 +1,106 @@
+= PAM (Privileged account Management)
+:allow-uri-read: 
+
+
+
+
+== PAM (Privileged account Management)
+
+Questa funzionalità fornisce un record specifico e controllabile di set di autorizzazioni amministrative granulari concessi agli account privilegiati VDS e/o Active Directory. L'accesso esterno scade automaticamente per impostazione predefinita.
+
+PAM offre un meccanismo per consentire ai clienti di concedere l'accesso all'amministratore VDS e/o al supporto VDS NetApp e un metodo per consentire ai clienti l'accesso ai partner in un formato verificabile, tracciabile e segnalabile ai fini della conformità.
+
+Nel contesto di sicurezza moderno, ogni account con privilegi deve avere uno scopo (e uno scopo il più possibile specifico) e deve rimanere attivo solo quando necessario per ridurre la superficie di attacco.
+
+
+
+== Approvazione e rifiuto delle richieste PAM in VDS
+
+Una volta effettuata una richiesta PAM, tutti gli amministratori VDS potranno visualizzare un avviso sotto la campana.
+
+image:PAM1.jpg[""]
+
+
+NOTE: Tutti gli amministratori VDS possono visualizzare le richieste PAM, ma solo gli amministratori con il ruolo di approvatore PAM potranno approvare o rifiutare le richieste.
+
+Applicazione del ruolo di approvatore PAM
+
+Tutti gli amministratori primari erediteranno il ruolo di approvatore PAM, ma questo ruolo può essere assegnato a qualsiasi altro amministratore VDS purché l'utente VDS disponga delle autorizzazioni di amministratore - modifica. Accedere al modulo Admins, selezionare un amministratore e selezionare la casella di controllo PAM Approver.
+
+image:PAM2.jpg[""]
+
+Attivazione delle approvazioni a livello di client
+
+Nel caso in cui l'implementazione di un'organizzazione richieda anche la possibilità di approvare l'accesso, i Software Master Partner possono attivare le approvazioni a livello di client accedendo al modulo di implementazione e scorrendo verso il basso fino alla sezione Deployment Details.
+
+Quindi, selezionare la casella Require Client Approval for PAM Access Requests (Richiedi approvazione client per richieste di accesso PAM) e fare clic su Update (Aggiorna). In questo modo verranno inviate le richieste che il Software Master Partner richiede agli amministratori VDS per l'implementazione. Nota: Questo richiede che gli utenti siano configurati anche come amministratori VDS tramite questi passaggi. <<<Link to Admin Access for Users>>
+
+image:PAM3.png[""]
+
+Approvazione/rifiuto delle richieste PAM
+
+Tutti gli amministratori possono visualizzare le richieste facendo clic sulla freccia a discesa accanto al nome, quindi su Settings (Impostazioni) e infine sulla scheda PAM Requests (Richieste PAM). Nota: Le approvazioni a livello di client visualizzano le stesse informazioni e seguono lo stesso processo definito di seguito.
+
+image:PAM4.png[""]
+
+Gli amministratori possono esaminare i seguenti dettagli di ciascuna richiesta prima di fare clic sulla rotella delle impostazioni per ciascuna richiesta e di approvarla o rifiutarla:
+
+Request ID (ID richiesta): Utile per sapere quando si comunicano/tracciano le richieste o per riferimento quando si verifica l'accesso all'ambiente
+
+Livello di accesso:
+
+VDS: Concede autorizzazioni complete come amministratore VDS
+
+Implementazione: Concede l'accesso di livello Domain Admin alla struttura di Active Directory per la risoluzione dei problemi
+
+Richiedente: L'indirizzo e-mail della persona che richiede l'accesso
+
+Deployment (implementazione): L'identificativo di implementazione a cui il richiedente ha richiesto l'accesso con privilegi
+
+Duration (durata): Il numero di giorni in cui l'accesso sarà attivo prima della scadenza automatica (il valore predefinito è 3)
+
+Note: Visualizza tutte le note inserite dal richiedente
+
+Stato:
+
+Pending Approval (approvazione in sospeso): Visualizza le richieste che devono ancora essere approvate o rifiutate da un approvatore PAM
+
+Approved (approvato): Visualizza le richieste già esistenti e approvate
+
+image:PAM5.jpg[""]
+
+Approvazione
+
+Dopo aver fatto clic sulla rotella delle impostazioni, i responsabili dell'approvazione PAM visualizzeranno nuovamente i dettagli della richiesta. Il responsabile dell'approvazione PAM può quindi inserire le note richieste per il destinatario e fare clic su Approve (approva) per concedere l'accesso temporaneo e verificato.
+
+image:PAM6.jpg[""]
+
+Rifiuto
+
+Gli amministratori VDS possono inserire note quando rifiutano le richieste PAM. Ad esempio, il richiedente richiede le stesse autorizzazioni, ma per una durata inferiore.
+
+image:PAM7.jpg[""]
+
+Creazione di report sulle richieste PAM
+
+Gli amministratori VDS con diritti di reporting possono accedere al modulo Reports ed esportare un file csv contenente tutti i dettagli relativi a ogni richiesta PAM.
+
+image:PAM8.png[""]
+
+Attivazione degli account PAM
+
+L'account e-mail inserito durante la creazione della richiesta PAM riceverà il seguente messaggio. Fare clic su Activate Request (attiva richiesta) per ottenere l'accesso amministrativo (Active Directory per la distribuzione) richiesto.
+
+image:PAM9.jpg[""]
+
+Facendo clic su Activate Request (attiva richiesta), viene inviato un messaggio SMS al numero inserito al momento della creazione della richiesta PAM. Inserire il codice ricevuto sul dispositivo mobile, quindi impostare la password per l'account Active Directory per l'implementazione.
+
+image:PAM10.jpg[""]
+
+L'account amministratore di Active Directory per questa implementazione è stato creato correttamente.image:PAM11.jpg[""]
+
+Account scaduti
+
+Gli account in scadenza riceveranno un messaggio simile a quello riportato di seguito, a questo punto l'accesso privilegiato associato a questo indirizzo e-mail non sarà più in vigore.
+
+image:PAM12.jpg[""]

@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.remove_vds_software-204f4.png[Management.command center.Operations.Remove vds software 204f4]

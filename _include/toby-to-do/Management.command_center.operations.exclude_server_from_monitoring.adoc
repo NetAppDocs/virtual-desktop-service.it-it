@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.exclude_server_from_monitoring-f1bdb.png[Management.command center.Operations.Escludi il server dal monitoraggio di f1bdb]

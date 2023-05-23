@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.start_server_for_wake_on_demand-d8436.png[Management.command center.Operations.start server per wake on demand d8436]

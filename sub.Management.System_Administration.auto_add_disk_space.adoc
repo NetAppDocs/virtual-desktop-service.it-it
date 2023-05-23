@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.auto_add_disk_space.html 
+summary: Funzione di aumento automatico delle dimensioni del disco 
+keywords:  
+---
+= Funzione di aumento automatico dello spazio su disco
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+NetApp riconosce la necessità di offrire agli amministratori un modo semplice per garantire che gli utenti abbiano sempre spazio per accedere e salvare i documenti. In questo modo, le macchine virtuali dispongono anche di spazio libero sufficiente per completare correttamente i backup, consentendo agli amministratori e ai piani di disaster recovery e business continuity. Tenendo presente questo aspetto, abbiamo creato una funzionalità che espande automaticamente il disco gestito in uso al livello successivo quando un disco sta funzionando in poco spazio.
+
+Si tratta di un'impostazione che viene applicata per impostazione predefinita a tutte le nuove implementazioni VDS in Azure, garantendo che tutte le implementazioni proteggano gli utenti e i backup del tenant per impostazione predefinita.
+
+Gli amministratori possono verificare che sia stata eseguita questa operazione accedendo alla scheda Deployments (implementazioni), selezionando un'implementazione e quindi connettendosi al server CWMGR1. Quindi, aprire il collegamento DCConfig sul desktop, fare clic su Advanced (Avanzate) e scorrere verso il basso.
+
+image:increase_disk1.png[""]
+
+Gli amministratori possono modificare la quantità di spazio libero desiderata in GB liberi o in percentuale del disco che deve essere libero prima di passare al successivo Tier di dischi gestiti nella stessa sezione Advanced di DCConfig.
+
+image:increase_disk2.png[""]
+
+Alcuni esempi pratici di applicazione:
+
+* Se si desidera assicurarsi che sul disco siano disponibili almeno 50 GB, impostare MinFreeSpaceGB su 50
+* Se si desidera assicurarsi che almeno il 15% del disco sia libero, impostare MinFreeSpacePercent da 10 a 15.
+
+
+Questa azione si svolge a mezzanotte del fuso orario del server.

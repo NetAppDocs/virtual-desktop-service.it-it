@@ -1,0 +1,24 @@
+= Panoramica di Microsoft Office 365
+:allow-uri-read: 
+
+
+
+
+== Panoramica di Microsoft Office 365
+
+Questo pacchetto di script installa/disinstalla _Microsoft Office_ utilizzando il gestore dei pacchetti chocolatey (https://chocolatey.org/[]) per eseguire l'implementazione. Chocolatey viene implementato da VDS quando vengono create le macchine virtuali, ma questo script verificherà e installerà chocolatey come prerequisito se non è presente.
+
+
+WARNING: Questo script di installazione di Microsoft Office 365 non include Microsoft Teams o Microsoft One Drive. Questi sono inclusi come script automatizzati autonomi per consentire una maggiore flessibilità, poiché alcune implementazioni non richiedono queste applicazioni. Questa implementazione può essere copiata e modificata per includerle (o per modificarle) link:https://docs.microsoft.com/en-us/deployoffice/overview-office-deployment-tool["Tool di implementazione di Office"] Clonando lo script da VDS e modificando InstallMicrosoftOffice365.ps1 per inserire valori diversi nel file di configurazione xml.
+
+
+
+=== Percorso di scelta rapida predefinito
+
+Il percorso di scelta rapida predefinito viene inserito di seguito, per questa applicazione il collegamento è: `\\folders\Microsoft Office`
+
+
+
+=== Schermata della finestra di dialogo Add Activity (Aggiungi attività)
+
+image::scriptlibrary.activity.InstallMicrosoftOffice365.png[Scriptlibrary.activity.InstallMicrosoftOffice365]

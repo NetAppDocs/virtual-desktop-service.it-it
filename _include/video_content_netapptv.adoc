@@ -1,0 +1,13 @@
+= VDS, GFC e ANF: La soluzione per i cloud desktop implementati a livello globale
+:allow-uri-read: 
+
+
+
+
+== VDS, GFC e ANF: La soluzione per i cloud desktop implementati a livello globale
+
+Azure NetApp Files ospita uno storage dalle performance elevate, mentre il servizio di desktop virtuale e la Global file cache gestiscono aree di lavoro e aree del sito da un singolo pannello di controllo per i cloud desktop implementati a livello globale.
+
+image:netapptv1.png["link:https://tv.netapp.com/detail/video/6182654694001"]
+
+link:https://tv.netapp.com/detail/video/6182654694001[""]

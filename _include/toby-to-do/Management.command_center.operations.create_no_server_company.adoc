@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.create_no_server_company-87bcb.png[Management.command center.Operations.create nessuna società di server 87bcb]

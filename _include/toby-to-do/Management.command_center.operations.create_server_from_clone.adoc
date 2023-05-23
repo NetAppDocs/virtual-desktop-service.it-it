@@ -1,0 +1,17 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.create_server_from_clone-098a1.png[Management.command center.Operations.create server dal clone 098a1]
+
+image::Management.command_center.operations.create_server_from_clone-2b8e0.png[Management.command center.Operations.create server dal clone 2b8e0]
+
+image::Management.command_center.operations.create_server_from_clone-b252d.png[Management.command center.Operations.create server dal clone b252d]
+
+image::Management.command_center.operations.create_server_from_clone-3b909.png[Management.command center.Operations.create server dal clone 3b909]
+
+image::Management.command_center.operations.create_server_from_clone-68dc9.png[Management.command center.Operations.create server dal clone 68dc9]

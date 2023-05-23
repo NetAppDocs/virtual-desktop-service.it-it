@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.azure_key_vault.html 
+summary: Accesso alle credenziali VDS in Az 
+keywords:  
+---
+= Accesso alle credenziali VDS in Azure Key Vault
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+CWASetup 5.4 è una deviazione dai precedenti metodi di implementazione di Azure. Il processo di configurazione e convalida è ottimizzato per ridurre la quantità di informazioni necessarie per iniziare un'implementazione. Molti di questi prompt rimossi riguardano credenziali o account come Local VM Admin, SMTP account, Tech account, SQL SA, ecc. Questi account vengono ora generati automaticamente e memorizzati in un archivio chiavi Azure. Per impostazione predefinita, l'accesso a questi account generati automaticamente richiede un passaggio aggiuntivo, descritto di seguito.
+
+* Individuare la risorsa "vault delle chiavi" e fare clic su di essa:
++
+image:Management.System_Administration.azure_key_vault-4d897.png["larghezza=75%"]
+
+* In ‘SImpostazioni’, fare clic su ‘Sdecrets’. Viene visualizzato un messaggio che indica che non si è autorizzati a visualizzare:
++
+image:Management.System_Administration.azure_key_vault-0f7b9.png["larghezza=75%"]
+
+* Aggiungere una ‘policy di accesso’ per concedere a un account Azure ad (come un amministratore globale o un amministratore di sistema) l'accesso a queste chiavi sensibili:
++
+image:Management.System_Administration.azure_key_vault-fe473.png["larghezza=75%"]
+
+* In questo esempio viene utilizzato un amministratore globale. Dopo aver selezionato l'entità, fare clic su ‘Select’ (Seleziona), quindi su ‘Add’ (Aggiungi):
++
+image:Management.System_Administration.azure_key_vault-3ae42.png["larghezza=75%"]
+
+* Fare clic su ‘S'Save' (Salva):
++
+image:Management.System_Administration.azure_key_vault-15c03.png["larghezza=75%"]
+
+* Policy di accesso aggiunta correttamente:
++
+image:Management.System_Administration.azure_key_vault-770dd.png["larghezza=75%"]
+
+* Rivisitare i ‘Ssegreti’ per verificare che l'account disponga ora dell'accesso agli account di implementazione:
++
+image:Management.System_Administration.azure_key_vault-e277a.png["larghezza=75%"]
+
+* Ad esempio, se è stata richiesta la credenziale Domain Administrator per accedere a CWMGR1 e aggiornare i criteri di gruppo, controllare le stringhe in cjDomainAdministratorName e cjDomainAdministratorPassword facendo clic su ciascuna voce:
++
+image:Management.System_Administration.azure_key_vault-69e35.png["larghezza=75%"]
+
++
+image:Management.System_Administration.azure_key_vault-83926.png["larghezza=75%"]
+
+* Mostra o copia il valore:
++
+image:Management.System_Administration.azure_key_vault-c9405.png["larghezza=75%"]
+
+

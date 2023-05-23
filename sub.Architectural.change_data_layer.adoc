@@ -1,0 +1,123 @@
+---
+sidebar: sidebar 
+permalink: Architectural.change_data_layer.html 
+summary: Guida passo passo per cambiare la piattaforma di storage 
+keywords:  
+---
+= Reindirizzamento della piattaforma di storage
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Le tecnologie di implementazione di Virtual Desktop Service consentono una vasta gamma di opzioni di storage, a seconda dell'infrastruttura sottostante, in questa guida vengono fornite informazioni su come apportare modifiche dopo l'implementazione.
+
+Le performance dei desktop virtuali dipendono da una varietà di risorse chiave, mentre le performance dello storage sono una delle variabili principali. Man mano che i requisiti cambiano e i carichi di lavoro si evolvono, la necessità di cambiare l'infrastruttura storage è un compito comune. In quasi tutti i casi, ciò comporta la migrazione da una piattaforma di file server alla tecnologia di storage NetApp (come Azure NetApp Files, NetApp Cloud Volumes Service in Google o NetApp Cloud Volumes ONTAP in AWS), poiché queste tecnologie offrono in genere il miglior profilo di performance per gli ambienti di calcolo degli utenti finali.
+
+
+
+=== Creazione del nuovo layer di storage
+
+A causa dell'ampia varietà di potenziali servizi di storage in una vasta gamma di provider di infrastrutture cloud e HCI, questa guida presuppone che sia già stato stabilito un nuovo servizio di storage e che i percorsi SMB siano noti.
+
+
+
+=== Creare cartelle di storage
+
+. Nel nuovo servizio di storage, creare tre cartelle:
++
+** /Dati
+** /Home
+** /Pro
++
+image:storage1.png[""]
+
+
+
+. Impostare le autorizzazioni per le cartelle
++
+.. In Folder Properties (Proprietà cartella), selezionare _Security (sicurezza), >Advanced (Avanzate) > Disable ereditarietà_
++
+image:storage2.png[""]
+
+.. Regolare le restanti impostazioni in modo che corrispondano alle impostazioni del layer di storage originale create in origine dall'automazione dell'implementazione.
+
+
+
+
+
+
+=== Spostamento dei dati
+
+Le directory, i dati, i file e le impostazioni di sicurezza possono essere spostati in diversi modi. La seguente sintassi di robocopy consentirà di apportare le modifiche necessarie. I percorsi devono essere modificati in base all'ambiente in uso.
+
+ robocopy c:\data\zucd \\uyy-1c37.deskapps.mobi\zucd-data /xd ~snapshot /MIR /CopyAll /R:1 /W:1 /tee /log:C:\temp\roboitD.txt
+
+
+=== Reindirizzamento del percorso SMB al cutover
+
+Quando arriverà il momento del cutover, alcune modifiche reindirizzeranno tutte le funzionalità dello storage nell'ambiente VDS.
+
+
+
+==== Aggiornare gli oggetti Criteri di gruppo
+
+. L'oggetto Criteri di gruppo utenti (denominato _<company-code>-users_) deve essere aggiornato con il nuovo percorso di condivisione. Selezionare _Configurazione utente > Impostazioni di Windows > Preferenze > Mappe unità_
++
+image:storage3.png[""]
+
+. Fare clic con il pulsante destro del mouse su _H:_, selezionare Proprietà > Modifica > azione: Sostituire_ e immettere il nuovo percorso
++
+image:storage4.png[""]
+
+. Con Classic o Hybrid ad, aggiornare la condivisione definita in ADUC nell'unità organizzativa aziendale. Ciò si riflette nella gestione delle cartelle VDS.
++
+image:storage5.png[""]
+
+
+
+
+
+==== Aggiorna i percorsi del profilo FSLogix
+
+. Aprire Regedit sul file server originale e su qualsiasi altro host di sessione con provisioning.
++
+
+NOTE: Se lo si desidera, è possibile impostare questa opzione anche tramite un criterio GPO.
+
+. Modificare il valore _VHDLocations_ con il nuovo valore. Questo dovrebbe essere il nuovo percorso SMB più _pro/profilecontainers_, come mostrato nella schermata seguente.
++
+image:storage6.png[""]
+
+
+
+
+
+==== Aggiornare le impostazioni di reindirizzamento delle cartelle per le home directory
+
+. Aprire Gestione criteri di gruppo, selezionare l'oggetto Criteri di gruppo utenti collegato a DC=dominio,DC=mobi/Area di lavoro cloud/Società area di lavoro cloud/utenti <company-code>/<company-code>-desktop.
+. Modificare i percorsi di reindirizzamento delle cartelle in Configurazione utente> Criteri> Impostazioni Windows> Reindirizzamento cartelle.
+. Solo Desktop e documenti devono essere aggiornati e i percorsi devono corrispondere al nuovo punto di montaggio del percorso SMB per il volume Home
++
+image:storage7.png[""]
+
+
+
+
+
+==== Aggiornare il database SQL VDS con Command Center
+
+CWMGR1 contiene un'utility di supporto chiamata Command Center che può aggiornare in blocco il database VDS.
+
+.Per eseguire gli aggiornamenti finali del database:
+. Connettersi a CWMGR1, navigare ed eseguire CommandCenter.exe
++
+image:storage10.png[""]
+
+. Accedere alla scheda _Operations_, fare clic su _Load Data_ per compilare il menu a discesa Company Code (Codice società), selezionare il codice della società e immettere i nuovi percorsi di storage per il layer di storage, quindi fare clic su _Execute Command_.
++
+image:storage11.png[""]
+
+

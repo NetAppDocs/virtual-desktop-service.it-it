@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.test_hypervisor_connection-fcfa3.png[Management.command center.Operations.test connessione hypervisor fcfa3]

@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.load_cache_companies-02d25.png[Management.command center.Operations.load cache companies 02d25]

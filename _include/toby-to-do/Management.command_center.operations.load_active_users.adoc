@@ -1,0 +1,15 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.load_active_users-6675f.png[Management.command center.Operations.load utenti attivi 6675f]
+
+image::Management.command_center.operations.load_active_users-e2ae6.png[Management.command center.Operations.load degli utenti attivi e2ae6]
+
+image::Management.command_center.operations.load_active_users-50fd5.png[Management.command center.Operations.load degli utenti attivi 50fd5]
+
+image::Management.command_center.operations.load_active_users-ac6c2.png[Management.command center.Operations.load degli utenti attivi ac6c2]

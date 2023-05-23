@@ -1,0 +1,34 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Una volta completata l'implementazione, dovresti ricevere una notifica via email e una grande quantità di report di errori e di successo via email. Per informazioni su queste e-mail e su come modificare le opzioni di consegna, fare clic qui: link:Unlisted.Whats_with_all_these_emails.html["Cosa c'è di queste e-mail?"]
+
+La documentazione completa è disponibile all'indirizzo https://docs.netapp.com/us-en/virtual-desktop-service/[] tuttavia, gli elementi selezionati di seguito sono un buon punto di partenza:
+
+
+
+== Avvio rapido
+
+* link:https://www.youtube.com/playlist?list=PLQ1wYDzid2pRl74Y4SnFVvTHL7kbN9GQZ["VDS Introduzione Video Playlist su YouTube"]
+* link:Management.User_Administration.manage_user_accounts.html["Gestione degli utenti"]
+* link:Management.Applications.application_entitlement_workflow.html["Gestione delle applicazioni"]
+* link:Management.User_Administration.manage_folders_and_permissions.html["Gestione di dati e autorizzazioni"]
+* link:Reference.end_user_access.html["Requisiti di sistema per Cloud Workspace: Panoramica per gli utenti finali"]
+
+
+
+
+== Perfeziona la tua implementazione – Suggerimenti e suggerimenti
+
+* link:Management.User_Administration.multi-factor_authentication.html["Miglioramento della sicurezza con MFA"]
+* link:Management.System_Administration.configure_backup.html["Configurare Azure Backup"]
+* link:Management.System_Administration.configure_antivirus.html["Configurare l'antivirus"]
+* link:Management.Cost_Optimization.workload_schedule.html["Ottimizzazione dei costi dei server"]
+* link:Management.Scripted_Events.scripted_events.html["Implementa la tua automazione con gli eventi basati su script"]
+* link:Architectual.migrate_data_into_vds.html["Migrazione dei dati"]
+

@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: video_azure_AVDRDS_deploy_54.html 
+summary: Implementazione di AVD o RDS in Azure con NetApp VDS v5.4 
+keywords:  
+---
+= Implementazione di AVD o RDS in Azure con NetApp VDS v5.4
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+video::Gp2DzWBc0Go[youtube]

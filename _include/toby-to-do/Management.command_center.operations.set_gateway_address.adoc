@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.set_gateway_address-ece6c.png[Management.command center.operations.set indirizzo gateway ece6c]

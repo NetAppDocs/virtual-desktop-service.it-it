@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.create_azure_netapp_files_share-90774.png[Management.command center.Operations.create la condivisione Azure NetApp Files 90774]

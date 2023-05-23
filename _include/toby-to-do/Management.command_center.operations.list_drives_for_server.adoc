@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.list_drives_for_server-534a5.png[Management.command unità center.Operations.list per server 534a5]

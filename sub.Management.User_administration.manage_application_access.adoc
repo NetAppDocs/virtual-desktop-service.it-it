@@ -1,0 +1,125 @@
+---
+sidebar: sidebar 
+permalink: Management.Applications.application_entitlement_workflow.html 
+summary: Guida dettagliata per implementare le applicazioni agli utenti finali in VDS 
+keywords:  
+---
+= Diritti dell'applicazione
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+VDS dispone di un'efficace funzionalità integrata di autorizzazione e automazione delle applicazioni. Questa funzionalità consente agli utenti di accedere a diverse applicazioni durante la connessione agli stessi host di sessione. Ciò è possibile grazie ad alcuni oggetti Criteri di gruppo personalizzati che nascondono i collegamenti insieme all'automazione che posiziona i collegamenti in modo selettivo sui desktop degli utenti.
+
+
+NOTE: Questo flusso di lavoro si applica solo alle implementazioni RDS. Per la documentazione relativa ai diritti dell'applicazione AVD, vedere link:Management.Applications.AVD_application_entitlement_workflow.html["Application Entitlement Workflow per AVD"]
+
+Le applicazioni possono essere assegnate agli utenti direttamente o tramite gruppi di sicurezza gestiti in VDS.
+
+.Ad alto livello, il processo di provisioning dell'applicazione segue questi passaggi.
+. Aggiungi app all'App Catalog
+. Aggiungi app all'area di lavoro
+. Installare l'applicazione su tutti gli host di sessione
+. Selezionare il percorso di scelta rapida
+. Assegnare le applicazioni a utenti e/o gruppi
+
+
+
+NOTE: I passaggi 3 e 4 possono essere completamente automatizzati con gli eventi con script, come illustrato di seguito
+
+.Video - Panoramica
+video::19NpO8v15BE[youtube]
+
+
+== Aggiungere applicazioni all'App Catalog
+
+VDS Application Entitlement inizia con App Catalog, un elenco di tutte le applicazioni disponibili per l'implementazione negli ambienti degli utenti finali.
+
+.Per aggiungere applicazioni al catalogo, procedere come segue
+. Accedere a VDS all'indirizzo https://manage.cloudworkspace.com[] utilizzando le credenziali di amministratore principali.
+. In alto a destra, fare clic sull'icona a forma di freccia accanto al nome utente e selezionare Impostazioni.
+. Fare clic sulla scheda App Catalog.
+. Fare clic sull'opzione Add App (Aggiungi applicazione) nella barra del titolo del catalogo applicazioni.
+. Per aggiungere un gruppo di applicazioni, selezionare l'opzione Importa applicazioni.
++
+.. Viene visualizzata una finestra di dialogo che fornisce un modello Excel da scaricare che crea il formato corretto per l'elenco delle applicazioni.
+.. Per questa valutazione, NetApp VDS ha creato un elenco di applicazioni di esempio per l'importazione, disponibile qui.
+.. Fare clic sull'area Upload (carica) e scegliere il file di modello dell'applicazione, quindi fare clic sul pulsante Import (Importa).
+
+
+. Per aggiungere singole applicazioni, selezionare il pulsante Add App (Aggiungi applicazione) per visualizzare una finestra di dialogo.
++
+.. Inserire il nome dell'applicazione.
+.. L'ID esterno può essere utilizzato per inserire un identificativo di tracciamento interno, ad esempio una SKU di prodotto o un codice di tracciamento della fatturazione (opzionale).
+.. Selezionare la casella di controllo Subscription (abbonamento) se si desidera creare un report sulle applicazioni come prodotto in abbonamento (opzionale).
+.. Se il prodotto non viene installato in base alla versione (ad esempio Chrome), selezionare la casella di controllo versione non richiesta. In questo modo è possibile installare i prodotti con aggiornamenti continui senza tenere traccia delle loro versioni.
+.. Al contrario, se un prodotto supporta più versioni con nome (ad esempio QuickBooks), selezionare questa casella per installare più versioni e avere VDS specifico per ciascuna versione disponibile nell'elenco delle applicazioni che possono avere diritto e per l'utente finale.
+.. Selezionare l'opzione "Nessuna icona di desktop utente" se non si desidera che VDS provi un'icona di desktop per questo prodotto. Viene utilizzato per prodotti "back-end" come SQL Server, poiché gli utenti finali non dispongono di un'applicazione a cui accedere.
+.. "L'app deve essere associata" impone la necessità di installare un'app associata. Ad esempio, un'applicazione client server potrebbe richiedere l'installazione di SQL Server o MySQL.
+.. Selezionando la casella licenza richiesta, VDS deve richiedere il caricamento di un file di licenza per un'installazione dell'applicazione prima di impostare lo stato dell'applicazione su attivo. Questa fase viene eseguita nella pagina Application Detail di VDS.
+.. Visibile a tutti: I diritti dell'applicazione possono essere limitati a specifici partner secondari in una gerarchia multicanale. A scopo di valutazione, fare clic sulla casella di controllo in modo che tutti gli utenti possano visualizzarla nell'elenco delle applicazioni disponibili.
+
+
+
+
+
+
+== Aggiungere l'applicazione all'area di lavoro
+
+Per avviare il processo di implementazione, aggiungerai l'applicazione allo spazio di lavoro.
+
+.Per eseguire questa operazione, attenersi alla seguente procedura
+. Fare clic su aree di lavoro
+. Scorrere verso il basso fino ad applicazioni
+. Fare clic su Aggiungi
+. Selezionare le applicazioni, inserire le informazioni richieste, fare clic su Add Application (Aggiungi applicazione), quindi su Add Apps (Aggiungi applicazioni).
+
+
+
+
+== Installare manualmente l'applicazione
+
+Una volta aggiunta l'applicazione all'area di lavoro, è necessario installarla su tutti gli host di sessione. Questa operazione può essere eseguita manualmente e/o può essere automatizzata.
+
+.Per installare manualmente le applicazioni sugli host di sessione, attenersi alla seguente procedura
+. Accedere a Service Board (scheda di servizio).
+. Fare clic sull'attività del Service Board.
+. Fare clic sui nomi dei server per connettersi come amministratore locale.
+. Installare le applicazioni, verificare che il collegamento a questa applicazione si trovi nel percorso del menu Start.
++
+.. Per Server 2016 e Windows 10: C: ProgramData/Microsoft/Windows/Menu Start/programmi.
+
+
+. Tornare all'attività del Service Board, fare clic su Browse (Sfoglia) e scegliere il collegamento o una cartella contenente i collegamenti.
+. Qualsiasi opzione selezionata viene visualizzata sul desktop dell'utente finale quando viene assegnata l'applicazione.
+. Le cartelle sono eccezionali quando un'applicazione è in realtà costituita da più applicazioni. Ad esempio, "Microsoft Office" è più semplice da implementare come cartella con ogni applicazione come collegamento all'interno della cartella.
+. Fare clic su completa installazione.
+. Se necessario, aprire l'icona creata Add Service Board Task (Aggiungi attività Service Board) e confermare che l'icona è stata aggiunta.
+
+
+
+
+== Assegnare le applicazioni agli utenti
+
+Il diritto all'applicazione viene gestito da VDS e l'applicazione può essere assegnata agli utenti in tre modi
+
+.Assegnare le applicazioni agli utenti
+. Accedere alla pagina User Detail (Dettagli utente).
+. Accedere alla sezione applicazioni.
+. Selezionare la casella accanto a tutte le applicazioni richieste dall'utente.
+
+
+.Assegnare gli utenti a un'applicazione
+. Accedere alla sezione applicazioni della pagina Dettagli area di lavoro.
+. Fare clic sul nome dell'applicazione.
+. Selezionare la casella accanto agli utenti dell'applicazione.
+
+
+.Assegnare applicazioni e utenti ai gruppi di utenti
+. Accedere ai dettagli di utenti e gruppi.
+. Aggiungere un nuovo gruppo o modificare un gruppo esistente.
+. Assegnare utenti e applicazioni al gruppo.
+

@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.load_max_concurrent_users-ebd53.png[Management.command center.Operations.load numero massimo di utenti simultanei ebd53]

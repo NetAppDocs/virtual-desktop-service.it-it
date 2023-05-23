@@ -1,0 +1,41 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+In questa guida viene descritto il processo di utilizzo dell'interfaccia VDS (Virtual Desktop Service) per eseguire un aggiornamento in-place di un pool di host AVD Fall Release (v1) esistente, con conseguente creazione di un pool di host AVD Spring Release (v2). Senza VDS, questa trasformazione richiede ad architetti altamente qualificati di capire tutto questo da soli o di eseguire una reinstallazione completa dell'ambiente.
+
+
+
+=== Prerequisiti
+
+.Questa guida presuppone che il cliente disponga di quanto segue:
+* Almeno un pool di host AVD Fall Release (v1) implementato
+* Una distribuzione del servizio Virtual Desktop v5.4 (o superiore)
+* Tutte le macchine virtuali nel pool host devono essere in linea e in esecuzione
+
+
+Vale la pena notare che il servizio Virtual Desktop di NetApp può importare i pool di host esistenti, in modo che i clienti possano sfruttare VDS per eseguire aggiornamenti in-place anche se VDS non è stato utilizzato per implementare inizialmente il pool di host. Nota: È consigliabile eseguire questa azione durante una finestra di manutenzione stabilita in cui agli utenti finali viene richiesto di non effettuare l'accesso (o le macchine virtuali sono impostate in modo da non consentire le connessioni dell'utente), poiché i desktop dell'utente finale non saranno accessibili durante l'esecuzione di questa azione.
+
+
+
+=== Fasi del processo
+
+. Accedere al modulo Workspaces, quindi alla scheda AVD. Verrà quindi visualizzata la sezione host Pools, che ora include un'opzione per sfruttare l'automazione di VDS per aggiornare un pool di host.
+. Fare clic sul collegamento Import V1 host Pool (Importa pool host V1) per identificare il pool di host da aggiornare a V2 (AVD Spring Release) per procedere.
++
+image:upgrade1.png[""]
+
+. Quindi, selezionare il pool di host che si desidera aggiornare dal menu a discesa e selezionare lo spazio di lavoro a cui assegnarlo, quindi fare clic sul pulsante Import host Pool (Importa pool di host) per avviare il processo di aggiornamento automatico. +image:upgrade2.png[""]
+. Ripetere questa procedura per ogni pool di host che si desidera aggiornare. Al termine dell'automazione, il pool di host di Spring Release (v2) appena aggiornato verrà visualizzato nella scheda AVD di VDS.
+
+
+
+
+=== Demo video
+
+video::e4T_Ze6IlMo[youtube]
+Per ulteriori domande, contattare il rappresentante dell'assistenza.

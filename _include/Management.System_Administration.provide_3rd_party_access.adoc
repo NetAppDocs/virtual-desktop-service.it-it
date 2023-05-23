@@ -1,0 +1,29 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Fornire l'accesso a terze parti è una pratica comune quando si esegue la migrazione a qualsiasi soluzione cloud.
+
+Gli amministratori VDS spesso scelgono di non concedere a queste terze parti lo stesso livello di accesso di cui dispongono, per seguire una policy di accesso di sicurezza "meno richiesta".
+
+Per impostare l'accesso admin per terze parti, accedere a VDS e accedere al modulo Organizations (organizzazioni), fare clic sull'organizzazione e fare clic su Users & Groups (utenti e gruppi).
+
+Quindi, creare un nuovo account utente per la terza parte e scorrere verso il basso fino a visualizzare la sezione accesso amministratore e selezionare la casella per abilitare i diritti di amministratore.
+
+image:3rdparty1.png[""]
+
+VDS Admin viene quindi visualizzata la schermata di configurazione di Admin Access. Non è necessario modificare il nome utente, l'accesso o la password: Basta aggiungere un numero di telefono e/o un'e-mail se si desidera applicare l'autenticazione multifattore e selezionare il livello di accesso da concedere.
+
+Per gli amministratori di database come un VAR o un ISV, _Server_ è generalmente l'unico modulo di accesso richiesto.
+
+image:3rdparty2.png[""]
+
+Una volta salvato, l'utente finale ottiene l'accesso alle funzioni di gestione automatica accedendo a VDS con le proprie credenziali utente standard di Virtual Desktop.
+
+Quando l'utente appena creato effettua l'accesso, vedrà solo i moduli assegnati. Possono selezionare l'organizzazione, scorrere verso il basso fino alla sezione Server e connettersi al nome del server indicato (ad esempio, <XYZ> D1, dove XYZ è il codice della società e D1 indica che il server è un server dati. Nell'esempio riportato di seguito, viene indicato di connettersi al server TSD1 per eseguire le assegnazioni.
+
+image:3rdparty3.png[""]

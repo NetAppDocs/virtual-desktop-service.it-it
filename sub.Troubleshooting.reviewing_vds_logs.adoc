@@ -1,0 +1,124 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.reviewing_vds_logs.html 
+summary: Guida dettagliata per la risoluzione dei problemi relativi alle azioni VDS non riuscite 
+keywords:  
+---
+= Risoluzione dei problemi azioni VDS non riuscite
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Gran parte della registrazione che si verifica in VDS non è esposta nell'interfaccia utente Web a causa del volume di questa. I log più dettagliati si trovano all'estremità. Questi registri sono descritti di seguito.
+
+In VDS v5.4+, i log si trovano nel seguente percorso di cartella:
+
+ C:\programdata\cloudworkspace
+Nelle versioni precedenti di VDS, possono risiedere nei seguenti percorsi:
+
+....
+C:\Program Files\CloudWorkspace\
+C:\Program Files\CloudJumper\
+C:\Program Files\IndependenceIT\
+....
+
+NOTE: Il tipo di file varia anche in base alla versione di VDS, i file di log sono file .txt o .log che si trovano nelle sottocartelle del percorso sopra indicato.
+
+
+
+== Log di automazione
+
+
+
+=== Log di CW VM Automation Service
+
+ CwVmAutomationService.log
+Il servizio CW VM Automation è un servizio Windows responsabile della gestione di tutte le macchine virtuali nell'implementazione. Come servizio Windows, viene sempre eseguito in una distribuzione, ma dispone di due modalità operative principali: Modalità attività pianificata e modalità evento.
+
+La modalità di attività pianificata consiste in attività eseguite sulle macchine virtuali nell'ambito di una pianificazione, tra cui dimensionamento della raccolta e dati delle performance, riavvio delle macchine virtuali, verifica dello stato on (on o off) rispetto ai set di regole generati dalle funzionalità Workload Schedule e Live Scaling. I registri indicano questi tipi di azione nella quinta colonna con nomi come "azioni giornaliere", "azioni settimanali" e "manutenzione giornaliera". Se si stanno risolvendo domande come "perché il server X è stato riavviato ieri sera alle 2:00" o "perché il server è acceso quando penso che dovrebbe essere spento", le attività pianificate per quelle macchine virtuali specifiche sono di solito il posto migliore per guardare.
+
+La modalità evento viene attivata quando un utente o un altro servizio VDS, ad esempio CW Automation Service, richiede il completamento di un'attività. Esempi di questo tipo di attività includono una richiesta dell'utente di creare un nuovo server o di CW Automation che richiede il dimensionamento e lo stato dei server da controllare perché sono stati aggiunti più utenti allo spazio di lavoro. In genere, questi eventi presentano voci di registro con il nome dell'evento "Create Server" e il nome effettivo della macchina virtuale accanto ad esso (ad esempio, Create Server NNXTS2). Quando si risolvono questi tipi di eventi, si consiglia di scorrere fino alla fine del log e quindi di cercare il nome della macchina virtuale verso l'alto. È quindi possibile scorrere verso l'alto altre righe per vedere dove è iniziato il processo.
+
+
+
+=== Log di CW Automation Service
+
+ CWAutomationService.log
+Il log di CW Automation Service è il principale servizio Windows per la gestione dei componenti di una distribuzione Workspace. Esegue le attività necessarie per gestire utenti, applicazioni, dispositivi dati e policy. Inoltre, l'IT può creare attività per il servizio di automazione delle macchine virtuali CW quando è necessario apportare modifiche alle dimensioni, al conteggio o allo stato delle macchine virtuali nell'implementazione.
+
+Come il servizio di automazione VM CW, il servizio di automazione CW esegue sia task pianificati che task basati su eventi, con il tipo più frequente. Il log per il servizio di automazione CW inizia ogni riga con l'entità e l'azione su cui si sta lavorando (ad esempio, Start Server NNXTS1), quindi la ricerca del nome dell'entità dalla parte inferiore del file è il modo più rapido per trovare le righe di log specifiche che si applicano all'attività.
+
+
+
+=== Log Servizio agente CW
+
+ CwAgent.log
+CW Agent Service esegue tutte le attività locali di una macchina virtuale specifica, tra cui il controllo dei livelli di risorse e dell'utilizzo della macchina virtuale, il controllo della disponibilità di un certificato valido per il traffico TLS e la verifica del raggiungimento del periodo di riavvio obbligatorio. Oltre a controllare le informazioni dettagliate su queste attività, questo registro può essere utilizzato anche per verificare la presenza di riavvii macchina virtuale imprevisti o attività di rete o risorse impreviste.
+
+
+
+=== Log CWManagerX
+
+ CWManagerX.log
+CWManagerX è un servizio Web che fornisce il collegamento di comunicazione tra l'implementazione locale e il piano di controllo globale VDS. Le attività e le richieste di dati che hanno origine nell'applicazione Web VDS o nell'API VDS vengono comunicate all'implementazione locale tramite questo servizio Web. Da qui, le attività e le richieste vengono indirizzate al servizio Web appropriato (descritto sopra) o, in rari casi, direttamente ad Active Directory. Poiché si tratta principalmente di un collegamento di comunicazione, non vi è molta registrazione che si verifica durante la normale comunicazione, ma questo registro conterrà errori quando il collegamento di comunicazione viene interrotto o non funziona correttamente.
+
+
+
+=== Log di configurazione DC
+
+ DCConfig.log
+DC Config è un'applicazione Windows che fornisce parametri di configurazione specifici per l'implementazione che non sono esposti nell'interfaccia dell'applicazione Web VDS. Il registro di configurazione DC descrive in dettaglio le attività eseguite quando vengono apportate modifiche alla configurazione in Configurazione DC.
+
+
+
+=== Log CAVDCDepics3
+
+ CAVDCDeployment.log
+CW VDC Deployment è un'applicazione Windows che esegue le attività necessarie per creare una distribuzione in Azure. Il registro tiene traccia della configurazione dei servizi delle finestre Cloud Workspace, degli oggetti Criteri di gruppo predefiniti e delle regole di routing e risorse.
+
+
+
+=== Registri vari
+
+....
+CwVmAutomationService-Installing.log
+CwAgent-Installing.log
+....
+I restanti registri tengono traccia dell'installazione dei servizi e dell'applicazione Windows descritti in precedenza. Poiché i servizi VDS si aggiornano automaticamente quando una nuova versione è destinata a quella specifica implementazione, questi registri tengono traccia del processo di aggiornamento poiché il servizio o l'applicazione deve essere disattivato durante l'aggiornamento. Se i servizi vengono costantemente interrotti, questi registri consentono di identificare la causa di un aggiornamento non riuscito a un servizio specifico. In questi casi, ci si aspetta che venga visualizzato un errore in questi log che descrive il motivo per cui l'aggiornamento non è riuscito.
+
+
+
+=== Accesso ai registri e revisione delle informazioni
+
+.Quando sono richieste azioni come cloning di un server, aggiunta di un utente o ripristino di un backup, otterrai un feedback nell'interfaccia utente VDS.
++image:troubleshooting1.png[""]
+
+. VDS mantiene registri dettagliati ed espone alcuni di essi nella sezione Cronologia attività della pagina implementazioni di VDS. Fare clic su View (Visualizza) per visualizzare i dettagli delle attività elencate.
++
+image:troubleshooting2.png[""]
+
+. A volte la Cronologia attività non contiene dettagli sufficienti per identificare la vera causa principale. Per mantenere la sezione Cronologia attività utilizzabile e non sopraffatta da tutti gli eventi registrati, qui viene presentato solo un sottoinsieme di informazioni sulle attività. Per un'analisi più approfondita, i file di log di testo citati in precedenza possono fornire ulteriori dettagli.
++
+.. Per accedere a questo registro, accedere alla sezione Deployments (implementazioni) e fare clic sull'icona Gear (ingranaggio) accanto alla macchina virtuale CWMGR1, quindi fare clic su Connect (Connetti) (oppure, nel caso del registro CwAgent, connettersi alla macchina virtuale appropriata)
+
+
++
+image:troubleshooting3.png[""]
+
+. Quando ci si connette a un server della piattaforma (come CWMGR1) non si accede automaticamente al server (a differenza di quanto avviene per la connessione a un server nel tenant). Devi effettuare il login con un account .tech Level3.
++
+image:troubleshooting4.png[""]
+
+. Quindi accedere al percorso come mostrato sopra e aprire il file di log.
++
+image:troubleshooting5.png[""]
+
+. Questo file di testo contiene un registro di tutti gli eventi, elencati dal più vecchio al più recente:
++
+image:troubleshooting6.png[""]
+
+. Quando si apre un caso di supporto con NetApp VDS, la possibilità di fornire gli errori qui rilevati accelera SIGNIFICATIVAMENTE la velocità di risoluzione.
+

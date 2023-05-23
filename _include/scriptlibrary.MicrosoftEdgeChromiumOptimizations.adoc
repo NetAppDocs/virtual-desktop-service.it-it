@@ -1,0 +1,11 @@
+= Ottimizzazioni Microsoft Edge Chromium
+:allow-uri-read: 
+
+
+
+
+== Ottimizzazioni Microsoft Edge Chromium
+
+In Microsoft Edge Chromium 89, Microsoft ha aggiunto funzionalità per limitare il consumo di risorse delle schede del browser Microsoft Edge Chromium. Questo script globale applica le impostazioni per limitare il timeout delle schede in background e interrompere il consumo di risorse dopo 15 minuti. Le schede di sfondo che riproducono audio non sono interessate.
+
+Ulteriori dettagli sono disponibili link:https://blogs.windows.com/msedgedev/2021/03/04/edge-89-performance/["qui"].

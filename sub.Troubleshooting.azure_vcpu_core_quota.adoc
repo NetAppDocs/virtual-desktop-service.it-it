@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.azure_vcpu_core_quota.html 
+summary: Guida dettagliata per la risoluzione dei problemi relativi alla quota core di Azure vCPU 
+keywords:  
+---
+= Quota core vCPU Azure
+:allow-uri-read: 
+
+
+
+
+== Visualizzare la quota corrente
+
+. Accedere alla console di Azure e accedere al modulo Subscriptions (Sottoscrizioni) e fare clic su quote. Quindi, seleziona tutti i provider nell'elenco a discesa dei provider, seleziona Mostra tutti nell'elenco a discesa all'estrema destra e seleziona l'area di Azure in cui viene implementata la tua area di lavoro cloud.
++
+image:quota1.png[""]
+
+. Quindi, vedrai quanto stai consumando rispetto a. quantità di quota disponibile. Nell'immagine seguente, CloudJumper consuma 42 CPU delle 350 CPU disponibili per la famiglia di macchine virtuali BS. Aumento della quota
++
+image:quota2.png[""]
+
+. Se si desidera aumentare la quota, fare clic su Richiedi aumento e indicare l'aumento desiderato (99% del tempo che si intende utilizzare per calcolo/CPU).
++
+image:quota3.png[""]
+
+. Selezionare la regione in cui viene implementato il cloud Workspace e la famiglia di macchine virtuali per cui si desidera aumentare la quota.
++
+image:quota4.png[""]
+
+. Inserire le informazioni di contatto e fare clic su Create (Crea) per inviare la richiesta a Microsoft. Di solito SONO MOLTO veloci ad aumentare questo.
+

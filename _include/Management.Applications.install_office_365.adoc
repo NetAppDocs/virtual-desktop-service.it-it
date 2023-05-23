@@ -1,0 +1,113 @@
+= Panoramica dei passaggi manuali
+:allow-uri-read: 
+
+
+
+
+== Panoramica dei passaggi manuali
+
+Le regole di licenza impediscono agli amministratori di scaricare semplicemente Microsoft Office dall'account dell'utente connesso e installarlo su un server terminal condiviso e funzionare per più utenti come previsto. Gli amministratori devono invece seguire una procedura specifica per installare Office Pro Plus con il flag Shared computer Activation attivato.
+
+
+
+=== Riepilogo delle fasi del processo
+
+. Per iniziare, scarica Office Deployment Tool da https://www.microsoft.com/en-us/download/details.aspx?id=49117[]
+. Accedere allo strumento di configurazione di Office: https://config.office.com/deploymentsettings[].
+
+
+
+NOTE: Questa guida salta le opzioni oltre il minimo richiesto e Shared computer Activation. Se sono necessarie altre opzioni, puoi ottenere ulteriori informazioni attraverso la guida Microsoft qui: https://docs.microsoft.com/en-us/deployoffice/deploy-office-365-proplus-from-the-cloud[])
+
+. Selezionare l'architettura appropriata per l'implementazione: Si consiglia di utilizzare 64 bit, a meno che non vi sia un motivo specifico per utilizzare 32 bit (ad esempio i plugin di Office meno recenti che richiedono versioni a 32 bit di Office).
++
+image:office1.png[""]
+
+. Selezionare le applicazioni e le versioni di Office desiderate: Nota: Solo Office Pro Plus è supportato per l'attivazione condivisa del computer. Indipendentemente dalla versione di Office in uso (Office 365 Pro Plus, Office 365 E3. Office 365 E5, Microsoft 365 Business, Microsoft 365 E3, Microsoft 365 E5): Qui installerai ancora Office 365 Pro Plus.
++
+image:office2.png[""]
+
+. Selezionare la lingua desiderata e fare clic su Next (Avanti) per continuare.
++
+image:office3.png[""]
+
+. In "Opzioni di installazione", si consiglia di deselezionare "aggiungere icone alla barra delle applicazioni":
++
+image:office4.png[""]
+
+. Questo è il passaggio più importante di tutti: Impostare l'attivazione del prodotto su computer condiviso. Gli amministratori possono, facoltativamente, fare clic sull'opzione che accetta automaticamente l'EULA per il beneficio dell'esperienza dell'utente.
++
+image:office5.png[""]
+
+. Tornare all'inizio della pagina e fare clic su Export (Esporta).
++
+image:office6.png[""]
+
+. Selezionare Mantieni impostazioni correnti e fare clic su OK per continuare.
++
+image:office7.png[""]
+
+. Accettare i termini del contratto e conservare o modificare il nome del file di installazione e fare clic su Export (Esporta) per procedere. In questa guida si presuppone che venga utilizzato il nome predefinito di "Configurazione".
++
+image:office8.png[""]
+
+. Dopo aver fatto clic su "Export" (Esporta), viene avviato il download per "Configuration.xml" (Configurazione.xml).
+. Eseguire il file EXE/autoestraente dell'officedeploymenttool (officedeploymenttool_11901-20022.exe è la versione del file al momento della scrittura) scaricato in precedenza, estrarre in una nuova cartella (per questo esempio, si presuppone che venga utilizzato il file "C:"), E copiare il file Configuration.xml nella stessa directory (sovrascrivere quella già estratta).
+. Quindi, aprire il prompt dei comandi come amministratore e modificare la directory in "C:" (eseguire "cd").
+. Quindi, eseguire "setup.exe /download Configuration.xml" (modificare "Configuration.xml" in modo che corrisponda al file XML esportato al punto 10) e non preoccuparsi se sembra che non si stia verificando nulla, questo passaggio potrebbe richiedere del tempo.
+. Infine, eseguire "setup.exe /configure Configuration.xml" (di nuovo, regolando il nome del file XML in modo che corrisponda al file).
+
+
+
+
+== Implementazione automatica non supportata
+
+
+WARNING: Questo processo automatizzato si basa su un ps1 personalizzato e su un xml predefinito. Non è supportato nel senso che NetApp non garantisce il suo funzionamento o l'impatto sui computer di destinazione. Il ps1 è ospitato da NetApp e potrebbe cambiare/scomparire in qualsiasi momento. Si consiglia di utilizzare questo metodo come modello per la creazione e l'hosting di un processo automatizzato. Questo processo è stato validato in Windows Server 2016 Datacenter 10.0.14393 e Windows 10 Enterprise per Virtual Desktop 10.0.18362 in Azure il 30 agosto 2019.
+
+
+
+=== Riepilogo delle fasi del processo
+
+. Eseguire il comando per scaricare ed eseguire hosted .ps1
+. ps1 scarica il file .xml di Office Deployment Configuration in hosting (è qui la schermata delle impostazioni di Office Configuration Tool utilizzate per questo XML)
+. ps1 esegue ProPlus Install facendo riferimento a .xml
+. ps1 copia i tasti di scelta rapida di Microsoft Office in una singola cartella per la pubblicazione delle applicazioni
+
+
+
+
+=== Fasi di personalizzazione
+
+. Scarica e modifica il file ps1 in hosting da http://getAVD.com/proplus_minus_onedrive.ps1[]
++
+.. Creazione di un file xml personalizzato (descritto sopra) e caricamento sul proprio URL
+.. Modificare la variabile "€download" in modo che punti al proprio URL il proprio file xml di configurazione
+.. Modificare la variabile "officeapps" per includere tutti i collegamenti installati dal file xml di configurazione
++
+image:office9.png[""]
+
+
+
+. Carica il file ps1 modificato nel tuo URL di hosting
+. Modificare lo script degli eventi per scaricare ed eseguire il file ps1 personalizzato e autospitato (passaggio 3.1. sotto)
+
+
+
+
+=== Fasi degli eventi con script
+
+Segue lo stesso flusso di lavoro di un normale evento con script di installazione dell'applicazione. Queste istruzioni presuppongono che chocolatey sia già installato seguendo i passaggi del piano di gestione dell'applicazione. Office 365 ProPlus Automated Install con chocolatey
+
+Per installare O365 ProPlus, creare un nuovo script con le seguenti impostazioni:
+
+. Nessun file di script
+. Esegui con: powershell.exe
+. Argomenti (facoltativi): Bypass set-ExecutionPolicy -processo ambito -forza; iex ((New-Object System.Net.WebClient).DownloadString(‘http://getAVD.com/proplus_minus_onedrive.ps1’))
+. Modificare il http://getAVD.com/proplus_minus_onedrive.ps1[] E sostituisci con l'URL del tuo file ps1 in hosting.
++
+image:office10.png[""]
+
+
+
+Una volta salvato lo script, il passaggio successivo consiste nell'associare lo script a un Trigger. In questo caso lo script verrà attivato quando viene richiesta l'installazione dell'applicazione in VDS. Per ulteriori informazioni, consultare la Guida alla gestione delle applicazioni.

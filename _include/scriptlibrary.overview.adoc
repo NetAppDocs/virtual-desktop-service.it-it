@@ -1,0 +1,23 @@
+= Panoramica degli script globali
+:allow-uri-read: 
+
+
+
+
+== Panoramica degli script globali
+
+NetApp VDS include una libreria di eventi predefiniti basati su script che possono essere utilizzati direttamente in ambienti VDS e/o duplicati e utilizzati come blocchi costitutivi per eventi personalizzati basati su script.
+
+Per questa applicazione, questo articolo illustra le azioni di installazione/abilitazione e disinstallazione/disabilitazione.
+
+
+
+== Utilizzo di Global script
+
+Gli eventi integrati con script come questo sono precompilati, selezionando la casella di controllo "Global" filter (filtro globale) verranno visualizzati.
+
+Gli eventi Global Scripted come questo sono di sola lettura. Possono essere utilizzati così com'è o la funzione "Clone" può essere utilizzata per creare una copia cliente per la modifica e l'utilizzo.
+
+Il pulsante Clone si trova nel menu delle azioni della pagina Scripted Events.
+
+image::scriptlibrary.overview-2ccb2.png[scriptlibrary.overview 2ccb2]

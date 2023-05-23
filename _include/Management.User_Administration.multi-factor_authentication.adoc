@@ -1,0 +1,61 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+NetApp Virtual Desktop Service (VDS) include un servizio MFA basato su SMS/e-mail senza costi aggiuntivi. Questo servizio è indipendente da qualsiasi altro servizio (ad esempio Azure Conditional Access) e può essere utilizzato per proteggere gli accessi degli amministratori a VDS e gli accessi degli utenti ai desktop virtuali.
+
+
+
+== Nozioni di base su MFA
+
+* VDS MFA può essere assegnato a utenti admin, singoli utenti finali o applicato a tutti gli utenti finali
+* VDS MFA può inviare notifiche via SMS o e-mail
+* VDS MFA dispone di una funzione di configurazione e ripristino iniziali self-service
+
+
+
+
+== Scopo della guida
+
+Questa guida illustra la configurazione di MFA insieme a un'illustrazione dell'esperienza dell'utente finale
+
+.Questa guida tratta i seguenti argomenti:
+. <<Abilitazione di MFA per singoli utenti,Abilitazione di MFA per singoli utenti>>
+. <<Richiede MFA per tutti gli utenti,Richiede MFA per tutti gli utenti>>
+. <<Enabling MFA for Individual Administrators ,Abilitazione di MFA per singoli amministratori>>
+. <<Configurazione iniziale dell'utente finale,Configurazione iniziale dell'utente finale>>
+
+
+
+
+== Abilitazione di MFA per singoli utenti
+
+L'autenticazione MFA può essere attivata per singoli utenti nella pagina dei dettagli dell'utente facendo clic su _Multi-Factor Auth Enabled_
+
+Aree di lavoro > Nome area di lavoro > utenti e gruppi > Nome utente > autenticazione a più fattori attivata > Aggiorna
+
+L'MFA può anche essere assegnato a tutti gli utenti; se questa impostazione è attiva, la casella di controllo viene selezionata e _(via Client Settings)_ viene aggiunto all'etichetta della casella di controllo.
+
+
+
+== Richiede MFA per tutti gli utenti
+
+L'MFA può essere attivato e applicato a tutti gli utenti nella pagina dei dettagli dell'area di lavoro facendo clic su _MFA for All Users Enabled_
+
+Aree di lavoro > Nome area di lavoro > MFA per tutti gli utenti attivato > Aggiorna
+
+
+
+== Abilitazione di MFA per singoli amministratori
+
+MFA è disponibile anche per gli account amministratore che accedono al portale VDS. Questa opzione può essere attivata per amministratore nella pagina dei dettagli dell'amministratore. Amministratori > Nome amministratore > autenticazione multifattore richiesta > Aggiorna
+
+
+
+== Configurazione iniziale
+
+Al primo accesso dopo aver attivato MFA, all'utente o all'amministratore verrà richiesto di inserire un indirizzo e-mail o un numero di telefono cellulare. Riceveranno un codice di conferma per partecipare e confermare l'avvenuta registrazione.

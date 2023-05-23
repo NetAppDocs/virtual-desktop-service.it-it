@@ -1,0 +1,240 @@
+---
+sidebar: sidebar 
+permalink: Management.Deployments.provisioning_collections.html 
+summary: Riepilogo delle raccolte di provisioning 
+keywords:  
+---
+= Raccolte di provisioning
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Provisioning Collections è una funzione di VDS correlata alla creazione e alla gestione delle immagini delle macchine virtuali.
+
+.A livello generale, il flusso di lavoro di Provisioning Collection è il seguente:
+. Una macchina virtuale temporanea (ad esempio "CWT1") viene creata in base a un'immagine esistente (un'immagine stock o una raccolta di provisioning precedentemente salvata).
+. L'amministratore VDS personalizza la macchina virtuale temporanea in base ai requisiti utilizzando link:Management.Scripted_Events.scripted_events.html["Eventi con script"], link:#customizing-the-temporary-vm["Connettersi al server"] e/o strumenti di gestione di terze parti.
+. Una volta personalizzata, l'amministratore VDS fa clic su *Validate* e avvia un processo di convalida che automatizza la finalizzazione dell'immagine, esegue SysPrep, elimina la macchina virtuale temporanea e rende l'immagine disponibile per l'implementazione in VDS.
+
+
+
+
+=== Video Demo - Gestione delle immagini delle macchine virtuali per gli host di sessione VDI
+
+video::rRDPnDzVBTw[youtube]
+
+
+=== Tipi di raccolta provisioning
+
+Esistono due tipi distinti di raccolta con casi di utilizzo specifici, *_Shared_* e *_VDI_*.
+
+
+
+==== Condiviso
+
+Il tipo *_Shared_* è una raccolta di immagini di macchine virtuali progettate per implementare un intero ambiente con più immagini di macchine virtuali e ruoli di macchine virtuali distinti.
+
+
+
+==== VDI
+
+Il tipo *_VDI_* è una singola immagine della macchina virtuale progettata per essere utilizzata e riutilizzata per implementare più macchine virtuali identiche, generalmente utilizzate per l'hosting di sessioni utente. Per tutti i tipi di host di sessione AVD, è necessario selezionare il tipo _VDI_, anche per gli host che eseguono più sessioni per macchina virtuale.
+
+
+
+=== Creazione di una nuova raccolta di provisioning
+
+Le raccolte di provisioning si trovano nell'interfaccia VDS all'interno di ogni implementazione, nella sottoscheda *_Provisioning Collections_*.
+
+image:Management.Deployments.provisioning_collections1.png["larghezza=75%"]
+
+.Per creare una nuova raccolta
+. Fare clic sul pulsante *_+ Aggiungi raccolta_*.
+. Compilare i seguenti campi:
++
+.. *Nome*
+.. *Descrizione*(opzionale)
+.. *Type* - Shared o VDI
+.. *Sistema operativo*
+.. *Share Drive* - se questa macchina virtuale verrà utilizzata per ospitare i profili degli utenti o i dati di condivisione dell'azienda, scegliere la lettera dell'unità su cui verrà ospitata. In caso contrario, lasciare il campo "C"
+.. *Minimum cache* (cache minima) - SE si desidera creare macchine virtuali da conservare per l'implementazione istantanea, specificare il numero minimo di macchine virtuali memorizzate nella cache da mantenere. Se l'implementazione di nuove macchine virtuali può attendere fino a quando l'hypervisor richiede la creazione di una macchina virtuale, è possibile impostarla su "0" per risparmiare sui costi.
+.. *Aggiungi server*
++
+... *Role* (se è selezionato il tipo "Shared")
++
+.... *TS* - questa macchina virtuale agirà solo come host di sessione
+.... *Dati* - questa macchina virtuale non ospiterà sessioni utente
+.... *TSData* - questa VM sarà sia l'host di sessione che l'host di storage (massimo: Un TSData per spazio di lavoro)
+
+
+... *VM Template* (modello VM): Selezionare dall'elenco Available (disponibili), sia le immagini dell'hypervisor di stock che le raccolte di provisioning salvate in precedenza.
++
+.... NOTA: Le immagini di Windows 7 da Azure Marketplace non hanno PowerShell Remoting attivato. Per utilizzare un'immagine di Windows 7, è necessario fornire un'immagine personalizzata nella galleria di immagini condivisa con PowerShell Remoting attivato.
+.... NOTA: Utilizzando una Provisioning Collection esistente, è possibile aggiornare e ridistribuire le immagini esistenti come parte di un processo di aggiornamento dell'immagine pianificato.
+
+
+... *Storage Type* (tipo di storage): Consente di selezionare la velocità del disco del sistema operativo in base a costi e performance
+... *Unità dati* - facoltativamente, abilitare un secondo disco collegato a questa immagine, in genere per il livello di storage dei dati di cui sopra al punto 2.e.
++
+.... *Data Drive Type* (tipo di unità dati) - consente di selezionare la velocità del secondo disco (dati) in base a costi e prestazioni
+.... *Data Drive Size (GB)* (dimensione unità dati): Consente di definire le dimensioni del secondo disco (dati) in base a capacità, costi e performance
+
+
+
+
+.. *Add Applications* (Aggiungi applicazioni) - selezionare qualsiasi applicazione dalla libreria applicazioni che verrà (1) installata su questa immagine e (2) gestita dai diritti dell'applicazione VDS. (Valido solo per implementazioni RDS. Deve rimanere vuoto per le aree di lavoro AVD)
+
+
+
+
+
+
+=== Personalizzazione della macchina virtuale temporanea
+
+VDS include funzionalità che consentono di rimuovere l'accesso alle macchine virtuali dall'interfaccia Web di VDS. Per impostazione predefinita, viene creato un account amministratore locale di Windows con una password rotante e trasmesso alla macchina virtuale, consentendo all'amministratore locale di VDS di accedere senza la necessità di conoscere le credenziali di amministratore locale.
+
+
+NOTE: La funzione Connect to Server (connessione al server) dispone di un'impostazione alternativa in cui all'amministratore VDS verrà richiesto di immettere le credenziali per ogni connessione. Questa impostazione può essere attivata/disattivata modificando l'account admin VDS dalla sezione "Admin" di VDS. La funzionalità è denominata _Tech account_ e selezionando la casella sarà necessario immettere le credenziali quando si utilizza Connect to Server; deselezionando questa casella si attiva l'inserimento automatico delle credenziali amministrative di Windows locali a ogni connessione.
+
+L'amministratore VDS deve semplicemente connettersi alla macchina virtuale temporanea utilizzando Connect to Server (connessione al server) o un altro processo e apportare le modifiche necessarie per soddisfare i propri requisiti.
+
+
+
+=== Convalida della raccolta
+
+Una volta completata la personalizzazione, l'amministratore VDS può chiudere l'immagine e SysPrep facendo clic su *Validate* dall'icona Actions (azioni).
+
+image::Management.Deployments.provisioning_collections-ed97e.png[Management.Deployments.provisioning collezioni ed97e]
+
+
+
+=== Utilizzo della raccolta
+
+Una volta completata la convalida, lo stato della raccolta di provisioning diventerà *disponibile*. Dall'interno di Provisioning Collection, l'amministratore VDS può identificare il nome *VM Template* utilizzato per identificare questa raccolta di provisioning in VDS.
+
+image::Management.Deployments.provisioning_collections-f5a49.png[Management.Deployments.provisioning collezioni f5a49]
+
+
+
+==== Nuovo server
+
+Dalla pagina Workspace > Servers (Area di lavoro > Server), è possibile creare un nuovo server e la finestra di dialogo richiederà di specificare il modello di macchina virtuale. Il nome del modello riportato sopra si trova in questo elenco:
+
+image:Management.Deployments.provisioning_collections-fc8ad.png["larghezza=75%"]
+
+
+TIP: VDS offre un modo semplice per aggiornare gli host di sessione in un ambiente RDS utilizzando Provisioning Collections e la funzionalità *Add Server*. Questo processo può essere eseguito senza impatto sugli utenti finali e ripetuto più volte con i successivi aggiornamenti delle immagini, basandosi sulle iterazioni delle immagini precedenti. Per un flusso di lavoro dettagliato su questo processo, vedere link:#rds-session-host-update-process["*Processo di aggiornamento dell'host di sessione RDS*"] di seguito.
+
+
+
+==== Nuovo pool di host AVD
+
+Dalla pagina Workspace > AVD > host Pools (Area di lavoro > AVD > Pool host), è possibile creare un nuovo pool di host AVD facendo clic su *+ Add host Pool* (Aggiungi pool host) e la finestra di dialogo richiederà il modello di macchina virtuale. Il nome del modello riportato sopra si trova in questo elenco:
+
+image::Management.Deployments.provisioning_collections-ba2f5.png[Management.Deployments.provisioning collezioni ba2f5]
+
+
+
+==== Nuovi host di sessione AVD
+
+Dalla pagina Workspace > AVD > host Pool > Session hosts (Area di lavoro > AVD > Pool host di sessione > host di sessione), è possibile creare nuovi host di sessione AVD facendo clic su *+ Add Session host* (Aggiungi host di sessione) e la finestra di dialogo richiederà il modello di macchina virtuale. Il nome del modello riportato sopra si trova in questo elenco:
+
+image::Management.Deployments.provisioning_collections-ba5e9.png[Management.Deployments.provisioning collezioni ba5e9]
+
+
+TIP: VDS offre un modo semplice per aggiornare gli host di sessione in un pool di host AVD utilizzando Provisioning Collections e la funzionalità *Add Session host*. Questo processo può essere eseguito senza impatto sugli utenti finali e ripetuto più volte con i successivi aggiornamenti delle immagini, basandosi sulle iterazioni delle immagini precedenti. Per un flusso di lavoro dettagliato su questo processo, vedere link:#AVD-session-host-update-process["*Processo di aggiornamento dell'host di sessione AVD*"] di seguito.
+
+
+
+==== Nuova area di lavoro
+
+Dalla pagina Workspaces, è possibile creare una nuova area di lavoro facendo clic su *+ New Workspace* (Nuova area di lavoro) e la finestra di dialogo richiederà la raccolta di provisioning. Il nome della Shared Provisioning Collection si trova in questo elenco.
+
+image::Management.Deployments.provisioning_collections-5c941.png[Management.Deployments.provisioning collezioni 5c941]
+
+
+
+==== Nuova raccolta di provisioning
+
+Dalla pagina Deployment > Provisioning Collection (implementazione > raccolta provisioning), è possibile creare una nuova raccolta di provisioning facendo clic su *+ Add Collection (Aggiungi raccolta)*. Quando si aggiungono server a questa raccolta, la finestra di dialogo richiede di specificare il modello di macchina virtuale. Il nome del modello riportato sopra si trova in questo elenco:
+
+image::Management.Deployments.provisioning_collections-9eac4.png[Management.Deployments.provisioning collezioni 9eac4]
+
+
+
+== Addendum 1 - host di sessione RDS
+
+
+
+=== Processo di aggiornamento dell'host di sessione RDS
+
+VDS offre un modo semplice per aggiornare gli host di sessione in un ambiente RDS utilizzando Provisioning Collections e la funzionalità *Add Server*. Questo processo può essere eseguito senza impatto sugli utenti finali e ripetuto più volte con i successivi aggiornamenti delle immagini, basandosi sulle iterazioni delle immagini precedenti.
+
+.Il processo di aggiornamento dell'host di sessione RDS è il seguente:
+. Creare una nuova raccolta di provisioning VDI, personalizzare e convalidare la raccolta seguendo le istruzioni riportate sopra.
++
+.. In genere, questa raccolta di provisioning verrà costruita sul modello di macchina virtuale precedente, emulando un processo "Apri, Salva con nome".
+
+
+. Una volta convalidata la Provisioning Collection, accedere alla pagina _Workspace > Servers_, quindi fare clic su *+ Add Server* (Aggiungi server)
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-e8204.png[Management.Deployments.provisioning collections.rds session ospita e8204]
+
+. Selezionare *TS* come *ruolo server*
+. Selezionare l'ultimo *modello di macchina virtuale*. Effettuare le selezioni appropriate *Machine Size* (dimensioni macchina) e *Storage Type* (tipo di storage) in base alle proprie esigenze. Lasciare deselezionato *Data Drive*.
+. Ripetere questa operazione per il numero totale di host di sessione richiesti per l'ambiente.
+. Fare clic su *Add Server* (Aggiungi server) per creare gli host di sessione in base al modello di macchina virtuale selezionato e iniziare a essere online entro 10-15 minuti (a seconda dell'hypervisor).
++
+.. Tenere presente che gli host di sessione attualmente presenti nell'ambiente verranno infine dismessi dopo che questi nuovi host saranno stati messi in linea. Pianificare la creazione di un numero sufficiente di nuovi host per supportare l'intero carico di lavoro in questo ambiente.
+
+
+. Quando un nuovo host viene online, l'impostazione predefinita è rimanere in *non consentire nuove sessioni*. Per ciascun host di sessione, è possibile utilizzare il pulsante di attivazione *Allow New Sessions* (Consenti nuove sessioni) per gestire gli host che possono ricevere nuove sessioni utente. È possibile accedere a questa impostazione modificando le impostazioni di ogni singolo server host di sessione. Una volta creato un numero sufficiente di nuovi host e confermata la funzionalità, questa impostazione può essere gestita sia sul nuovo host che su quello precedente per instradare tutte le nuove sessioni ai nuovi host. I vecchi host, con l'opzione *Allow New Sessions* (Consenti nuove sessioni) impostata su *Disabled*, possono continuare a eseguire e ospitare le sessioni utente esistenti.
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-726d1.png[Management.Deployments.provisioning collections.rds session hosts 726d1]
+
+. Man mano che gli utenti si disconnetteranno dai vecchi host e senza nuove sessioni utente che si uniranno ai vecchi host, è possibile eliminare i vecchi host in cui *sessioni = 0* facendo clic sull'icona *azioni* e selezionando *elimina*.
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-45d32.png[Management.Deployments.provisioning collections.rds session hosts 45d32]
+
+
+
+
+
+== Addendum 2 - host di sessione AVD
+
+
+
+=== Processo di aggiornamento dell'host di sessione AVD
+
+VDS offre un modo semplice per aggiornare gli host di sessione in un pool di host AVD utilizzando Provisioning Collections e la funzionalità *Add Session host*. Questo processo può essere eseguito senza impatto sugli utenti finali e ripetuto più volte con i successivi aggiornamenti delle immagini, basandosi sulle iterazioni delle immagini precedenti.
+
+.Il processo di aggiornamento di AVD Session host è il seguente:
+. Creare una nuova raccolta di provisioning VDI, personalizzare e convalidare la raccolta seguendo le istruzioni riportate sopra.
++
+.. In genere, questa raccolta di provisioning verrà costruita sul modello di macchina virtuale precedente, emulando un processo "Apri, Salva con nome".
+
+
+. Una volta convalidata la Provisioning Collection, accedere alla pagina _Workspace > AVD > host Pools_ e fare clic sul nome del pool di host
+. Dalla pagina _host Pool > Session hosts_, fare clic su *+ Add Session host* (Aggiungi host sessione)
++
+image::Management.Deployments.provisioning_collections-9ed95.png[Management.Deployments.provisioning collezioni 9ed95]
+
+. Selezionare l'ultimo *modello di macchina virtuale*. Effettuare le selezioni appropriate *Machine Size* (dimensioni macchina) e *Storage Type* (tipo di storage) in base alle proprie esigenze.
+. Inserire il *numero di istanze* corrispondente al numero totale di host di sessione richiesti. In genere, questo numero corrisponde a quello attualmente presente nel pool di host, ma può essere qualsiasi numero.
++
+.. Tenere presente che gli host di sessione attualmente presenti nel pool di host verranno infine dismessi dopo che il nuovo host sarà stato messo in linea. Pianificare che il *numero di istanze* immesso sia sufficiente a supportare l'intero carico di lavoro in questo pool di host.
+
+
+. Fare clic su *Save* (Salva) per creare gli host di sessione in base al modello di macchina virtuale selezionato e iniziare a essere online entro 10-15 minuti (a seconda dell'hypervisor).
+. Quando un nuovo host viene online, l'impostazione predefinita è rimanere in *non consentire nuove sessioni*. Per ciascun host di sessione, è possibile utilizzare il pulsante di attivazione *Allow New Sessions* (Consenti nuove sessioni) per gestire gli host che possono ricevere nuove sessioni utente. Una volta creato un numero sufficiente di nuovi host e confermata la funzionalità, questa impostazione può essere gestita sia sul nuovo host che su quello precedente per instradare tutte le nuove sessioni ai nuovi host. I vecchi host, con l'opzione *Allow New Sessions* (Consenti nuove sessioni) impostata su *Disabled*, possono continuare a eseguire e ospitare le sessioni utente esistenti.
++
+image::Management.Deployments.provisioning_collections-be47e.png[Management.Deployments.provisioning collezioni be47e]
+
+. Man mano che gli utenti si disconnetteranno dai vecchi host e senza nuove sessioni utente che si uniranno ai vecchi host, è possibile eliminare i vecchi host in cui *sessioni = 0* facendo clic sull'icona *azioni* e selezionando *elimina*.
++
+image::Management.Deployments.provisioning_collections-cefb9.png[Management.Deployments.provisioning collezioni cefb9]
+
+

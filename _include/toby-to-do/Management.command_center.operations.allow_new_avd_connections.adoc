@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.allow_new_AVD_connections-74385.png[Management.command center.Operations.Allow new AVD connections 74385]

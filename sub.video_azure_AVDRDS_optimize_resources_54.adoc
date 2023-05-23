@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: video_azure_AVDRDS_optimize_resources_54.html 
+summary: Ottimizzare il consumo delle risorse Azure in VDS 5.4 
+keywords:  
+---
+= Ottimizza il consumo delle risorse Azure in VDS 5.4
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+video::IABgjxLCWkI[youtube]
+=

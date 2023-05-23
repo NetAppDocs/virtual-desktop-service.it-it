@@ -1,0 +1,38 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Gli amministratori di Virtual Desktop Service (VDS) sono responsabili del monitoraggio dell'infrastruttura della piattaforma (che sarà costituita da CWMGR1 al minimo) e di tutte le altre infrastrutture e macchine virtuali (VM). Nella maggior parte dei casi, gli amministratori organizzano il monitoraggio dell'infrastruttura (hypervisor/SAN) direttamente con il proprio data center/provider IaaS. Gli amministratori sono responsabili del monitoraggio di server terminal e dati, in genere implementando la soluzione RMM (Remote Management and Monitoring) preferita.
+
+L'antivirus è responsabilità dell'amministratore (sia per l'infrastruttura della piattaforma che per le macchine virtuali dei server di dati/terminali). Per semplificare questo processo, i server VDS per Azure utilizzano Windows Defender per impostazione predefinita.
+
+
+NOTE: Quando si installano soluzioni di terze parti, assicurarsi di non includere firewall o altri componenti che potrebbero interferire con l'automazione VDS.
+
+In particolare, quando per impostazione predefinita sono in vigore policy antivirus molto specifiche, ciò può causare effetti negativi quando questi agenti antivirus vengono installati su un server gestito da Virtual Desktop Service.
+
+La nostra guida generale è che, sebbene l'automazione della piattaforma VDS non sia generalmente influenzata dai prodotti antivirus o anti-malware, è consigliabile aggiungere eccezioni/esclusioni per i seguenti processi su tutti i server della piattaforma (CWMGR1, RDGGateway, HTML5Gateway, FTP, ecc.):
+
+....
+*\paexec.exe
+*\paexec_1_25.exe
+C:\Program Files\CloudWorkspace\CwAgent\CwAgent.exe
+C:\Program Files\CloudWorkspace\CW Automation Service\cw.automation.service.exe
+C:\Program Files\CloudWorkspace\CwVmAutomationService\CwVmAutomationService.exe
+C:\Program Files (x86)\Myrtille\bin\Myrtille.Printer.exe
+C:\Program Files (x86)\Myrtille\bin\Myrtille.Services.exe
+....
+Inoltre, si consiglia di elencare in modo sicuro i seguenti processi sui server client:
+
+....
+C:\Program Files\CloudWorkspace\CwAgent\paexec.exe
+C:\Program Files\CloudWorkspace\CwAgent\CwAgent.exe
+C:\Program Files\CloudWorkspace\CwRemoteApps\cwra.exe
+C:\Program Files\CloudWorkspace\Pen\Pen.exe
+C:\Program Files\CloudWorkspace\MfaAgent\MFAAgent.exe
+C:\Program Files\CloudWorkspace\MfaAgent\MFAAgentMonitor.exe
+....

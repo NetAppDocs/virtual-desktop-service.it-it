@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.run_resource_allocation-664d2.png[Management.command center.operations.run allocazione delle risorse 664d2]

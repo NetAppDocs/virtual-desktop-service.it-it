@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: Management.command_center.overview.html 
+summary: Panoramica di VDS Command Center 
+keywords:  
+---
+= Command Center Command: Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Command Center è un eseguibile che viene eseguito sul server della piattaforma CWMGR1 nella distribuzione. È possibile accedervi connettendosi alla macchina virtuale CWMGR1 ed eseguendola localmente sulla macchina virtuale.
+
+Questa applicazione è stata progettata per la risoluzione dei problemi, la diagnostica e le funzioni di gestione avanzate. Questa applicazione viene utilizzata principalmente dai team di sviluppo e supporto interni di NetApp, tuttavia alcune funzioni vengono occasionalmente utilizzate dagli amministratori dei clienti. Questa documentazione è fornita a supporto dell'utilizzo delle funzioni di selezione. L'utilizzo di questi comandi deve essere eseguito con cura e in collaborazione con il team di supporto NetApp.
+
+
+
+== Esecuzione di Command Center
+
+.Per eseguire l'applicazione Command Center:
+. Connettersi al server dalla pagina _VDS > Deployment > Platform Servers_ fare clic sull'icona _Actions_ e selezionare "Connect"
++
+image::Management.command_center_overview-68087.png[Management.command Panoramica del centro 68087]
+
+. Quando vengono richieste le credenziali, immettere le credenziali di amministratore del dominio
++
+.. L'utente deve essere membro del gruppo di protezione "infrastruttura CW". Per motivi di coerenza, consigliamo di aggiungere questa iscrizione facendo dell'utente un membro del gruppo "tecnici di livello 3" in _ad > Cloud Workspace > Cloud Workspace Tech Users > Groups_
++
+image::Management.command_center_overview-1c42d.png[Management.command panoramica del centro 1c42d]
+
+
+
+. Individuare l'icona sul desktop di _Command Center_ ed eseguirla
++
+image::Management.command_center_overview-3c860.png[Panoramica del centro Management.command 3c860]
+
++
+.. Per attivare la scheda Advanced (Avanzate), avviare l'applicazione con l'opzione "-showadvancedtab".
+
+
+
+
+
+
+=== Scheda Operations (operazioni)
+
+image::Management.command_center_overview-b614e.png[Management.command panoramica del centro b614e]
+
+Dal menu *comando* è possibile selezionare una delle azioni elencate di seguito.
+
+Una volta selezionato un comando, i dati possono essere popolati con i dati di implementazione dal pulsante *Load Data* (carica dati). Il pulsante Load Data (carica dati) viene utilizzato anche per eseguire query sull'hypervisor per i dati una volta effettuate le selezioni precedenti (ad esempio, caricare un elenco di date di backup disponibili dopo aver selezionato una macchina virtuale specifica da un menu a discesa)
+
+image::Management.command_center_overview-85417.png[Management.command Panoramica del centro 85417]
+
+Dopo aver selezionato un comando, fare clic su *Esegui comando* per eseguire il processo selezionato.
+
+Per rivedere i registri, fare clic sul pulsante *View All Logs* (Visualizza tutti i registri). Viene aperto il file di testo raw, con le voci più recenti in basso.
+
+
+
+==== Elenco dei comandi
+
+* link:Management.command_center.operations.copy_template_to_gallery.html["Copia modello nella Gallery"]
+

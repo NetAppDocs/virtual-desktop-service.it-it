@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.add_cloud_workspace_to_company-5c011.png[Management.command center.Operations.Aggiungi spazio di lavoro cloud all'azienda 5c011]

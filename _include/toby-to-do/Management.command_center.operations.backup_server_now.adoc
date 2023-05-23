@@ -1,0 +1,9 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.backup_server_now-44736.png[Management.command server center.Operations.backup ora 44736]

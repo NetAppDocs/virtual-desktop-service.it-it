@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.enable_user_wallpaper.html 
+summary: Come abilitare gli sfondi degli utenti 
+keywords:  
+---
+= Attiva Desktop Wallpaper per le sessioni utente
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+Per impostazione predefinita, le sessioni remote hanno la visualizzazione sfondo disattivata per migliorare le prestazioni. Il risultato è uno sfondo nero che gli utenti spesso desiderano personalizzare. Questa impostazione può essere modificata con una semplice modifica dell'oggetto Criteri di gruppo
+
+
+
+=== Istruzioni:
+
+. Accedere a un server di piattaforma (ad esempio CWMGR1) utilizzando l'account .tech di livello 3
+. Aprire la console di gestione dei criteri di gruppo
+. Individuare l'oggetto Criteri di gruppo rdsh (etichettato come "codice società" rdsh (ad esempio "xyz1 rdsh")). Fare clic con il pulsante destro del mouse sull'oggetto Criteri di gruppo "xyz1 rdsh", quindi scegliere EDIT (Modifica)
++
+.. In Azure ad Domain Services, l'oggetto Criteri di gruppo è denominato "AADDC "computer > Cloud Workspace Computers" (computer > Cloud Workspace)
+
+
+. Modificare il criterio: Configurazione del computer > Criteri > modelli amministrativi > componenti di Windows > servizi Desktop remoto > host sessione Desktop remoto > ambiente sessione remota > Rimuovi sfondo desktop remoto impostare questa opzione su Disabilitato
+
+
+image:wallpaper1.png[""]
+image:wallpaper2.png[""]
+image:wallpaper3.png[""]

@@ -1,0 +1,25 @@
+= Panoramica di AVD Screen Capture Protection
+:allow-uri-read: 
+
+
+
+
+== Panoramica di AVD Screen Capture Protection
+
+Questo pacchetto di script attiva/disattiva la funzione AVD nativa _screen capture Protection_ eseguendo il comando (pertinente) con PowerShell:
+
+Abilitare:
+
+`reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" /v fEnableScreenCaptureProtection /t REG_DWORD /d 1`
+
+Disattiva:
+
+`reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" /v fEnableScreenCaptureProtection /f`
+
+La documentazione Microsoft su questa funzione AVD è disponibile qui:https://docs.microsoft.com/en-us/azure/virtual-desktop/security-guide#session-host-security-best-practices[]
+
+
+
+=== Schermata della finestra di dialogo Add Activity (Aggiungi attività)
+
+image::scriptlibrary.AVDScreenCaptureProtection-216a6.png[Scriptlibrary.AVDScreenCaptureProtection 216a6]

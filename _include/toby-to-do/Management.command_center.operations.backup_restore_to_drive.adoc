@@ -1,0 +1,15 @@
+= Panoramica
+:allow-uri-read: 
+
+
+
+
+== Panoramica
+
+image::Management.command_center.operations.backup_restore_to_drive-ea361.png[Management.command center.Operations.backup Restore sul disco ea361]
+
+image::Management.command_center.operations.backup_restore_to_drive-7ab14.png[Management.command center.Operations.backup Restore sull'unità 7ab14]
+
+image::Management.command_center.operations.backup_restore_to_drive-0e5fa.png[Management.command center.Operations.backup Restore al disco 0e5fa]
+
+image::Management.command_center.operations.backup_restore_to_drive-231c2.png[Management.command center.Operations.backup Restore sull'unità 231c2]
