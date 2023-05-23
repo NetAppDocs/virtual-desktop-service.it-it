@@ -1,0 +1,2332 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head class="at-element-marker">
+  <title>Raccolte di provisioning</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Raccolte di provisioning" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/it-it/virtual-desktop-service/Management.Deployments.provisioning_collections.html" />
+	<meta property="og:description" content="Riepilogo delle raccolte di provisioning" />
+  <meta property="og:image" content="https://docs.netapp.com/it-it/virtual-desktop-service/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="Riepilogo delle raccolte di provisioning">
+  <meta name="keywords" content=" "><!-- Icons -->
+  <link rel="icon" href="/it-it/virtual-desktop-service/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/it-it/virtual-desktop-service/css/netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/it-it/virtual-desktop-service/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/it-it/virtual-desktop-service/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel="canonical" href="https://docs.netapp.com/it-it/virtual-desktop-service/Management.Deployments.provisioning_collections.html" />
+  <link rel="alternate" hreflang="x-default" href="https://docs.netapp.com/us-en/virtual-desktop-service/Management.Deployments.provisioning_collections.html" />
+  <link rel="alternate" hreflang="it" href="https://docs.netapp.com/it-it/virtual-desktop-service/Management.Deployments.provisioning_collections.html" />
+  <link rel="alternate" hreflang="en" href="https://docs.netapp.com/us-en/virtual-desktop-service/Management.Deployments.provisioning_collections.html" />
+  <link rel="alternate" hreflang="ja" href="https://docs.netapp.com/ja-jp/virtual-desktop-service/Management.Deployments.provisioning_collections.html" />
+  <link rel="alternate" hreflang="ko" href="https://docs.netapp.com/ko-kr/virtual-desktop-service/Management.Deployments.provisioning_collections.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://docs.netapp.com/zh-cn/virtual-desktop-service/Management.Deployments.provisioning_collections.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://docs.netapp.com/zh-tw/virtual-desktop-service/Management.Deployments.provisioning_collections.html" />
+  <link rel="alternate" hreflang="de" href="https://docs.netapp.com/de-de/virtual-desktop-service/Management.Deployments.provisioning_collections.html" />
+  <link rel="alternate" hreflang="es" href="https://docs.netapp.com/es-es/virtual-desktop-service/Management.Deployments.provisioning_collections.html" />
+  <link rel="alternate" hreflang="fr" href="https://docs.netapp.com/fr-fr/virtual-desktop-service/Management.Deployments.provisioning_collections.html" />
+  <link rel='stylesheet' href='/it-it/virtual-desktop-service/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    function addAdobeLaunch(adobeId) {
+      var head = document.getElementsByTagName('head')[0];
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/"+adobeId+".min.js";
+      head.appendChild(adobe);
+    }
+
+    function addGoogleAnalytics(gtagId) {
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id="+gtagId;
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gtagId);
+    }
+
+    function addConsent(consentId) {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/"+consentId+"/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = consentId;
+      head.appendChild(onetrustScript);
+    }addConsent("72570c5c-fe30-465f-b0e0-b77f7fb4ae34");
+    addAdobeLaunch("launch-e9ff3acac59f");
+    addGoogleAnalytics("UA-81697994-3");function OptanonWrapper() { }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/it-it/virtual-desktop-service/js/na-search.js'></script><script src='/it-it/virtual-desktop-service/js/na-pagenav.js'></script><script src='/it-it/virtual-desktop-service/js/na-utility.js'></script>
+ <!--  
+  <link rel='stylesheet' href='/it-it/virtual-desktop-service/css/prism.css' type='text/css'>
+  <link rel='stylesheet' href='/it-it/virtual-desktop-service/css/prism-netapp.css' type='text/css'>
+ -->
+
+  <!-- <script src='/it-it/virtual-desktop-service/js/na-utility.js'></script> -->
+  <script src='/it-it/virtual-desktop-service/js/clouddocs.js'></script>
+  <script src='/it-it/virtual-desktop-service/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- <script src='/it-it/virtual-desktop-service/js/toc.js'></script> -->
+  <!-- <script src='/it-it/virtual-desktop-service/js/customscripts.js'></script> --><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+          $(".sidebar-nav-container").on("scroll", function() {
+            $.cookie("sidebarScroll", $(".sidebar-nav-container").scrollTop(), {
+              path    : "/it-it/virtual-desktop-service"  
+            });
+          });
+          $(function() {
+            if ($.cookie("sidebarScroll")) {
+              $(".sidebar-nav-container").scrollTop($.cookie("sidebarScroll"));
+            }
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/it-it/virtual-desktop-service/js/custom-dropdown.js'></script>
+  <script src='/it-it/virtual-desktop-service/js/FileSaver.min.js'></script>
+  <script src='/it-it/virtual-desktop-service/js/jszip-utils.min.js'></script>
+  <script src='/it-it/virtual-desktop-service/js/jszip.min.js'></script>
+  <!-- <script src='/it-it/virtual-desktop-service/js/pdf-ux.js'></script> -->
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/virtual-desktop-service.it-it/issues/new?template=new-from-page.yml&page-url=https://docs.netapp.com/it-it/virtual-desktop-service/Management.Deployments.provisioning_collections.html&page-title=Raccolte di provisioning" class="page-nav-contribute-link" role="button"><img src="/it-it/virtual-desktop-service/images/discuss-sm.svg" alt="" class="github-icon" />Richiedi modifiche alla documentazione</a><a target="_blank" href="https://github.com/NetAppDocs/virtual-desktop-service/blob/main/sub.Management.Deployments.provisioning_collections.adoc" class="page-nav-contribute-link" role="button"><img src="/it-it/virtual-desktop-service/images/edit-sm.svg" alt="" class="github-icon" />Modifica questa pagina</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/it-it/virtual-desktop-service/images/article-sm.svg" alt="" class="github-icon" />Scopri come collaborare</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">IN QUESTA PAGINA</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">Prodotto e soluzioni</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">Supporto e training</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">Community</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">Blog</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">Testimonianze dei clienti</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/company/contact-us/" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Contatto</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/it-it/virtual-desktop-service/images/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/it-it/virtual-desktop-service/images/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/it-it/virtual-desktop-service/images/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/it-it/virtual-desktop-service/search.html"
+          data-type="widget" 
+          data-placeholder="Esplora la documentazione"
+          data-no-results-found="Nessun risultato per {query}"
+          data-did-you-mean="Cerca {suggestion}."
+          data-no-results-found-did-you-mean="Nessun risultato per {query}. Intendi {suggestion}?"
+          data-results-found="{hitCount} risultati trovati"
+          data-error-message="Si è verificato un problema durante il recupero dei risultati. Riprova."
+          data-error-reset="Reimposta ricerca"
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/it-it/virtual-desktop-service/images/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+      <div class="custom-dropdown-select custom-dropdown-select-lang">
+      <span class="lang-name">Italiano</span>
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/it-it/virtual-desktop-service/images/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+
+      <ul class="custom-dropdown-menu"><li>
+          <a href="https://docs.netapp.com/it-it/virtual-desktop-service/Management.Deployments.provisioning_collections.html" target="_self"><span translate="no" class="notranslate">Italiano</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/us-en/virtual-desktop-service/Management.Deployments.provisioning_collections.html" target="_self"><span translate="no" class="notranslate">English</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ja-jp/virtual-desktop-service/Management.Deployments.provisioning_collections.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ko-kr/virtual-desktop-service/Management.Deployments.provisioning_collections.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-cn/virtual-desktop-service/Management.Deployments.provisioning_collections.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-tw/virtual-desktop-service/Management.Deployments.provisioning_collections.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/de-de/virtual-desktop-service/Management.Deployments.provisioning_collections.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/es-es/virtual-desktop-service/Management.Deployments.provisioning_collections.html" target="_self"><span translate="no" class="notranslate">Español</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/fr-fr/virtual-desktop-service/Management.Deployments.provisioning_collections.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
+        </li></ul>
+    </div>
+    <!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <button id="btn-sidebar-collapse" onclick="hideSidebar()"><img src="/it-it/virtual-desktop-service/images/collapse.png" alt="Comprimi pannello di navigazione"></button>
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>PDF disponibili<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/it-it/virtual-desktop-service/pdfs/fullsite-sidebar/Documentazione_Virtual_Desktop_Service.pdf" >
+          <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>PDF del sito di questa documentazione</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Implementazione_con_VDS.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Implementazione con VDS
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Azure.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Azure
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Desktop_virtuale_Azure.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Desktop virtuale Azure
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Google.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Google
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Architetturale.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Architetturale
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Modifica_livello_dati.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Modifica livello dati
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Gestione.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Gestione
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Implementazioni.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Implementazioni
+          </a>
+          
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Applicazioni.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Applicazioni
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Eventi_con_script.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Eventi con script
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Command_Center.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Command Center
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Operazioni.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Operazioni
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/User_Administration__Amministrazione_utente_.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            User Administration (Amministrazione utente)
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Amministrazione_del_sistema.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Amministrazione del sistema
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Risoluzione_dei_problemi.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Risoluzione dei problemi
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Riferimento.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Riferimento
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Note_di_rilascio.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Note di rilascio
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Versioni_precedenti.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Versioni precedenti
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Documentazione_della_libreria_di_script.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Documentazione della libreria di script
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Avanzato.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Avanzato
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/it-it/virtual-desktop-service/pdfs/sidebar/Video_NetApp_VDS_v5_4.pdf" 
+            
+          >
+            <img src="/it-it/virtual-desktop-service/images/pdf.png" alt="" width="16" height="16"/>
+            Video NetApp VDS v5.4
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/it-it/virtual-desktop-service/images/pdf-zip.png" alt="" width="16" height="16"/>
+      <pre>Raccolta di documenti PDF separati<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Documentazione di Virtual Desktop Service"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/index.html">
+        Documentazione di Virtual Desktop Service
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Implementazione con VDS"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Implementazione con VDS</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Azure</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Desktop virtuale Azure"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Desktop virtuale Azure</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Implementazione di AVD in Azure"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Deploying.Azure.AVD.Deploying_AVD_in_Azure.html">
+        Implementazione di AVD in Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supplementare - AVD con annuncio esistente"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Deploying.Azure.AVD.Supplemental_AVD_with_existing_AD.html">
+        Supplementare - AVD con annuncio esistente
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Componenti e autorizzazioni VDS v5.4 (AVD)"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html">
+        Componenti e autorizzazioni VDS v5.4 (AVD)
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Prerequisiti di VDS v5.4 (AVD)"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Deploying.Azure.AVD.vds_v5.4_prerequisites.html">
+        Prerequisiti di VDS v5.4 (AVD)
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Prerequisiti di VDS v6.0 (AVD)"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Deploying.Azure.AVD.vds_v6.0_prerequisites.html">
+        Prerequisiti di VDS v6.0 (AVD)
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Google"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Google</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Implementazione di RDS in Google"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Deploying.GCP.RDS.deploying_rds_in_gcp.html">
+        Implementazione di RDS in Google
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Prerequisiti di VDS v5.4 (RDS/GCP)"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Deploying.GCP.vds_v5.4_prerequisites.html">
+        Prerequisiti di VDS v5.4 (RDS/GCP)
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Architetturale"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Architetturale</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Modifica livello dati"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="/it-it/virtual-desktop-service/Architectural.change_data_layer.html">
+        <div class="na-navbar-padding"> Modifica livello dati</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="File Azure"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Architectural.change_data_layer.Azure_Files.html">
+        File Azure
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Migrare i dati in VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Architectual.migrate_data_into_vds.html">
+        Migrare i dati in VDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Aggiornare AVD v1 a v2"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Architectual.upgrade_AVD_v1_to_v2.html">
+        Aggiornare AVD v1 a v2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Rinnovare il certificato SSL"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Architectural.Wildcard_SSL_certificate_renewal_process.html">
+        Rinnovare il certificato SSL
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Guida allo eardown VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Architectural.AVD_teardown_guide.html">
+        Guida allo eardown VDS
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestione"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Gestione</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Implementazioni"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Implementazioni</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Raccolte di provisioning"
+      data-li-level="3#" 
+      class="  active "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.Deployments.provisioning_collections.html">
+        Raccolte di provisioning
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Panoramica della gerarchia logica VDS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.Deployments.logical_hierarchy_overview.html">
+        Panoramica della gerarchia logica VDS
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Applicazioni"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Applicazioni</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Licenza app per RDS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.Applications.application_entitlement_workflow.html">
+        Licenza app per RDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Licenza app per AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.Applications.AVD_application_entitlement_workflow.html">
+        Licenza app per AVD
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Eventi con script"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Eventi con script</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Panoramica degli eventi con script"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.Scripted_Events.scripted_events.html">
+        Panoramica degli eventi con script
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Command Center"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Command Center</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Panoramica di Management Command Center"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.command_center.overview.html">
+        Panoramica di Management Command Center
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Operazioni"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Operazioni</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Copia modello nella Gallery"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.command_center.operations.copy_template_to_gallery.html">
+        Copia modello nella Gallery
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurare l'ottimizzazione dei costi"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.Cost_Optimization.workload_schedule.html">
+        Configurare l'ottimizzazione dei costi
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="User Administration (Amministrazione utente)"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> User Administration (Amministrazione utente)</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestire gli account utente"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.User_Administration.manage_user_accounts.html">
+        Gestire gli account utente
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestire cartelle e autorizzazioni"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.User_Administration.manage_folders_and_permissions.html">
+        Gestire cartelle e autorizzazioni
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestire l'accesso alle applicazioni"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.Applications.application_entitlement_workflow.html">
+        Gestire l'accesso alle applicazioni
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Reimpostare le password dell'utente"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.User_Administration.reset_user_password.html">
+        Reimpostare le password dell'utente
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurare MFA"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.User_Administration.multi-factor_authentication.html">
+        Configurare MFA
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Amministrazione del sistema"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Amministrazione del sistema</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Crea account amministratore di dominio"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.System_Administration.create_domain_admin_account.html">
+        Crea account amministratore di dominio
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Fornire accesso di terze parti"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.System_Administration.provide_3rd_party_access.html">
+        Fornire accesso di terze parti
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurare il backup"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.System_Administration.configure_backup.html">
+        Configurare il backup
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Clonare macchine virtuali"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.System_Administration.clone_virtual_machines.html">
+        Clonare macchine virtuali
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Aggiunta automatica dello spazio su disco"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.System_Administration.auto_add_disk_space.html">
+        Aggiunta automatica dello spazio su disco
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Archivio chiavi Azure"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.System_Administration.azure_key_vault.html">
+        Archivio chiavi Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurare Antivirus"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.System_Administration.configure_antivirus.html">
+        Configurare Antivirus
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Aggiunta e spostamento di unità mappate"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Management.System_Administration.adding_moving_mapped_drives.html">
+        Aggiunta e spostamento di unità mappate
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Risoluzione dei problemi"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Risoluzione dei problemi</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Revisione dei registri VDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Troubleshooting.reviewing_vds_logs.html">
+        Revisione dei registri VDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Qualità della connessione a Internet"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Troubleshooting.internet_connection_quality.html">
+        Qualità della connessione a Internet
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Attiva sfondo utente"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Troubleshooting.enable_user_wallpaper.html">
+        Attiva sfondo utente
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Problemi di stampa"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Troubleshooting.printing_issues.html">
+        Problemi di stampa
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Quota core vCPU Azure"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Troubleshooting.azure_vcpu_core_quota.html">
+        Quota core vCPU Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sbloccare l'account utente"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Troubleshooting.unlocking_user_accounts.html">
+        Sbloccare l'account utente
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Performance generali delle macchine virtuali"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Troubleshooting.general_vm_performance.html">
+        Performance generali delle macchine virtuali
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Inoltro DNS per Azure ADDS e SSO"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Troubleshooting.dns_forwarding_for_azure_aadds_sso.html">
+        Inoltro DNS per Azure ADDS e SSO
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Problemi dell'applicazione"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Troubleshooting.application_issues.html">
+        Problemi dell'applicazione
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Riferimento"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Riferimento</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Note di rilascio"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Note di rilascio</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Note di rilascio di VDS v6.0"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Reference.Release_Notes.vds_v6.0_release_notes.html">
+        Note di rilascio di VDS v6.0
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Note sulla versione di VDS v5.4"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Reference.Release_Notes.vds_v5.4_release_notes.html">
+        Note sulla versione di VDS v5.4
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Note sulla versione del client VDS Windows"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Reference.Release_Notes.vds_windows_client_release_notes.html">
+        Note sulla versione del client VDS Windows
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Versioni precedenti"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Versioni precedenti</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Note sulla versione di VDS v5.3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Reference.Release_Notes.vds_v5.3_release_notes.html">
+        Note sulla versione di VDS v5.3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Note di rilascio di CWMS v5.2"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Reference.Release_Notes.cwms_v5.2_release_notes.html">
+        Note di rilascio di CWMS v5.2
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Note di rilascio di CWS v5.1"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Reference.Release_Notes.cws_v5.1_release_notes.html">
+        Note di rilascio di CWS v5.1
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Note sulla versione di CWS v5.0"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Reference.Release_Notes.cws_v5.0_release_notes.html">
+        Note sulla versione di CWS v5.0
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Accesso dell'utente finale"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Reference.end_user_access.html">
+        Accesso dell'utente finale
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="I VDS cambiano gli ambienti"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Reference.vds_change_environments.html">
+        I VDS cambiano gli ambienti
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Documentazione della libreria di script"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Documentazione della libreria di script</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Adobe Reader DC"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/scriptlibrary.AdobeReader.html">
+        Adobe Reader DC
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Driver AMD Radeon Instinct"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/scriptlibrary.AMDRadeonInstinctDrivers.html">
+        Driver AMD Radeon Instinct
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Applicazione Ezeep Print"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/scriptlibrary.EzeepPrintApp.html">
+        Applicazione Ezeep Print
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Google Chrome"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/scriptlibrary.GoogleChrome.html">
+        Google Chrome
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft Edge Chromium"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/scriptlibrary.MicrosoftEdgeChromium.html">
+        Microsoft Edge Chromium
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft Office 365"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/scriptlibrary.MicrosoftOffice365.html">
+        Microsoft Office 365
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft One Drive"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/scriptlibrary.MicrosoftOneDrive.html">
+        Microsoft One Drive
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Team Microsoft"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/scriptlibrary.MicrosoftTeams.html">
+        Team Microsoft
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Team Microsoft per AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/scriptlibrary.MicrosoftTeamsAVD.html">
+        Team Microsoft per AVD
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Driver NVIDIA CUDA"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/scriptlibrary.NvidiaCudaDrivers.html">
+        Driver NVIDIA CUDA
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Driver NVIDIA Grid"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/scriptlibrary.NvidiaGridDrivers.html">
+        Driver NVIDIA Grid
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Protezione AVD Screen Capture"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/scriptlibrary.AVDScreenCaptureProtection.html">
+        Protezione AVD Screen Capture
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Zoom per AVD"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/scriptlibrary.ZoomVDI-AVD.html">
+        Zoom per AVD
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Avanzato"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Avanzato</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Riduci profilo FSLogix"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Advanced.fslogix_profile_shrink.html">
+        Riduci profilo FSLogix
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Video NetApp VDS v5.4"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Video NetApp VDS v5.4</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Contenuti di NetApp TV"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/video_content_netapptv.html">
+        Contenuti di NetApp TV
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Implementare AVD o RDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/video_azure_AVDRDS_deploy_54.html">
+        Implementare AVD o RDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Aggiungere il pool di host AVD in Azure"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/video_azure_AVD_hostpool_54.html">
+        Aggiungere il pool di host AVD in Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestire gli utenti AVD e i gruppi di applicazioni"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/video_azure_AVD_users_appgroups_54.html">
+        Gestire gli utenti AVD e i gruppi di applicazioni
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestione delle risorse e riduzione dei costi"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/video_azure_AVDRDS_optimize_resources_54.html">
+        Gestione delle risorse e riduzione dei costi
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Automazione della gestione delle applicazioni per AVD e RDS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/video_VDS_day_in_the_life.html">
+        Automazione della gestione delle applicazioni per AVD e RDS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Aggiornare il pool di host v1 AVD a v2"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/it-it/virtual-desktop-service/Architectual.upgrade_AVD_v1_to_v2.html">
+        Aggiornare il pool di host v1 AVD a v2
+      </a></li></ul></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+<script>$("#mysidebar li.active").parents('ul').css("display","block");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <div class="ie-utility">
+  <button id="btn-sidebar-expand" onclick="showSidebar()"><img src="/it-it/virtual-desktop-service/images/expand.png" alt="Espandi pannello di navigazione"></button>
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/it-it/virtual-desktop-service/">Virtual&nbsp;Desktop&nbsp;Service</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/it-it/virtual-desktop-service/images/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> La versione in lingua italiana fornita proviene da una traduzione automatica. Per eventuali incoerenze, fare riferimento alla versione in lingua inglese. </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">Raccolte di provisioning</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2023-05-23 13:20:21 +0000">05/23/2023</time>
+    
+  
+
+<span>Collaboratori
+</span>
+
+
+</p>
+
+<div class="sect1">
+<h2 id="panoramica">Panoramica</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Provisioning Collections è una funzione di VDS correlata alla creazione e alla gestione delle immagini delle macchine virtuali.</p>
+</div>
+<div class="olist arabic">
+<div class="title">A livello generale, il flusso di lavoro di Provisioning Collection è il seguente:</div>
+<ol class="arabic">
+<li>
+<p>Una macchina virtuale temporanea (ad esempio "CWT1") viene creata in base a un&#8217;immagine esistente (un&#8217;immagine stock o una raccolta di provisioning precedentemente salvata).</p>
+</li>
+<li>
+<p>L&#8217;amministratore VDS personalizza la macchina virtuale temporanea in base ai requisiti utilizzando <a href="Management.Scripted_Events.scripted_events.html">"Eventi con script"</a>, <a href="#customizing-the-temporary-vm">"Connettersi al server"</a> e/o strumenti di gestione di terze parti.</p>
+</li>
+<li>
+<p>Una volta personalizzata, l&#8217;amministratore VDS fa clic su <strong>Validate</strong> e avvia un processo di convalida che automatizza la finalizzazione dell&#8217;immagine, esegue SysPrep, elimina la macchina virtuale temporanea e rende l&#8217;immagine disponibile per l&#8217;implementazione in VDS.</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="video-demo-gestione-delle-immagini-delle-macchine-virtuali-per-gli-host-di-sessione-vdi">Video Demo - Gestione delle immagini delle macchine virtuali per gli host di sessione VDI</h3>
+<div class="videoblock">
+<div class="content">
+<iframe src="https://www.youtube.com/embed/rRDPnDzVBTw?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tipi-di-raccolta-provisioning">Tipi di raccolta provisioning</h3>
+<div class="paragraph">
+<p>Esistono due tipi distinti di raccolta con casi di utilizzo specifici, <strong><em>Shared</em></strong> e <strong><em>VDI</em></strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="condiviso">Condiviso</h4>
+<div class="paragraph">
+<p>Il tipo <strong><em>Shared</em></strong> è una raccolta di immagini di macchine virtuali progettate per implementare un intero ambiente con più immagini di macchine virtuali e ruoli di macchine virtuali distinti.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="vdi">VDI</h4>
+<div class="paragraph">
+<p>Il tipo <strong><em>VDI</em></strong> è una singola immagine della macchina virtuale progettata per essere utilizzata e riutilizzata per implementare più macchine virtuali identiche, generalmente utilizzate per l&#8217;hosting di sessioni utente. Per tutti i tipi di host di sessione AVD, è necessario selezionare il tipo <em>VDI</em>, anche per gli host che eseguono più sessioni per macchina virtuale.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creazione-di-una-nuova-raccolta-di-provisioning">Creazione di una nuova raccolta di provisioning</h3>
+<div class="paragraph">
+<p>Le raccolte di provisioning si trovano nell&#8217;interfaccia VDS all&#8217;interno di ogni implementazione, nella sottoscheda <strong><em>Provisioning Collections</em></strong>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="Management.Deployments.provisioning_collections1.png" alt="larghezza=75%"></span></p>
+</div>
+<div class="olist arabic">
+<div class="title">Per creare una nuova raccolta</div>
+<ol class="arabic">
+<li>
+<p>Fare clic sul pulsante <strong><em>+ Aggiungi raccolta</em></strong>.</p>
+</li>
+<li>
+<p>Compilare i seguenti campi:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><strong>Nome</strong></p>
+</li>
+<li>
+<p><strong>Descrizione</strong>(opzionale)</p>
+</li>
+<li>
+<p><strong>Type</strong> - Shared o VDI</p>
+</li>
+<li>
+<p><strong>Sistema operativo</strong></p>
+</li>
+<li>
+<p><strong>Share Drive</strong> - se questa macchina virtuale verrà utilizzata per ospitare i profili degli utenti o i dati di condivisione dell&#8217;azienda, scegliere la lettera dell&#8217;unità su cui verrà ospitata. In caso contrario, lasciare il campo "C"</p>
+</li>
+<li>
+<p><strong>Minimum cache</strong> (cache minima) - SE si desidera creare macchine virtuali da conservare per l&#8217;implementazione istantanea, specificare il numero minimo di macchine virtuali memorizzate nella cache da mantenere. Se l&#8217;implementazione di nuove macchine virtuali può attendere fino a quando l&#8217;hypervisor richiede la creazione di una macchina virtuale, è possibile impostarla su "0" per risparmiare sui costi.</p>
+</li>
+<li>
+<p><strong>Aggiungi server</strong></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><strong>Role</strong> (se è selezionato il tipo "Shared")</p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><strong>TS</strong> - questa macchina virtuale agirà solo come host di sessione</p>
+</li>
+<li>
+<p><strong>Dati</strong> - questa macchina virtuale non ospiterà sessioni utente</p>
+</li>
+<li>
+<p><strong>TSData</strong> - questa VM sarà sia l&#8217;host di sessione che l&#8217;host di storage (massimo: Un TSData per spazio di lavoro)</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>VM Template</strong> (modello VM): Selezionare dall&#8217;elenco Available (disponibili), sia le immagini dell&#8217;hypervisor di stock che le raccolte di provisioning salvate in precedenza.</p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p>NOTA: Le immagini di Windows 7 da Azure Marketplace non hanno PowerShell Remoting attivato. Per utilizzare un&#8217;immagine di Windows 7, è necessario fornire un&#8217;immagine personalizzata nella galleria di immagini condivisa con PowerShell Remoting attivato.</p>
+</li>
+<li>
+<p>NOTA: Utilizzando una Provisioning Collection esistente, è possibile aggiornare e ridistribuire le immagini esistenti come parte di un processo di aggiornamento dell&#8217;immagine pianificato.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Storage Type</strong> (tipo di storage): Consente di selezionare la velocità del disco del sistema operativo in base a costi e performance</p>
+</li>
+<li>
+<p><strong>Unità dati</strong> - facoltativamente, abilitare un secondo disco collegato a questa immagine, in genere per il livello di storage dei dati di cui sopra al punto 2.e.</p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p><strong>Data Drive Type</strong> (tipo di unità dati) - consente di selezionare la velocità del secondo disco (dati) in base a costi e prestazioni</p>
+</li>
+<li>
+<p><strong>Data Drive Size (GB)</strong> (dimensione unità dati): Consente di definire le dimensioni del secondo disco (dati) in base a capacità, costi e performance</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>Add Applications</strong> (Aggiungi applicazioni) - selezionare qualsiasi applicazione dalla libreria applicazioni che verrà (1) installata su questa immagine e (2) gestita dai diritti dell&#8217;applicazione VDS. (Valido solo per implementazioni RDS. Deve rimanere vuoto per le aree di lavoro AVD)</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="personalizzazione-della-macchina-virtuale-temporanea">Personalizzazione della macchina virtuale temporanea</h3>
+<div class="paragraph">
+<p>VDS include funzionalità che consentono di rimuovere l&#8217;accesso alle macchine virtuali dall&#8217;interfaccia Web di VDS. Per impostazione predefinita, viene creato un account amministratore locale di Windows con una password rotante e trasmesso alla macchina virtuale, consentendo all&#8217;amministratore locale di VDS di accedere senza la necessità di conoscere le credenziali di amministratore locale.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/virtual-desktop-service/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+La funzione Connect to Server (connessione al server) dispone di un&#8217;impostazione alternativa in cui all&#8217;amministratore VDS verrà richiesto di immettere le credenziali per ogni connessione. Questa impostazione può essere attivata/disattivata modificando l&#8217;account admin VDS dalla sezione "Admin" di VDS. La funzionalità è denominata <em>Tech account</em> e selezionando la casella sarà necessario immettere le credenziali quando si utilizza Connect to Server; deselezionando questa casella si attiva l&#8217;inserimento automatico delle credenziali amministrative di Windows locali a ogni connessione.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>L&#8217;amministratore VDS deve semplicemente connettersi alla macchina virtuale temporanea utilizzando Connect to Server (connessione al server) o un altro processo e apportare le modifiche necessarie per soddisfare i propri requisiti.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="convalida-della-raccolta">Convalida della raccolta</h3>
+<div class="paragraph">
+<p>Una volta completata la personalizzazione, l&#8217;amministratore VDS può chiudere l&#8217;immagine e SysPrep facendo clic su <strong>Validate</strong> dall&#8217;icona Actions (azioni).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Management.Deployments.provisioning_collections-ed97e.png" alt="Management.Deployments.provisioning collezioni ed97e">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="utilizzo-della-raccolta">Utilizzo della raccolta</h3>
+<div class="paragraph">
+<p>Una volta completata la convalida, lo stato della raccolta di provisioning diventerà <strong>disponibile</strong>. Dall&#8217;interno di Provisioning Collection, l&#8217;amministratore VDS può identificare il nome <strong>VM Template</strong> utilizzato per identificare questa raccolta di provisioning in VDS.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Management.Deployments.provisioning_collections-f5a49.png" alt="Management.Deployments.provisioning collezioni f5a49">
+</div>
+</div>
+<div class="sect3">
+<h4 id="nuovo-server">Nuovo server</h4>
+<div class="paragraph">
+<p>Dalla pagina Workspace &gt; Servers (Area di lavoro &gt; Server), è possibile creare un nuovo server e la finestra di dialogo richiederà di specificare il modello di macchina virtuale. Il nome del modello riportato sopra si trova in questo elenco:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="Management.Deployments.provisioning_collections-fc8ad.png" alt="larghezza=75%"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/virtual-desktop-service/images/tip.svg" alt="Suggerimento">
+</td>
+<td class="content">
+VDS offre un modo semplice per aggiornare gli host di sessione in un ambiente RDS utilizzando Provisioning Collections e la funzionalità <strong>Add Server</strong>. Questo processo può essere eseguito senza impatto sugli utenti finali e ripetuto più volte con i successivi aggiornamenti delle immagini, basandosi sulle iterazioni delle immagini precedenti. Per un flusso di lavoro dettagliato su questo processo, vedere <a href="#rds-session-host-update-process">"<strong>Processo di aggiornamento dell&#8217;host di sessione RDS</strong>"</a> di seguito.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="nuovo-pool-di-host-avd">Nuovo pool di host AVD</h4>
+<div class="paragraph">
+<p>Dalla pagina Workspace &gt; AVD &gt; host Pools (Area di lavoro &gt; AVD &gt; Pool host), è possibile creare un nuovo pool di host AVD facendo clic su <strong>+ Add host Pool</strong> (Aggiungi pool host) e la finestra di dialogo richiederà il modello di macchina virtuale. Il nome del modello riportato sopra si trova in questo elenco:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Management.Deployments.provisioning_collections-ba2f5.png" alt="Management.Deployments.provisioning collezioni ba2f5">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="nuovi-host-di-sessione-avd">Nuovi host di sessione AVD</h4>
+<div class="paragraph">
+<p>Dalla pagina Workspace &gt; AVD &gt; host Pool &gt; Session hosts (Area di lavoro &gt; AVD &gt; Pool host di sessione &gt; host di sessione), è possibile creare nuovi host di sessione AVD facendo clic su <strong>+ Add Session host</strong> (Aggiungi host di sessione) e la finestra di dialogo richiederà il modello di macchina virtuale. Il nome del modello riportato sopra si trova in questo elenco:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Management.Deployments.provisioning_collections-ba5e9.png" alt="Management.Deployments.provisioning collezioni ba5e9">
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/virtual-desktop-service/images/tip.svg" alt="Suggerimento">
+</td>
+<td class="content">
+VDS offre un modo semplice per aggiornare gli host di sessione in un pool di host AVD utilizzando Provisioning Collections e la funzionalità <strong>Add Session host</strong>. Questo processo può essere eseguito senza impatto sugli utenti finali e ripetuto più volte con i successivi aggiornamenti delle immagini, basandosi sulle iterazioni delle immagini precedenti. Per un flusso di lavoro dettagliato su questo processo, vedere <a href="#AVD-session-host-update-process">"<strong>Processo di aggiornamento dell&#8217;host di sessione AVD</strong>"</a> di seguito.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="nuova-area-di-lavoro">Nuova area di lavoro</h4>
+<div class="paragraph">
+<p>Dalla pagina Workspaces, è possibile creare una nuova area di lavoro facendo clic su <strong>+ New Workspace</strong> (Nuova area di lavoro) e la finestra di dialogo richiederà la raccolta di provisioning. Il nome della Shared Provisioning Collection si trova in questo elenco.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Management.Deployments.provisioning_collections-5c941.png" alt="Management.Deployments.provisioning collezioni 5c941">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="nuova-raccolta-di-provisioning">Nuova raccolta di provisioning</h4>
+<div class="paragraph">
+<p>Dalla pagina Deployment &gt; Provisioning Collection (implementazione &gt; raccolta provisioning), è possibile creare una nuova raccolta di provisioning facendo clic su <strong>+ Add Collection (Aggiungi raccolta)</strong>. Quando si aggiungono server a questa raccolta, la finestra di dialogo richiede di specificare il modello di macchina virtuale. Il nome del modello riportato sopra si trova in questo elenco:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Management.Deployments.provisioning_collections-9eac4.png" alt="Management.Deployments.provisioning collezioni 9eac4">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="addendum-1-host-di-sessione-rds">Addendum 1 - host di sessione RDS</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="processo-di-aggiornamento-dellhost-di-sessione-rds">Processo di aggiornamento dell&#8217;host di sessione RDS</h3>
+<div class="paragraph">
+<p>VDS offre un modo semplice per aggiornare gli host di sessione in un ambiente RDS utilizzando Provisioning Collections e la funzionalità <strong>Add Server</strong>. Questo processo può essere eseguito senza impatto sugli utenti finali e ripetuto più volte con i successivi aggiornamenti delle immagini, basandosi sulle iterazioni delle immagini precedenti.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Il processo di aggiornamento dell&#8217;host di sessione RDS è il seguente:</div>
+<ol class="arabic">
+<li>
+<p>Creare una nuova raccolta di provisioning VDI, personalizzare e convalidare la raccolta seguendo le istruzioni riportate sopra.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In genere, questa raccolta di provisioning verrà costruita sul modello di macchina virtuale precedente, emulando un processo "Apri, Salva con nome".</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Una volta convalidata la Provisioning Collection, accedere alla pagina <em>Workspace &gt; Servers</em>, quindi fare clic su <strong>+ Add Server</strong> (Aggiungi server)</p>
+<div class="imageblock">
+<div class="content">
+<img src="Management.Deployments.provisioning_collections.rds_session_hosts-e8204.png" alt="Management.Deployments.provisioning collections.rds session ospita e8204">
+</div>
+</div>
+</li>
+<li>
+<p>Selezionare <strong>TS</strong> come <strong>ruolo server</strong></p>
+</li>
+<li>
+<p>Selezionare l&#8217;ultimo <strong>modello di macchina virtuale</strong>. Effettuare le selezioni appropriate <strong>Machine Size</strong> (dimensioni macchina) e <strong>Storage Type</strong> (tipo di storage) in base alle proprie esigenze. Lasciare deselezionato <strong>Data Drive</strong>.</p>
+</li>
+<li>
+<p>Ripetere questa operazione per il numero totale di host di sessione richiesti per l&#8217;ambiente.</p>
+</li>
+<li>
+<p>Fare clic su <strong>Add Server</strong> (Aggiungi server) per creare gli host di sessione in base al modello di macchina virtuale selezionato e iniziare a essere online entro 10-15 minuti (a seconda dell&#8217;hypervisor).</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Tenere presente che gli host di sessione attualmente presenti nell&#8217;ambiente verranno infine dismessi dopo che questi nuovi host saranno stati messi in linea. Pianificare la creazione di un numero sufficiente di nuovi host per supportare l&#8217;intero carico di lavoro in questo ambiente.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Quando un nuovo host viene online, l&#8217;impostazione predefinita è rimanere in <strong>non consentire nuove sessioni</strong>. Per ciascun host di sessione, è possibile utilizzare il pulsante di attivazione <strong>Allow New Sessions</strong> (Consenti nuove sessioni) per gestire gli host che possono ricevere nuove sessioni utente. È possibile accedere a questa impostazione modificando le impostazioni di ogni singolo server host di sessione. Una volta creato un numero sufficiente di nuovi host e confermata la funzionalità, questa impostazione può essere gestita sia sul nuovo host che su quello precedente per instradare tutte le nuove sessioni ai nuovi host. I vecchi host, con l&#8217;opzione <strong>Allow New Sessions</strong> (Consenti nuove sessioni) impostata su <strong>Disabled</strong>, possono continuare a eseguire e ospitare le sessioni utente esistenti.</p>
+<div class="imageblock">
+<div class="content">
+<img src="Management.Deployments.provisioning_collections.rds_session_hosts-726d1.png" alt="Management.Deployments.provisioning collections.rds session hosts 726d1">
+</div>
+</div>
+</li>
+<li>
+<p>Man mano che gli utenti si disconnetteranno dai vecchi host e senza nuove sessioni utente che si uniranno ai vecchi host, è possibile eliminare i vecchi host in cui <strong>sessioni = 0</strong> facendo clic sull&#8217;icona <strong>azioni</strong> e selezionando <strong>elimina</strong>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="Management.Deployments.provisioning_collections.rds_session_hosts-45d32.png" alt="Management.Deployments.provisioning collections.rds session hosts 45d32">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="addendum-2-host-di-sessione-avd">Addendum 2 - host di sessione AVD</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="processo-di-aggiornamento-dellhost-di-sessione-avd">Processo di aggiornamento dell&#8217;host di sessione AVD</h3>
+<div class="paragraph">
+<p>VDS offre un modo semplice per aggiornare gli host di sessione in un pool di host AVD utilizzando Provisioning Collections e la funzionalità <strong>Add Session host</strong>. Questo processo può essere eseguito senza impatto sugli utenti finali e ripetuto più volte con i successivi aggiornamenti delle immagini, basandosi sulle iterazioni delle immagini precedenti.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Il processo di aggiornamento di AVD Session host è il seguente:</div>
+<ol class="arabic">
+<li>
+<p>Creare una nuova raccolta di provisioning VDI, personalizzare e convalidare la raccolta seguendo le istruzioni riportate sopra.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In genere, questa raccolta di provisioning verrà costruita sul modello di macchina virtuale precedente, emulando un processo "Apri, Salva con nome".</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Una volta convalidata la Provisioning Collection, accedere alla pagina <em>Workspace &gt; AVD &gt; host Pools</em> e fare clic sul nome del pool di host</p>
+</li>
+<li>
+<p>Dalla pagina <em>host Pool &gt; Session hosts</em>, fare clic su <strong>+ Add Session host</strong> (Aggiungi host sessione)</p>
+<div class="imageblock">
+<div class="content">
+<img src="Management.Deployments.provisioning_collections-9ed95.png" alt="Management.Deployments.provisioning collezioni 9ed95">
+</div>
+</div>
+</li>
+<li>
+<p>Selezionare l&#8217;ultimo <strong>modello di macchina virtuale</strong>. Effettuare le selezioni appropriate <strong>Machine Size</strong> (dimensioni macchina) e <strong>Storage Type</strong> (tipo di storage) in base alle proprie esigenze.</p>
+</li>
+<li>
+<p>Inserire il <strong>numero di istanze</strong> corrispondente al numero totale di host di sessione richiesti. In genere, questo numero corrisponde a quello attualmente presente nel pool di host, ma può essere qualsiasi numero.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Tenere presente che gli host di sessione attualmente presenti nel pool di host verranno infine dismessi dopo che il nuovo host sarà stato messo in linea. Pianificare che il <strong>numero di istanze</strong> immesso sia sufficiente a supportare l&#8217;intero carico di lavoro in questo pool di host.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Fare clic su <strong>Save</strong> (Salva) per creare gli host di sessione in base al modello di macchina virtuale selezionato e iniziare a essere online entro 10-15 minuti (a seconda dell&#8217;hypervisor).</p>
+</li>
+<li>
+<p>Quando un nuovo host viene online, l&#8217;impostazione predefinita è rimanere in <strong>non consentire nuove sessioni</strong>. Per ciascun host di sessione, è possibile utilizzare il pulsante di attivazione <strong>Allow New Sessions</strong> (Consenti nuove sessioni) per gestire gli host che possono ricevere nuove sessioni utente. Una volta creato un numero sufficiente di nuovi host e confermata la funzionalità, questa impostazione può essere gestita sia sul nuovo host che su quello precedente per instradare tutte le nuove sessioni ai nuovi host. I vecchi host, con l&#8217;opzione <strong>Allow New Sessions</strong> (Consenti nuove sessioni) impostata su <strong>Disabled</strong>, possono continuare a eseguire e ospitare le sessioni utente esistenti.</p>
+<div class="imageblock">
+<div class="content">
+<img src="Management.Deployments.provisioning_collections-be47e.png" alt="Management.Deployments.provisioning collezioni be47e">
+</div>
+</div>
+</li>
+<li>
+<p>Man mano che gli utenti si disconnetteranno dai vecchi host e senza nuove sessioni utente che si uniranno ai vecchi host, è possibile eliminare i vecchi host in cui <strong>sessioni = 0</strong> facendo clic sull&#8217;icona <strong>azioni</strong> e selezionando <strong>elimina</strong>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="Management.Deployments.provisioning_collections-cefb9.png" alt="Management.Deployments.provisioning collezioni cefb9">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/copyright/">© 2023 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">Condizioni per l'utilizzo</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">Direttiva sulla privacy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Direttiva sui Cookie</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Impostazioni cookie</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a target="_self" href="javascript:netapp_mailto()">Invia feedback su questa pagina</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/it-it/virtual-desktop-service/images/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/it-it/virtual-desktop-service/images/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/it-it/virtual-desktop-service/images/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/it-it/virtual-desktop-service/images/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/it-it/virtual-desktop-service/images/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/it-it/virtual-desktop-service/images/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/it-it/virtual-desktop-service/images/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/it-it/virtual-desktop-service/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/it-it/virtual-desktop-service/js/prism.js'></script>
+      <script type="text/javascript" src='/it-it/virtual-desktop-service/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/it-it/virtual-desktop-service/js/tabbed-blocks.js'></script>
+    <script src='/it-it/virtual-desktop-service/js/sidebar.js'></script>
+  </body></html>
